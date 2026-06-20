@@ -1,4 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  Boxes,
+  Building2,
+  ClipboardCheck,
+  Factory,
+  PackageOpen,
+  ShieldCheck,
+  ShipWheel,
+  Lightbulb,
+  MapPin,
+  PackageCheck,
+  TrendingUp,
+  Users,
+  Wrench,
+} from "lucide-react";
 
 // Images
 import imgHeroBg from "@/imports/Desktop4/97c894af9823ff82129bfbbb48427d94a2ce3f4c.png";
@@ -52,6 +67,13 @@ import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea
 import imgLocation from "@/imports/Desktop4/a0e3732eca3e5d33fbd79aeec2dbced27b03a22e.png";
 
 type Page = "home" | "products" | "about" | "services" | "industries" | "contact";
+type ProductInfo = {
+  img: string;
+  name: string;
+  desc: string;
+  features: string[];
+  brand?: string;
+};
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
 
@@ -70,7 +92,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => v
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-sm">
       <div className="max-w-[1440px] mx-auto px-6 h-[90px] flex items-center justify-between">
         <button onClick={() => navigate("home")} className="flex-shrink-0">
-          <img src={imgLogo} alt="Rudren Solutions" className="h-[80px] w-auto" />
+          <img src={imgLogo} alt="Rudren Solutions" className="h-[200px] w-auto" />
         </button>
 
         {/* Desktop nav */}
@@ -139,73 +161,70 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
   return (
     <footer className="bg-[#18196d] pt-12 pb-8">
       <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Logo + tagline */}
-          <div>
-            <img src={imgLogoFooter} alt="Rudren Solutions" className="h-[80px] w-auto mb-4" />
-            <p className="font-['Inter',sans-serif] text-white/70 text-[15px] leading-relaxed">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-10 mb-10 text-white/80 text-[14px]">
+          <div className="space-y-4">
+            <img src={imgLogoFooter} alt="Rudren Solutions" className="h-[70px] w-auto" />
+            <p className="font-['Inter',sans-serif] text-white/70 leading-relaxed">
               Goa's trusted partner for industrial packaging solutions.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[18px] mb-3">Quick Links</h4>
-            <div className="w-12 h-[3px] bg-[#cd0606] mb-4" />
+          <div className="space-y-4">
+            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Quick Links</h4>
             <div className="flex flex-col gap-3">
               {(["home","about","services","industries","contact"] as Page[]).map((p) => (
-                <button key={p} onClick={() => navigate(p)} className="text-left font-['Inter',sans-serif] text-white text-[16px] hover:text-[#cd0606] transition-colors capitalize">
+                <button key={p} onClick={() => navigate(p)} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors capitalize">
                   {p}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Products */}
-          <div>
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[18px] mb-3">Our Products</h4>
-            <div className="w-12 h-[3px] bg-[#cd0606] mb-4" />
+          <div className="space-y-4">
+            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Our Products</h4>
             <div className="flex flex-col gap-3">
-              {["Wrapping Machines", "All Products", "Strapping Machines"].map((t) => (
-                <button key={t} onClick={() => navigate("products")} className="text-left font-['Inter',sans-serif] text-white text-[16px] hover:text-[#cd0606] transition-colors">
+              {(["Wrapping Machines", "All Products", "Strapping Machines"]).map((t) => (
+                <button key={t} onClick={() => navigate("products")} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors">
                   {t}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Services + Contact */}
-          <div>
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[18px] mb-3">Our Services</h4>
-            <div className="w-12 h-[3px] bg-[#cd0606] mb-4" />
-            <div className="flex flex-col gap-3 mb-6">
-              {["Packaging Solutions", "Machinery & Tools Supply", "On-Site Packaging Teams", "Cargo & Export Packaging"].map((t) => (
-                <button key={t} onClick={() => navigate("services")} className="text-left font-['Inter',sans-serif] text-white text-[16px] hover:text-[#cd0606] transition-colors">
+          <div className="space-y-4">
+            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Our Services</h4>
+            <div className="flex flex-col gap-3">
+              {(["Packaging Solutions", "Machinery & Tools Supply", "On-Site Packaging Teams", "Cargo & Export Packaging"]).map((t) => (
+                <button key={t} onClick={() => navigate("services")} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors">
                   {t}
                 </button>
               ))}
             </div>
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[18px] mb-3">Contact Us</h4>
-            <div className="w-12 h-[3px] bg-[#cd0606] mb-4" />
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <img src={imgPhone} alt="" className="w-8 h-8 object-contain" />
-                <span className="font-['Inter',sans-serif] text-white text-[15px]">+91 96070 24997</span>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Contact Us</h4>
+            <div className="space-y-3 text-white/70">
+              <div>
+                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Phone</p>
+                <p>+91 96070 24997</p>
               </div>
-              <div className="flex items-center gap-2">
-                <img src={imgEmail} alt="" className="w-8 h-8 object-contain" />
-                <a href="mailto:info@rudren.com" className="font-['Inter',sans-serif] text-white text-[15px] underline hover:text-[#cd0606] transition-colors">info@rudren.com</a>
+              <div>
+                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Email</p>
+                <a href="mailto:info@rudren.com" className="underline hover:text-[#cd0606] transition-colors">
+                  info@rudren.com
+                </a>
               </div>
-              <div className="flex items-center gap-2">
-                <img src={imgLocation} alt="" className="w-8 h-8 object-contain" />
-                <span className="font-['Inter',sans-serif] text-white text-[15px]">Goa, India</span>
+              <div>
+                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Location</p>
+                <p>Goa, India</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/20 pt-6 text-center">
-          <p className="font-['Inter',sans-serif] text-white/50 text-[14px]">
+          <p className="font-['Inter',sans-serif] text-white/50 text-[13px]">
             © 2026 Rudren Solutions. All rights reserved.
           </p>
         </div>
@@ -244,24 +263,97 @@ function IndustryCard({ img, label }: { img: string; label: string }) {
   );
 }
 
-// ─── Product card ─────────────────────────────────────────────────────────────
-
-function ProductCard({ img, name }: { img: string; name: string }) {
+function ProductModal({ product, onClose, navigate }: { product: ProductInfo; onClose: () => void; navigate: (p: Page) => void }) {
   return (
-    <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
-      <div className="h-[200px] overflow-hidden">
-        <img src={img} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-      </div>
-      <div className="p-4 border-t-2 border-[#cd0606]">
-        <p className="font-['Inter',sans-serif] font-bold text-[17px] text-black">{name}</p>
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-10 bg-black/55 backdrop-blur-sm">
+      <div className="absolute inset-0" onClick={onClose} />
+      <div className="relative z-10 w-full max-w-[1000px] overflow-hidden rounded-[30px] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
+        <button
+          onClick={onClose}
+          className="absolute right-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20"
+        >
+          ×
+        </button>
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="overflow-hidden rounded-[24px]">
+            <img src={product.img} alt={product.name} className="h-[350px] w-full object-cover" />
+          </div>
+          <div className="flex flex-col justify-between rounded-[24px] bg-white/80 p-8 shadow-[0px_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+            <div>
+              <span className="text-sm font-semibold uppercase tracking-[0.35em] text-[#cd0606]">Product Details</span>
+              <h3 className="mt-4 text-[32px] font-bold text-[#101010]">{product.name}</h3>
+              <p className="mt-4 text-[16px] leading-relaxed text-slate-700">{product.desc}</p>
+              <div className="mt-6 space-y-3">
+                {product.features.map((feature) => (
+                  <div key={feature} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-[#cd0606]" />
+                    <p className="text-[15px] text-slate-700">{feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-[13px] uppercase tracking-[0.35em] text-slate-500">Need help selecting?</p>
+                <p className="text-[14px] text-slate-600">Our team can recommend the best option.</p>
+              </div>
+              <button
+                onClick={() => navigate("contact")}
+                className="inline-flex items-center justify-center rounded-[10px] bg-[#cd0606] px-6 py-3 font-semibold text-white transition hover:bg-[#a80404]"
+              >
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  );
+}
+
+// ─── Product card ─────────────────────────────────────────────────────────────
+
+function ProductCard({ img, name, onClick }: { img: string; name: string; onClick?: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group relative overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.12)]"
+    >
+      <div className="relative h-[220px] overflow-hidden">
+        <img src={img} alt={name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/20" />
+        <div className="absolute inset-x-0 bottom-0 translate-y-full bg-black/70 px-4 py-3 text-white transition-transform duration-300 group-hover:translate-y-0">
+          <span className="font-semibold">View Details</span>
+        </div>
+      </div>
+      <div className="p-5 border-t-2 border-[#cd0606] text-left">
+        <p className="font-['Inter',sans-serif] font-bold text-[17px] text-black">{name}</p>
+      </div>
+    </button>
   );
 }
 
 // ─── HOME PAGE ────────────────────────────────────────────────────────────────
 
 function HomePage({ navigate }: { navigate: (p: Page) => void }) {
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+
+  const heroSlides = [imgHeroBg, imgService1, imgAbout2];
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHeroVisible(true), 100);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(slideInterval);
+  }, []);
+
   const industries1 = [
     { img: imgInd1, label: "PHARMACEUTICAL" },
     { img: imgInd2, label: "CHEMICAL" },
@@ -275,14 +367,85 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
     { img: imgInd8, label: "EXPORT AND LOGISTICS" },
   ];
 
+  const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
+  const products: ProductInfo[] = [
+    {
+      img: imgTap1,
+      name: "ALL TYPES OF TAPES",
+      desc: "High-performance packaging tape designed for strong adhesion, smooth application, and secure transport handling.",
+      features: ["Strong tear resistance", "Residue-free removal", "Multi-surface adhesion"],
+    },
+    {
+      img: imgTap26,
+      name: "STEEL STRAP",
+      desc: "Durable steel strapping ideal for heavy loads and industrial packaging applications that demand maximum strength.",
+      features: ["Heavy-duty performance", "Corrosion resistant finish", "High load stability"],
+    },
+    {
+      img: imgTap27,
+      name: "PET STRAP",
+      desc: "Flexible PET strapping for secure bundling, pallet stabilization, and reliable protection in transit.",
+      features: ["High elongation", "Lightweight strength", "Safe handling"],
+    },
+    {
+      img: imgTap28,
+      name: "COMPOSITE STRAP",
+      desc: "Composite strapping engineered for strong tension and fast application on a wide variety of packaged goods.",
+      features: ["High yield strength", "Consistent tension", "Easy to seal"],
+    },
+  ];
+
+  const closeProductModal = () => setSelectedProduct(null);
+
   return (
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover object-center" />
+          {heroSlides.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt=""
+              data-parallax-speed="0.22"
+              className={`absolute w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                idx === heroSlide ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-black/55" />
         </div>
+
+        {/* Slider Controls */}
+        <button
+          onClick={() => setHeroSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+          className="absolute left-6 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+        >
+          <span className="text-white text-2xl">‹</span>
+        </button>
+
+        <button
+          onClick={() => setHeroSlide((prev) => (prev + 1) % heroSlides.length)}
+          className="absolute right-6 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+        >
+          <span className="text-white text-2xl">›</span>
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex gap-2">
+          {heroSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setHeroSlide(idx)}
+              className={`h-2 rounded-full transition-all ${
+                idx === heroSlide
+                  ? "w-8 bg-white"
+                  : "w-2 bg-white/50 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
+
         <div className="relative z-10 w-full px-10 md:px-16 pt-[90px] pb-16">
           <div className="max-w-[760px]">
             <div className="w-[107px] h-[4px] bg-[#cd0606] mb-6" />
@@ -335,12 +498,9 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
               </button>
             </div>
 
-            <div className="relative h-[520px]">
+            <div className="relative h-[520px] overflow-hidden rounded-[30px]">
               <div className="absolute -right-8 top-8 w-[68%] h-[90%] bg-[#cd0606]/10 rounded-[40px] -z-10" />
-              <img src={imgAbout2} alt="Warehouse operations" className="w-full h-full object-cover rounded-[30px] shadow-[0px_20px_60px_rgba(0,0,0,0.12)]" />
-              <div className="absolute -bottom-10 left-0 w-[52%] h-[260px] overflow-hidden rounded-[24px] border-4 border-white shadow-xl">
-                <img src={imgAbout1} alt="Industrial packaging" className="w-full h-full object-cover" />
-              </div>
+              <img src={imgAbout2} alt="Warehouse operations" data-parallax-speed="0.12" className="w-full h-full object-cover rounded-[30px] shadow-[0px_20px_60px_rgba(0,0,0,0.12)]" />
             </div>
           </div>
 
@@ -349,37 +509,134 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black mb-4">HOW WE WORK</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-10">
             {[
               {
                 step: "01",
                 title: "Understand Your Requirements",
                 desc: "We listen, assess, and understand your needs to deliver the best packaging solution.",
+                color: "#cd0606",
+                icon: ClipboardCheck,
               },
               {
                 step: "02",
                 title: "Design the Right Solution",
                 desc: "We design customized solutions using the right products, machinery, and expertise.",
+                color: "#082343",
+                icon: Lightbulb,
               },
               {
                 step: "03",
                 title: "Supply & Deploy",
                 desc: "We supply quality products and deploy them efficiently at your site to ensure smooth operations.",
+                color: "#cd0606",
+                icon: PackageCheck,
               },
               {
                 step: "04",
                 title: "Support & Improve",
                 desc: "We provide continuous support and look for ways to improve your packaging performance.",
+                color: "#082343",
+                icon: TrendingUp,
               },
-            ].map((item) => (
-              <div key={item.step} className="bg-white rounded-[24px] border border-black/5 shadow-[0px_10px_30px_rgba(0,0,0,0.08)] p-8 text-center">
-                <div className="mx-auto mb-5 flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[#cd0606] text-white text-[28px] font-bold">
-                  {item.step}
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.step} className="relative">
+                  {index < 3 && (
+                    <div className="hidden xl:block absolute left-[calc(100%-6px)] top-[43%] z-20 w-12 border-t-2 border-dashed border-[#082343]/70">
+                      <span className="absolute -right-1 -top-[5px] h-0 w-0 border-y-[5px] border-l-[9px] border-y-transparent" style={{ borderLeftColor: index === 1 ? "#cd0606" : "#082343" }} />
+                    </div>
+                  )}
+                  <div className="group relative min-h-[285px] rounded-[999px] bg-white px-6 pb-8 pt-16 text-center shadow-[0px_14px_35px_rgba(8,35,67,0.14)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_24px_55px_rgba(8,35,67,0.22)]">
+                    <div className="absolute left-1/2 top-0 h-[92px] w-[92px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[6px] border-white text-white shadow-[0px_12px_26px_rgba(8,35,67,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.color }}>
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Icon className="h-10 w-10" strokeWidth={1.8} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-x-6 top-4 h-[115px] rounded-t-full border-t border-x opacity-80 transition-opacity duration-500 group-hover:opacity-100" style={{ borderColor: item.color }} />
+                    <p className="relative font-['Inter',sans-serif] text-[44px] font-bold leading-none mb-4" style={{ color: item.color }}>
+                      {item.step}
+                    </p>
+                    <h3 className="relative font-['Inter',sans-serif] font-bold text-[15px] sm:text-[16px] uppercase leading-tight mb-4" style={{ color: item.color }}>
+                      {item.title}
+                    </h3>
+                    <p className="relative font-['Inter',sans-serif] text-[14px] text-black/75 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-['Inter',sans-serif] font-bold text-[18px] text-black mb-3">{item.title}</h3>
-                <p className="font-['Inter',sans-serif] text-[15px] text-black/70 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Companies Choose Rudren */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="mb-10">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[32px] md:text-[40px] text-black leading-tight text-center">
+              Why Companies Choose Rudren
+            </h2>
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mt-4" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+            {[
+              {
+                title: "One Accountable Partner",
+                desc: "Single point of contact from consultation to execution.",
+                accent: "#145bd7",
+                icon: Users,
+                visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
+              },
+              {
+                title: "Goa-Based, Operationally Present",
+                desc: "Local support with quick response and site visits.",
+                accent: "#2e7d32",
+                icon: MapPin,
+                visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
+              },
+              {
+                title: "Requirement-Led Solutions",
+                desc: "Packaging solutions designed around your operations.",
+                accent: "#ff7900",
+                icon: Boxes,
+                visual: "from-[#9b4b00] via-[#ff7900] to-[#ffe0bf]",
+              },
+              {
+                title: "Industrial-Grade Capability",
+                desc: "Quality materials, trained teams, and proven processes.",
+                accent: "#082343",
+                icon: Factory,
+                visual: "from-[#082343] via-[#274b75] to-[#d8e4f0]",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="group relative min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
+                >
+                  <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
+                    <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+                  </div>
+                  <div className="relative px-6 pb-8 pt-14">
+                    <div className="absolute left-1/2 top-0 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white text-white shadow-[0px_10px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.accent }}>
+                      <Icon className="h-9 w-9" strokeWidth={1.8} />
+                    </div>
+                    <h3 className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] uppercase leading-tight mb-4" style={{ color: item.accent }}>
+                      {item.title}
+                    </h3>
+                    <p className="font-['Inter',sans-serif] text-[15px] text-black/75 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-[6px] transition-all duration-500 group-hover:h-[9px]" style={{ backgroundColor: item.accent }} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -400,7 +657,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             {/* Service card 1 */}
             <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden">
               <div className="h-[240px] overflow-hidden">
-                <img src={imgService1} alt="Packaging Solutions" className="w-full h-full object-cover" />
+                <img src={imgService1} alt="Packaging Solutions" data-parallax-speed="0.12" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
@@ -418,7 +675,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             {/* Service card 2 */}
             <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden">
               <div className="h-[240px] overflow-hidden">
-                <img src={imgService2} alt="Machinery & Tools Supply" className="w-full h-full object-cover" />
+                <img src={imgService2} alt="Machinery & Tools Supply" data-parallax-speed="0.12" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
@@ -484,10 +741,14 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             <p className="font-['Inter',sans-serif] font-bold text-[28px] text-[#cd0606] mt-2">Premium Packaging Consumables</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10 mb-10">
-            <ProductCard img={imgTap1} name="ALL TYPES OF TAPES" />
-            <ProductCard img={imgTap26} name="STEEL STRAP" />
-            <ProductCard img={imgTap27} name="PET STRAP" />
-            <ProductCard img={imgTap28} name="COMPOSITE STRAP" />
+            {products.map((product) => (
+              <ProductCard
+                key={product.name}
+                img={product.img}
+                name={product.name}
+                onClick={() => setSelectedProduct(product)}
+              />
+            ))}
           </div>
           <div className="text-center">
             <button
@@ -500,6 +761,10 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
           </div>
         </div>
       </section>
+
+      {selectedProduct && (
+        <ProductModal product={selectedProduct} onClose={closeProductModal} navigate={navigate} />
+      )}
     </>
   );
 }
@@ -510,22 +775,107 @@ type ProductCategory = "all" | "atlanta" | "itipack";
 
 function ProductsPage({ navigate }: { navigate: (p: Page) => void }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>("all");
+  const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
 
-  const allProducts = [
-    { img: imgTap2, name: "ALL TYPES OF TAPES", brand: "all" },
-    { img: imgTap26, name: "STEEL STRAP", brand: "all" },
-    { img: imgTap27, name: "PET STRAP", brand: "all" },
-    { img: imgTap28, name: "COMPOSITE STRAP", brand: "all" },
-    { img: imgTap29, name: "NON-RESIDUAL TAPES", brand: "all" },
-    { img: imgTap30, name: "ALL TYPES OF SEALS", brand: "all" },
-    { img: imgTap31, name: "GALVANIZED BUCKLES", brand: "all" },
-    { img: imgTap32, name: "STRETCH FILM", brand: "all" },
-    { img: imgTap33, name: "WOVEN STRAP & BUCKLE", brand: "atlanta" },
-    { img: imgTap34, name: "ALL TYPES OF LDPE", brand: "atlanta" },
-    { img: imgTap35, name: "DUNNAGE AIR BAGS", brand: "itipack" },
-    { img: imgTap36, name: "ANGLE BOARD", brand: "itipack" },
-    { img: imgService1, name: "STRAPPING MACHINES", brand: "itipack" },
-    { img: imgService2, name: "STRETCH WRAPPING MACHINES", brand: "atlanta" },
+  const allProducts: ProductInfo[] = [
+    {
+      img: imgTap2,
+      name: "ALL TYPES OF TAPES",
+      brand: "all",
+      desc: "High-quality packaging tape engineered to secure pallet loads and protect goods during transport.",
+      features: ["Strong adhesion", "Smooth unwind", "Residue-free removal"],
+    },
+    {
+      img: imgTap26,
+      name: "STEEL STRAP",
+      brand: "all",
+      desc: "Durable steel strapping for heavy-duty bundling, pallet stabilization, and industrial load control.",
+      features: ["High tensile strength", "Rust-resistant finish", "Reliable sealing"],
+    },
+    {
+      img: imgTap27,
+      name: "PET STRAP",
+      brand: "all",
+      desc: "Flexible PET strapping that offers excellent strength and safer handling for a wide range of packaging applications.",
+      features: ["Lightweight strength", "Good elongation", "Weather resistant"],
+    },
+    {
+      img: imgTap28,
+      name: "COMPOSITE STRAP",
+      brand: "all",
+      desc: "Composite strapping combines strength and consistency for efficient automated and manual sealless packaging.",
+      features: ["High break load", "Consistent tension", "Easy to seal"],
+    },
+    {
+      img: imgTap29,
+      name: "NON-RESIDUAL TAPES",
+      brand: "all",
+      desc: "Clean-release tape for applications where residue-free removal is essential after packaging or bundling.",
+      features: ["No adhesive residue", "Strong hold", "Clean finish"],
+    },
+    {
+      img: imgTap30,
+      name: "ALL TYPES OF SEALS",
+      brand: "all",
+      desc: "A complete range of sealing solutions for strapping, bundling, and transport security.",
+      features: ["Secure locking", "High durability", "Wide compatibility"],
+    },
+    {
+      img: imgTap31,
+      name: "GALVANIZED BUCKLES",
+      brand: "all",
+      desc: "Corrosion-resistant buckles engineered for safe and reliable strapping connections.",
+      features: ["Galvanized coating", "Strong grip", "Easy installation"],
+    },
+    {
+      img: imgTap32,
+      name: "STRETCH FILM",
+      brand: "all",
+      desc: "Industrial stretch film for pallet wrapping and load containment, designed for excellent cling and tear resistance.",
+      features: ["High puncture resistance", "Superior cling", "Load stability"],
+    },
+    {
+      img: imgTap33,
+      name: "WOVEN STRAP & BUCKLE",
+      brand: "atlanta",
+      desc: "Atlanta woven straps and buckles offer heavy-duty support for cargo bundling and industrial packaging.",
+      features: ["High load capacity", "Durable weave", "Easy tensioning"],
+    },
+    {
+      img: imgTap34,
+      name: "ALL TYPES OF LDPE",
+      brand: "atlanta",
+      desc: "Versatile LDPE packaging films and sheets for cushioning, wrapping, and moisture protection.",
+      features: ["Flexible film", "Moisture barrier", "Soft touch"],
+    },
+    {
+      img: imgTap35,
+      name: "DUNNAGE AIR BAGS",
+      brand: "itipack",
+      desc: "Inflatable dunnage airbags designed to secure cargo and eliminate movement during transit.",
+      features: ["Fast inflation", "Reusable design", "Strong protection"],
+    },
+    {
+      img: imgTap36,
+      name: "ANGLE BOARD",
+      brand: "itipack",
+      desc: "Rigid angle board for edge protection, pallet reinforcement, and improved load stability.",
+      features: ["Heavy-duty support", "Stacking protection", "Easy handling"],
+    },
+    {
+      img: imgService1,
+      name: "STRAPPING MACHINES",
+      brand: "itipack",
+      desc: "Industrial strapping machines for fast, reliable packaging with consistent tension control.",
+      features: ["Semi-automatic", "High throughput", "Robust reliability"],
+    },
+    {
+      img: imgService2,
+      name: "STRETCH WRAPPING MACHINES",
+      brand: "atlanta",
+      desc: "Stretch wrapping machines for secure pallet wrapping and consistent package protection.",
+      features: ["Automated wrapping", "Adjustable tension", "Fast cycle times"],
+    },
   ];
 
   const categories: { id: ProductCategory; label: string; desc: string }[] = [
@@ -543,7 +893,7 @@ function ProductsPage({ navigate }: { navigate: (p: Page) => void }) {
       {/* Hero */}
       <section className="relative pt-[90px]">
         <div className="relative h-[340px] overflow-hidden">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover" />
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px] leading-tight">
@@ -603,11 +953,15 @@ function ProductsPage({ navigate }: { navigate: (p: Page) => void }) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {filtered.map((p) => (
-              <ProductCard key={p.name} img={p.img} name={p.name} />
+              <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
             ))}
           </div>
         </div>
       </section>
+
+      {selectedProduct && (
+        <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} navigate={navigate} />
+      )}
 
       {/* Machinery section */}
       <section className="py-16 bg-gray-50">
@@ -671,7 +1025,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
       {/* Hero */}
       <section className="relative pt-[90px]">
         <div className="relative h-[340px] overflow-hidden">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover" />
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
@@ -747,23 +1101,39 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
   const services = [
     {
       img: imgService1,
-      title: "Packaging Solutions",
-      desc: "Requirement-led industrial packaging tailored to your product, storage, and transit needs. We assess, plan, and execute packaging strategies that reduce damage, improve handling, and cut costs.",
-    },
-    {
-      img: imgService2,
-      title: "Machinery & Tools Supply",
-      desc: "PET & steel strapping tools, stretch wrapping machines, pneumatic nailers, staplers, and packaging consumables for industrial operations. Supplied, installed, and serviced by our team.",
-    },
-    {
-      img: imgAbout1,
-      title: "On-Site Packaging Teams",
-      desc: "Dedicated, trained packaging teams deployed directly to your facility. We manage attendance, supervision, and output — you get results without the overhead of managing a packaging workforce.",
+      title: "Complete Packaging",
+      desc: "Comprehensive packaging solutions that combine practical design with protective efficiency, helping your products stay secure and presentable.",
+      icon: PackageOpen,
     },
     {
       img: imgAbout2,
-      title: "Cargo & Export Packaging",
-      desc: "Specialized export-grade packaging compliant with international transit standards. We ensure your goods reach their destination without damage, delay, or compliance issues.",
+      title: "Cargo Securing",
+      desc: "Cargo securing solutions built to protect goods in movement, improving load stability across storage, handling, and transit.",
+      icon: ShieldCheck,
+    },
+    {
+      img: imgAbout1,
+      title: "Ship Lashing",
+      desc: "Expert ship lashing support using reliable securing methods to safeguard goods during maritime transport.",
+      icon: ShipWheel,
+    },
+    {
+      img: imgHeroBg,
+      title: "Operational Contract",
+      desc: "Structured operational packaging contracts designed for clarity, efficiency, and smooth long-term collaboration.",
+      icon: ClipboardCheck,
+    },
+    {
+      img: imgInd8,
+      title: "Packaging Audits",
+      desc: "Detailed packaging audits that help reduce waste, improve product protection, and optimize your packaging strategy.",
+      icon: PackageCheck,
+    },
+    {
+      img: imgService2,
+      title: "Technical Services",
+      desc: "Technical service support for packaging operations, machinery performance, troubleshooting, and smoother day-to-day output.",
+      icon: Wrench,
     },
   ];
 
@@ -772,7 +1142,7 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
       {/* Hero */}
       <section className="relative pt-[90px]">
         <div className="relative h-[340px] overflow-hidden">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover" />
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
@@ -785,30 +1155,45 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
 
       <section className="py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="mb-14">
-            <SectionHeading pre="What We " highlight="Offer" />
-            <p className="font-['Inter',sans-serif] text-[20px] text-black mt-4 max-w-[600px]">
-              Innovative solutions designed to improve efficiency, ensure safety and drive your business forward.
+          <div className="mb-14 text-center">
+            <p className="font-['Inter',sans-serif] font-bold text-[15px] uppercase tracking-[0.28em] text-[#cd0606] mb-3">
+              What We Offer
+            </p>
+            <h2 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[46px] text-black leading-tight">
+              Discover our Tailored Solutions
+            </h2>
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mt-5" />
+            <p className="font-['Inter',sans-serif] text-[18px] text-black/70 mt-5 max-w-[760px] mx-auto leading-relaxed">
+              Complete industrial packaging services for securing cargo, improving plant operations, auditing packaging performance, and supporting technical execution.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((s) => (
-              <div key={s.title} className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden">
-                <div className="h-[240px] overflow-hidden">
-                  <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-[48px] h-[48px] bg-[#cd0606] rounded-full flex items-center justify-center flex-shrink-0">
-                      <img src={imgServiceIcon} alt="" className="w-7 h-7 object-contain" />
-                    </div>
-                    <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">{s.title}</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {services.map((s, index) => {
+              const Icon = s.icon;
+              return (
+              <div key={s.title} className="group bg-white rounded-[12px] shadow-[0px_12px_34px_rgba(8,35,67,0.14)] ring-1 ring-black/5 overflow-hidden transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.22)]">
+                <div className="relative h-[235px] overflow-hidden">
+                  <img src={s.img} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+                  <div className="absolute left-5 top-5 flex h-[54px] w-[54px] items-center justify-center rounded-full bg-white/95 font-['Inter',sans-serif] text-[18px] font-bold text-[#cd0606] shadow-[0px_10px_24px_rgba(0,0,0,0.2)]">
+                    {String(index + 1).padStart(2, "0")}
                   </div>
-                  <div className="w-[41px] h-[4px] bg-[#cd0606] mb-4" />
+                </div>
+                <div className="relative p-7 pt-12">
+                  <div className="absolute -top-8 left-7 flex h-[68px] w-[68px] items-center justify-center rounded-full border-[5px] border-white bg-[#cd0606] text-white shadow-[0px_12px_26px_rgba(205,6,6,0.28)] transition-transform duration-500 group-hover:scale-110">
+                    <Icon className="h-8 w-8" strokeWidth={1.8} />
+                  </div>
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div>
+                      <h3 className="font-['Inter',sans-serif] font-bold text-[22px] text-black leading-tight">{s.title}</h3>
+                      <div className="w-[44px] h-[4px] bg-[#cd0606] mt-3" />
+                    </div>
+                  </div>
                   <p className="font-['Inter',sans-serif] text-[15px] text-black/80 leading-relaxed">{s.desc}</p>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -841,13 +1226,13 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
 
       <section className="py-14 bg-[#18196d] text-center">
         <div className="max-w-[700px] mx-auto px-6">
-          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[32px] mb-4">Ready to Streamline Your Packaging?</h2>
-          <p className="font-['Inter',sans-serif] text-white/80 text-[17px] mb-8">Contact us today for a free consultation and site assessment.</p>
+          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[32px] mb-4">Ready to discuss your plant&apos;s packaging?</h2>
+          <p className="font-['Inter',sans-serif] text-white/80 text-[17px] mb-8">Tell us your throughput, product type, and current challenges. We&apos;ll come back with a specific proposal.</p>
           <button
             onClick={() => navigate("contact")}
             className="inline-flex items-center gap-3 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[8px] px-8 h-[56px]"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Get Started</span>
+            <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Request a Site Survey</span>
             <img src={imgArrow} alt="" className="h-5 w-auto" />
           </button>
         </div>
@@ -878,7 +1263,7 @@ function IndustriesPage() {
     <>
       <section className="relative pt-[90px]">
         <div className="relative h-[340px] overflow-hidden">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover" />
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
@@ -920,7 +1305,7 @@ function ContactPage() {
     <>
       <section className="relative pt-[90px]">
         <div className="relative h-[340px] overflow-hidden">
-          <img src={imgHeroBg} alt="" className="w-full h-full object-cover" />
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
@@ -1026,7 +1411,6 @@ function ContactPage() {
             {/* Direct contact panel */}
             <div className="relative">
               <img src={imgContactBg} alt="" className="w-full h-full object-cover absolute inset-0" />
-              <div className="absolute inset-0 bg-[#cd0606]/85" />
               <div className="relative z-10 p-10 flex flex-col justify-center h-full min-h-[500px]">
                 <h2 className="font-['Inter',sans-serif] font-bold text-white text-[32px] mb-8">Direct Contact</h2>
                 <div className="space-y-6">
@@ -1072,6 +1456,32 @@ function ContactPage() {
 
 export default function App() {
   const [page, setPage] = useState<Page>("home");
+
+  useEffect(() => {
+    let ticking = false;
+    const updateParallax = () => {
+      const elements = document.querySelectorAll<HTMLElement>("[data-parallax-speed]");
+      elements.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallaxSpeed ?? "0.15");
+        const rect = el.getBoundingClientRect();
+        const y = -rect.top * speed;
+        el.style.transform = `translate3d(0, ${y}px, 0)`;
+      });
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateParallax);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateParallax();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigate = (p: Page) => {
     setPage(p);
