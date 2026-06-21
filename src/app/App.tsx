@@ -67,6 +67,7 @@ import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea
 import imgLocation from "@/imports/Desktop4/a0e3732eca3e5d33fbd79aeec2dbced27b03a22e.png";
 
 type Page = "home" | "products" | "about" | "services" | "industries" | "contact";
+type ProductCategory = "all" | "atlanta" | "itipack";
 type ProductInfo = {
   img: string;
   name: string;
@@ -77,8 +78,9 @@ type ProductInfo = {
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
 
-function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => void }) {
+function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, category?: ProductCategory) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const links: { label: string; page: Page }[] = [
     { label: "Home", page: "home" },
     { label: "About", page: "about" },
@@ -97,15 +99,64 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => v
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-8">
           {links.map(({ label, page }) => (
-            <button
-              key={page}
-              onClick={() => navigate(page)}
-              className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
-                current === page ? "text-[#cd0606]" : ""
-              }`}
-            >
-              {label}
-            </button>
+            <div key={page} className="relative">
+              {page === "products" ? (
+                <button
+                  onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                  onMouseEnter={() => setProductsDropdownOpen(true)}
+                  onMouseLeave={() => setProductsDropdownOpen(false)}
+                  className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                    current === page ? "text-[#cd0606]" : ""
+                  }`}
+                >
+                  {label}
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate(page)}
+                  className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                    current === page ? "text-[#cd0606]" : ""
+                  }`}
+                >
+                  {label}
+                </button>
+              )}
+              {page === "products" && productsDropdownOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden z-50"
+                  onMouseEnter={() => setProductsDropdownOpen(true)}
+                  onMouseLeave={() => setProductsDropdownOpen(false)}
+                >
+                  <button
+                    onClick={() => {
+                      navigate("products", "all");
+                      setProductsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                  >
+                    All Products
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("products", "atlanta");
+                      setProductsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                  >
+                    Atlanta
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("products", "itipack");
+                      setProductsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                  >
+                    Itipack
+                  </button>
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
@@ -846,10 +897,8 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
 // ─── PRODUCTS PAGE ────────────────────────────────────────────────────────────
 
-type ProductCategory = "all" | "atlanta" | "itipack";
-
-function ProductsPage({ navigate }: { navigate: (p: Page) => void }) {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory>("all");
+function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, category?: ProductCategory) => void; initialCategory?: ProductCategory }) {
+  const [activeCategory, setActiveCategory] = useState<ProductCategory>(initialCategory || "all");
   const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
 
   const allProducts: ProductInfo[] = [
@@ -1622,6 +1671,7 @@ function ContactPage() {
 
 export default function App() {
   const [page, setPage] = useState<Page>("home");
+  const [productCategory, setProductCategory] = useState<ProductCategory>("all");
 
   useEffect(() => {
     let ticking = false;
@@ -1649,8 +1699,11 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigate = (p: Page) => {
+  const navigate = (p: Page, category?: ProductCategory) => {
     setPage(p);
+    if (category && (category === "all" || category === "atlanta" || category === "itipack")) {
+      setProductCategory(category);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -1659,7 +1712,7 @@ export default function App() {
       <Navbar current={page} navigate={navigate} />
       <main className="flex-1">
         {page === "home" && <HomePage navigate={navigate} />}
-        {page === "products" && <ProductsPage navigate={navigate} />}
+        {page === "products" && <ProductsPage navigate={navigate} initialCategory={productCategory} />}
         {page === "about" && <AboutPage navigate={navigate} />}
         {page === "services" && <ServicesPage navigate={navigate} />}
         {page === "industries" && <IndustriesPage />}
