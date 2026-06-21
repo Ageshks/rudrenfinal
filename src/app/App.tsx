@@ -466,7 +466,11 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
   const [heroVisible, setHeroVisible] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
 
-  const heroSlides = [imgHeroBg, imgService1, imgAbout2];
+  const heroSlides = [
+    { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "PACKAGING BUILT\nAROUND YOUR\nOPERATION", desc: "From requirement assessment and material supply to dedicated on-site packaging teams — Rudren Solutions manages your entire packaging process, so your team can focus on what they do best." },
+    { img: imgService1, badge: "ONSITE PACKAGING", title: "DEDICATED\nONSITE PACKAGING\nSOLUTIONS", desc: "Our expert teams deploy directly to your facility, managing packaging operations with precision, efficiency, and complete accountability — ensuring seamless integration with your production line." },
+    { img: imgAbout2, badge: "OUR PRODUCTS", title: "PREMIUM\nPACKAGING\nCONSUMABLES", desc: "From high-performance tapes and strapping to stretch films and machinery — we supply a comprehensive range of industrial packaging materials trusted by manufacturers across Goa." },
+  ];
 
   useEffect(() => {
     const timer = window.setTimeout(() => setHeroVisible(true), 100);
@@ -528,10 +532,10 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {heroSlides.map((img, idx) => (
+          {heroSlides.map((slide, idx) => (
             <img
               key={idx}
-              src={img}
+              src={slide.img}
               alt=""
               data-parallax-speed="0.22"
               className={`absolute w-full h-full object-cover object-center transition-opacity duration-1000 ${
@@ -574,14 +578,25 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
         <div className="relative z-10 w-full px-10 md:px-16 pt-[90px] pb-16">
           <div className="max-w-[760px]">
-            <div className="w-[107px] h-[4px] bg-[#cd0606] mb-6" />
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[56px] md:text-[72px] leading-tight mb-6">
-              PACKAGING BUILT<br />
-              <span className="text-[#cd0606]">AROUND </span>YOUR<br />
-              OPERATION
+            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6">
+              <span className="font-['Inter',sans-serif] font-bold text-[12px] sm:text-[13px] text-white uppercase tracking-wider">
+                {heroSlides[heroSlide].badge}
+              </span>
+            </div>
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[56px] md:text-[72px] leading-tight mb-6 whitespace-pre-line">
+              {heroSlides[heroSlide].title.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line.includes('AROUND') || line.includes('ONSITE') || line.includes('PREMIUM') ? (
+                    <span className="text-[#cd0606]">{line}</span>
+                  ) : (
+                    line
+                  )}
+                  {i < heroSlides[heroSlide].title.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </h1>
             <p className="font-['Inter',sans-serif] text-white text-[18px] leading-relaxed max-w-[620px] mb-8">
-              From requirement assessment and material supply to dedicated on-site packaging teams — Rudren Solutions manages your entire packaging process, so your team can focus on what they do best.
+              {heroSlides[heroSlide].desc}
             </p>
             <div className="flex flex-wrap gap-3">
               <button
