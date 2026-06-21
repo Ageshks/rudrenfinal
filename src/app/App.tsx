@@ -84,7 +84,6 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => v
     { label: "About", page: "about" },
     { label: "Services", page: "services" },
     { label: "Products", page: "products" },
-    { label: "Industries", page: "industries" },
     { label: "Contact", page: "contact" },
   ];
 
@@ -92,7 +91,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => v
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-sm">
       <div className="max-w-[1440px] mx-auto px-6 h-[90px] flex items-center justify-between">
         <button onClick={() => navigate("home")} className="flex-shrink-0">
-          <img src={imgLogo} alt="Rudren Solutions" className="h-[200px] w-auto" />
+          <img src={imgLogo} alt="Rudren Solutions" className="h-[90px] sm:h-[100px] md:h-[120px] lg:h-[200px] w-auto" />
         </button>
 
         {/* Desktop nav */}
@@ -159,74 +158,150 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page) => v
 
 function Footer({ navigate }: { navigate: (p: Page) => void }) {
   return (
-    <footer className="bg-[#18196d] pt-12 pb-8">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-10 mb-10 text-white/80 text-[14px]">
-          <div className="space-y-4">
-            <img src={imgLogoFooter} alt="Rudren Solutions" className="h-[70px] w-auto" />
-            <p className="font-['Inter',sans-serif] text-white/70 leading-relaxed">
-              Goa's trusted partner for industrial packaging solutions.
+    <footer className="bg-[#18196d] text-white">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <h3 className="text-2xl font-bold mb-4">
+              Rudren Solutions LLP
+            </h3>
+
+            <p className="text-white/70 leading-relaxed max-w-md text-sm">
+              Delivering innovative packaging solutions, machinery supply,
+              cargo packaging, and on-site packaging services for industries
+              across India.
             </p>
+
+            <div className="mt-6 flex gap-4">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+              >
+                FB
+              </a>
+
+              <a
+                href="#"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+              >
+                IN
+              </a>
+
+              <a
+                href="#"
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+              >
+                LI
+              </a>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Quick Links</h4>
-            <div className="flex flex-col gap-3">
-              {(["home","about","services","industries","contact"] as Page[]).map((p) => (
-                <button key={p} onClick={() => navigate(p)} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors capitalize">
-                  {p}
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Quick Links
+            </h4>
+
+            <div className="flex flex-col gap-3 text-sm text-white/70">
+              {(["home", "about", "services", "contact"] as Page[]).map(
+                (p) => (
+                  <button
+                    key={p}
+                    onClick={() => navigate(p)}
+                    className="text-left hover:text-[#cd0606] transition-colors capitalize"
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Products
+            </h4>
+
+            <div className="flex flex-col gap-3 text-sm text-white/70">
+              {[
+                "Wrapping Machines",
+                "Strapping Machines",
+                "Packaging Tools",
+                "All Products",
+              ].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => navigate("products")}
+                  className="text-left hover:text-[#cd0606] transition-colors"
+                >
+                  {item}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Our Products</h4>
-            <div className="flex flex-col gap-3">
-              {(["Wrapping Machines", "All Products", "Strapping Machines"]).map((t) => (
-                <button key={t} onClick={() => navigate("products")} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors">
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Contact */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Contact Us
+            </h4>
 
-          <div className="space-y-4">
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Our Services</h4>
-            <div className="flex flex-col gap-3">
-              {(["Packaging Solutions", "Machinery & Tools Supply", "On-Site Packaging Teams", "Cargo & Export Packaging"]).map((t) => (
-                <button key={t} onClick={() => navigate("services")} className="text-left font-['Inter',sans-serif] hover:text-[#cd0606] transition-colors">
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-['Inter',sans-serif] font-bold text-white text-[16px]">Contact Us</h4>
-            <div className="space-y-3 text-white/70">
+            <div className="space-y-4 text-sm text-white/70">
               <div>
-                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Phone</p>
+                <p className="font-medium text-white mb-1">
+                  Phone
+                </p>
                 <p>+91 96070 24997</p>
               </div>
+
               <div>
-                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Email</p>
-                <a href="mailto:info@rudren.com" className="underline hover:text-[#cd0606] transition-colors">
+                <p className="font-medium text-white mb-1">
+                  Email
+                </p>
+                <a
+                  href="mailto:info@rudren.com"
+                  className="hover:text-[#cd0606] transition-colors"
+                >
                   info@rudren.com
                 </a>
               </div>
+
               <div>
-                <p className="font-['Inter',sans-serif] font-semibold text-white text-[14px] mb-1">Location</p>
+                <p className="font-medium text-white mb-1">
+                  Location
+                </p>
                 <p>Goa, India</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/20 pt-6 text-center">
-          <p className="font-['Inter',sans-serif] text-white/50 text-[13px]">
-            © 2026 Rudren Solutions. All rights reserved.
-          </p>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/20 mt-12 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <p className="text-white/50 text-sm text-center md:text-left">
+              © 2026 Rudren Solutions. All rights reserved.
+            </p>
+
+            <div className="flex gap-6 text-sm text-white/60">
+              <button className="hover:text-white transition-colors">
+                Privacy Policy
+              </button>
+
+              <button className="hover:text-white transition-colors">
+                Terms & Conditions
+              </button>
+
+              <button className="hover:text-white transition-colors">
+                Sitemap
+              </button>
+            </div>
+
+          </div>
         </div>
       </div>
     </footer>
@@ -1072,8 +1147,62 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             <h2 className="font-['Inter',sans-serif] font-bold text-[36px] text-black mb-8">
               Why Companies Choose Rudren
             </h2>
-            <div className="rounded-[12px] overflow-hidden">
-              <img src={imgWhyChoose} alt="Why choose Rudren" className="w-full h-auto max-h-[400px] object-cover" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+              {[
+                {
+                  title: "One Accountable Partner",
+                  desc: "Single point of contact from consultation to execution.",
+                  accent: "#145bd7",
+                  icon: Users,
+                  visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
+                },
+                {
+                  title: "Goa-Based, Operationally Present",
+                  desc: "Local support with quick response and site visits.",
+                  accent: "#2e7d32",
+                  icon: MapPin,
+                  visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
+                },
+                {
+                  title: "Requirement-Led Solutions",
+                  desc: "Packaging solutions designed around your operations.",
+                  accent: "#ff7900",
+                  icon: Boxes,
+                  visual: "from-[#9b4b00] via-[#ff7900] to-[#ffe0bf]",
+                },
+                {
+                  title: "Industrial-Grade Capability",
+                  desc: "Quality materials, trained teams, and proven processes.",
+                  accent: "#082343",
+                  icon: Factory,
+                  visual: "from-[#082343] via-[#274b75] to-[#d8e4f0]",
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="group relative min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
+                  >
+                    <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
+                      <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+                    </div>
+                    <div className="relative px-6 pb-8 pt-14">
+                      <div className="absolute left-1/2 top-0 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white text-white shadow-[0px_10px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.accent }}>
+                        <Icon className="h-9 w-9" strokeWidth={1.8} />
+                      </div>
+                      <h3 className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] uppercase leading-tight mb-4" style={{ color: item.accent }}>
+                        {item.title}
+                      </h3>
+                      <p className="font-['Inter',sans-serif] text-[15px] text-black/75 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-[6px] transition-all duration-500 group-hover:h-[9px]" style={{ backgroundColor: item.accent }} />
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -1107,15 +1236,15 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
     },
     {
       img: imgAbout2,
-      title: "Cargo Securing",
-      desc: "Cargo securing solutions built to protect goods in movement, improving load stability across storage, handling, and transit.",
-      icon: ShieldCheck,
+      title: "Onsite Packaging",
+      desc: "Dedicated on-site packaging teams deployed at your facility to manage packaging operations with precision and efficiency.",
+      icon: Users,
     },
     {
       img: imgAbout1,
-      title: "Ship Lashing",
-      desc: "Expert ship lashing support using reliable securing methods to safeguard goods during maritime transport.",
-      icon: ShipWheel,
+      title: "Cargo Securing & Ship Lashing",
+      desc: "Expert cargo securing and ship lashing support using reliable methods to protect goods during transit and maritime transport.",
+      icon: ShieldCheck,
     },
     {
       img: imgHeroBg,
@@ -1205,21 +1334,58 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
             <div className="w-[66px] h-[4px] bg-[#cd0606] mb-4" />
             <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black">HOW WE WORK</h2>
           </div>
-          <div className="rounded-[12px] overflow-hidden mb-10">
-            <img src={imgHowWeWork1} alt="How we work" className="w-full h-auto max-h-[380px] object-cover" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { step: "01", title: "Requirement Assessment", desc: "We begin with a thorough evaluation of your packaging needs, materials handled, and operational constraints." },
-              { step: "02", title: "Solution Design", desc: "We design a packaging solution — materials, equipment, and processes — tailored to your specific requirements." },
-              { step: "03", title: "Execution & Support", desc: "We deploy materials, machinery, and teams on-site, with ongoing support and replenishment." },
-            ].map((item) => (
-              <div key={item.step} className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-7">
-                <div className="text-[48px] font-['Inter',sans-serif] font-bold text-[#cd0606] mb-3">{item.step}</div>
-                <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black mb-3">{item.title}</h3>
-                <p className="font-['Inter',sans-serif] text-[15px] text-black/70 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+              {
+                step: "01",
+                title: "Requirement Assessment",
+                desc: "We begin with a thorough evaluation of your packaging needs, materials handled, and operational constraints.",
+                color: "#cd0606",
+                icon: ClipboardCheck,
+              },
+              {
+                step: "02",
+                title: "Solution Design",
+                desc: "We design a packaging solution — materials, equipment, and processes — tailored to your specific requirements.",
+                color: "#082343",
+                icon: Lightbulb,
+              },
+              {
+                step: "03",
+                title: "Execution & Support",
+                desc: "We deploy materials, machinery, and teams on-site, with ongoing support and replenishment.",
+                color: "#cd0606",
+                icon: PackageCheck,
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.step} className="relative">
+                  {index < 2 && (
+                    <div className="hidden md:block absolute left-[calc(100%-6px)] top-[43%] z-20 w-12 border-t-2 border-dashed border-[#082343]/70">
+                      <span className="absolute -right-1 -top-[5px] h-0 w-0 border-y-[5px] border-l-[9px] border-y-transparent" style={{ borderLeftColor: index === 0 ? "#cd0606" : "#082343" }} />
+                    </div>
+                  )}
+                  <div className="group relative min-h-[285px] rounded-[999px] bg-white px-6 pb-8 pt-16 text-center shadow-[0px_14px_35px_rgba(8,35,67,0.14)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_24px_55px_rgba(8,35,67,0.22)]">
+                    <div className="absolute left-1/2 top-0 h-[92px] w-[92px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[6px] border-white text-white shadow-[0px_12px_26px_rgba(8,35,67,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.color }}>
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Icon className="h-10 w-10" strokeWidth={1.8} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-x-6 top-4 h-[115px] rounded-t-full border-t border-x opacity-80 transition-opacity duration-500 group-hover:opacity-100" style={{ borderColor: item.color }} />
+                    <p className="relative font-['Inter',sans-serif] text-[44px] font-bold leading-none mb-4" style={{ color: item.color }}>
+                      {item.step}
+                    </p>
+                    <h3 className="relative font-['Inter',sans-serif] font-bold text-[15px] sm:text-[16px] uppercase leading-tight mb-4" style={{ color: item.color }}>
+                      {item.title}
+                    </h3>
+                    <p className="relative font-['Inter',sans-serif] text-[14px] text-black/75 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

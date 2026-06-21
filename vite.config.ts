@@ -32,5 +32,5 @@ export default defineConfig({
   },
 
   // File types to support raw imports
-  assetsInclude: ['**/*.svg', '**/*.csv'],
+  assetsInclude: ['**/*.svg', '**/*.csv', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp'],
 })
