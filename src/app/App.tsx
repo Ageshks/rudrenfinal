@@ -90,7 +90,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
       <div className="max-w-[1440px] mx-auto px-6 h-[90px] flex items-center justify-between">
         <button onClick={() => navigate("home")} className="flex-shrink-0">
           <img src={imgLogo} alt="Rudren Solutions" className="h-[90px] sm:h-[100px] md:h-[120px] lg:h-[200px] w-auto" />
@@ -913,6 +913,12 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, category?: ProductCategory) => void; initialCategory?: ProductCategory }) {
   const [activeCategory, setActiveCategory] = useState<ProductCategory>(initialCategory || "all");
   const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
+
+  useEffect(() => {
+    if (initialCategory && (initialCategory === "all" || initialCategory === "atlanta" || initialCategory === "itipack")) {
+      setActiveCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   const allProducts: ProductInfo[] = [
     {
