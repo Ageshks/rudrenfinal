@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Boxes,
   Building2,
@@ -81,6 +81,7 @@ type ProductInfo = {
 function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, category?: ProductCategory) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = React.useRef<number | null>(null);
   const links: { label: string; page: Page }[] = [
     { label: "Home", page: "home" },
     { label: "About", page: "about" },
@@ -103,8 +104,18 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
               {page === "products" ? (
                 <div 
                   className="relative"
-                  onMouseEnter={() => setProductsDropdownOpen(true)}
-                  onMouseLeave={() => setProductsDropdownOpen(false)}
+                  onMouseEnter={() => {
+                    if (dropdownTimeoutRef.current) {
+                      clearTimeout(dropdownTimeoutRef.current);
+                      dropdownTimeoutRef.current = null;
+                    }
+                    setProductsDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    dropdownTimeoutRef.current = window.setTimeout(() => {
+                      setProductsDropdownOpen(false);
+                    }, 500);
+                  }}
                 >
                   <button
                     onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
