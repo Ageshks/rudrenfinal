@@ -101,16 +101,53 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
           {links.map(({ label, page }) => (
             <div key={page} className="relative">
               {page === "products" ? (
-                <button
-                  onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                <div 
+                  className="relative"
                   onMouseEnter={() => setProductsDropdownOpen(true)}
                   onMouseLeave={() => setProductsDropdownOpen(false)}
-                  className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
-                    current === page ? "text-[#cd0606]" : ""
-                  }`}
                 >
-                  {label}
-                </button>
+                  <button
+                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                    className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                      current === page ? "text-[#cd0606]" : ""
+                    }`}
+                  >
+                    {label}
+                  </button>
+                  {productsDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden"
+                    >
+                      <button
+                        onClick={() => {
+                          navigate("products", "all");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        All Products
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate("products", "atlanta");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        Atlanta
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate("products", "itipack");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        Itipack
+                      </button>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <button
                   onClick={() => navigate(page)}
@@ -120,41 +157,6 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
                 >
                   {label}
                 </button>
-              )}
-              {page === "products" && productsDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden z-50"
-                  onMouseEnter={() => setProductsDropdownOpen(true)}
-                  onMouseLeave={() => setProductsDropdownOpen(false)}
-                >
-                  <button
-                    onClick={() => {
-                      navigate("products", "all");
-                      setProductsDropdownOpen(false);
-                    }}
-                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                  >
-                    All Products
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("products", "atlanta");
-                      setProductsDropdownOpen(false);
-                    }}
-                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                  >
-                    Atlanta
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("products", "itipack");
-                      setProductsDropdownOpen(false);
-                    }}
-                    className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                  >
-                    Itipack
-                  </button>
-                </div>
               )}
             </div>
           ))}
