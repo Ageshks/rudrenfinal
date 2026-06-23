@@ -81,7 +81,6 @@ type ProductInfo = {
 function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, category?: ProductCategory) => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
-  const dropdownTimeoutRef = React.useRef<number | null>(null);
   const links: { label: string; page: Page }[] = [
     { label: "Home", page: "home" },
     { label: "About", page: "about" },
@@ -102,21 +101,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
           {links.map(({ label, page }) => (
             <div key={page} className="relative">
               {page === "products" ? (
-                <div 
-                  className="relative"
-                  onMouseEnter={() => {
-                    if (dropdownTimeoutRef.current) {
-                      clearTimeout(dropdownTimeoutRef.current);
-                      dropdownTimeoutRef.current = null;
-                    }
-                    setProductsDropdownOpen(true);
-                  }}
-                  onMouseLeave={() => {
-                    dropdownTimeoutRef.current = window.setTimeout(() => {
-                      setProductsDropdownOpen(false);
-                    }, 500);
-                  }}
-                >
+                <div className="relative">
                   <button
                     onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
                     className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
