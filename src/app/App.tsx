@@ -67,7 +67,7 @@ import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea
 import imgLocation from "@/imports/Desktop4/a0e3732eca3e5d33fbd79aeec2dbced27b03a22e.png";
 
 type Page = "home" | "products" | "about" | "services" | "industries" | "contact";
-type ProductCategory = "all" | "atlanta" | "itipack";
+type ProductCategory = "all" | "atlanta" | "atlanta-semi" | "atlanta-auto" | "itipack";
 type ProductInfo = {
   img: string;
   name: string;
@@ -125,7 +125,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
                       </button>
                       <button
                         onClick={() => {
-                          navigate("products", "atlanta");
+                          navigate("products", "atlanta-semi");
                           setProductsDropdownOpen(false);
                         }}
                         className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
@@ -915,7 +915,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
 
   useEffect(() => {
-    if (initialCategory && (initialCategory === "all" || initialCategory === "atlanta" || initialCategory === "itipack")) {
+    if (initialCategory && (initialCategory === "all" || initialCategory === "atlanta" || initialCategory === "atlanta-semi" || initialCategory === "atlanta-auto" || initialCategory === "itipack")) {
       setActiveCategory(initialCategory);
     }
   }, [initialCategory]);
@@ -1009,12 +1009,17 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
 
   const categories: { id: ProductCategory; label: string; desc: string }[] = [
     { id: "all", label: "All Products", desc: "Complete range of industrial packaging consumables and machinery." },
-    { id: "atlanta", label: "Atlanta", desc: "Atlanta-brand stretch films, woven straps, and wrapping machinery for heavy-duty industrial use." },
+    { id: "atlanta", label: "Atlanta - Semi Automatic Wrapping Machine", desc: "Semi-automatic stretch wrapping machines for medium-volume operations." },
+    { id: "atlanta-auto", label: "Atlanta - Fully Automatic Wrapping Machine", desc: "Fully automatic stretch wrapping machines for high-volume operations." },
     { id: "itipack", label: "Itipack", desc: "Itipack strapping machines, dunnage air bags, and industrial packaging tools for automated operations." },
   ];
 
   const filtered = activeCategory === "all"
     ? allProducts
+    : activeCategory === "atlanta"
+    ? allProducts.filter((p) => p.brand === "atlanta-semi")
+    : activeCategory === "atlanta-auto"
+    ? allProducts.filter((p) => p.brand === "atlanta-auto")
     : allProducts.filter((p) => p.brand === activeCategory);
 
   return (
@@ -1072,7 +1077,8 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
           <div className="mb-10">
             <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
               {activeCategory === "all" && "Premium Packaging Consumables"}
-              {activeCategory === "atlanta" && <><span className="text-[#cd0606]">Atlanta</span> Products</>}
+              {activeCategory === "atlanta" && <><span className="text-[#cd0606]">Atlanta</span> Semi Automatic Wrapping Machine</>}
+              {activeCategory === "atlanta-auto" && <><span className="text-[#cd0606]">Atlanta</span> Fully Automatic Wrapping Machine</>}
               {activeCategory === "itipack" && <><span className="text-[#cd0606]">Itipack</span> Products</>}
             </h2>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-3" />
@@ -1706,7 +1712,7 @@ export default function App() {
 
   const navigate = (p: Page, category?: ProductCategory) => {
     setPage(p);
-    if (category && (category === "all" || category === "atlanta" || category === "itipack")) {
+    if (category && (category === "all" || category === "atlanta" || category === "atlanta-semi" || category === "atlanta-auto" || category === "itipack")) {
       setProductCategory(category);
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
