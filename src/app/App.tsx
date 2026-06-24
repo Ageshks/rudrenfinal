@@ -1247,69 +1247,20 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
               {[
-    {
-      img: imgTap33,
-      name: "WOVEN STRAP & BUCKLE",
-      brand: "atlanta",
-      desc: "Atlanta woven straps and buckles offer heavy-duty support for cargo bundling and industrial packaging.",
-      features: ["High load capacity", "Durable weave", "Easy tensioning"],
-    },
-    {
-      img: imgTap34,
-      name: "ALL TYPES OF LDPE",
-      brand: "atlanta",
-      desc: "Versatile LDPE packaging films and sheets for cushioning, wrapping, and moisture protection.",
-      features: ["Flexible film", "Moisture barrier", "Soft touch"],
-    },
-    {
-      img: imgTap2,
-      name: "SEMI-AUTO WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic stretch wrapper for medium-volume operations with easy manual loading.",
-      features: ["Semi-automatic", "Easy operation", "Cost-effective"],
-    },
-    {
-      img: imgTap27,
-      name: "SEMI-AUTO TURNTABLE WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic turntable wrapper for standard pallet wrapping with manual film application.",
-      features: ["Turntable base", "Manual operation", "Compact design"],
-    },
-    {
-      img: imgTap28,
-      name: "SEMI-AUTO ROTARY ARM WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic rotary arm wrapper for heavy loads with rotating arm mechanism.",
-      features: ["Rotary arm", "Heavy load capacity", "Semi-auto control"],
-    },
-    {
-      img: imgService2,
-      name: "ROTARY ARM WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Rotary arm stretch wrapper for heavy and unstable loads with 360-degree wrapping capability.",
-      features: ["Rotary arm system", "Heavy load capacity", "Stable wrapping"],
-    },
-    {
-      img: imgTap26,
-      name: "TURNTABLE WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
-      features: ["Turntable system", "Standard operations", "Reliable performance"],
-    },
-    {
-      img: imgTap29,
-      name: "AUTO TURNTABLE WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Fully automatic turntable wrapper with PLC control and touch screen interface.",
-      features: ["Fully automatic", "PLC control", "Touch screen HMI"],
-    },
-    {
-      img: imgTap30,
-      name: "AUTO ROTARY ARM WRAPPER",
-      brand: "atlanta-auto",
-      desc: "High-speed automatic rotary arm wrapper for high-volume production lines.",
-      features: ["High-speed", "Automatic film cutting", "Production line ready"],
-    },
+                {
+                  title: "One Accountable Partner",
+                  desc: "Single point of contact from consultation to execution.",
+                  accent: "#145bd7",
+                  icon: Users,
+                  visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
+                },
+                {
+                  title: "Goa-Based, Operationally Present",
+                  desc: "Local support with quick response and site visits.",
+                  accent: "#2e7d32",
+                  icon: MapPin,
+                  visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
+                },
                 {
                   title: "Requirement-Led Solutions",
                   desc: "Packaging solutions designed around your operations.",
