@@ -1017,10 +1017,13 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   const filtered = activeCategory === "all"
     ? allProducts
     : activeCategory === "atlanta"
-    ? allProducts.filter((p) => p.brand === "atlanta-semi" || p.brand === "atlanta-auto")
+    ? allProducts.filter((p) => p.brand === "atlanta" || p.brand === "atlanta-semi" || p.brand === "atlanta-auto")
     : activeCategory === "atlanta-auto"
     ? allProducts.filter((p) => p.brand === "atlanta-auto")
     : allProducts.filter((p) => p.brand === activeCategory);
+
+  const atlantaSemiAuto = allProducts.filter((p) => p.brand === "atlanta-semi");
+  const atlantaFullyAuto = allProducts.filter((p) => p.brand === "atlanta-auto");
 
   return (
     <>
@@ -1074,23 +1077,60 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
       {/* Premium Packaging Consumables */}
       <section className="py-16 bg-white">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="mb-10">
-            <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
-              {activeCategory === "all" && "Premium Packaging Consumables"}
-              {activeCategory === "atlanta" && <><span className="text-[#cd0606]">Atlanta</span> Wrapping Machines</>}
-              {activeCategory === "atlanta-auto" && <><span className="text-[#cd0606]">Atlanta</span> Fully Automatic Wrapping Machine</>}
-              {activeCategory === "itipack" && <><span className="text-[#cd0606]">Itipack</span> Products</>}
-            </h2>
-            <div className="w-[66px] h-[4px] bg-[#cd0606] mt-3" />
-            <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mt-3">
-              We supply a comprehensive range of industrial packaging materials suitable for strapping, wrapping, sealing, and securing your goods.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filtered.map((p) => (
-              <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
-            ))}
-          </div>
+          {activeCategory === "atlanta" ? (
+            <>
+              {/* Semi Automatic Section */}
+              <div className="mb-12">
+                <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
+                  <span className="text-[#cd0606]">Atlanta</span> Semi Automatic Wrapping Machine
+                </h2>
+                <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
+                <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mb-6">
+                  Semi-automatic stretch wrapping machines for medium-volume operations.
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {atlantaSemiAuto.map((p) => (
+                    <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Fully Automatic Section */}
+              <div>
+                <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
+                  <span className="text-[#cd0606]">Atlanta</span> Fully Automatic Wrapping Machine
+                </h2>
+                <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
+                <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mb-6">
+                  Fully automatic stretch wrapping machines for high-volume operations.
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {atlantaFullyAuto.map((p) => (
+                    <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="mb-10">
+                <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
+                  {activeCategory === "all" && "Premium Packaging Consumables"}
+                  {activeCategory === "atlanta-auto" && <><span className="text-[#cd0606]">Atlanta</span> Fully Automatic Wrapping Machine</>}
+                  {activeCategory === "itipack" && <><span className="text-[#cd0606]">Itipack</span> Products</>}
+                </h2>
+                <div className="w-[66px] h-[4px] bg-[#cd0606] mt-3" />
+                <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mt-3">
+                  We supply a comprehensive range of industrial packaging materials suitable for strapping, wrapping, sealing, and securing your goods.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                {filtered.map((p) => (
+                  <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
