@@ -1017,7 +1017,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   const filtered = activeCategory === "all"
     ? allProducts
     : activeCategory === "atlanta"
-    ? allProducts.filter((p) => p.brand === "atlanta-semi")
+    ? allProducts.filter((p) => p.brand === "atlanta-semi" || p.brand === "atlanta-auto")
     : activeCategory === "atlanta-auto"
     ? allProducts.filter((p) => p.brand === "atlanta-auto")
     : allProducts.filter((p) => p.brand === activeCategory);
@@ -1077,7 +1077,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
           <div className="mb-10">
             <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
               {activeCategory === "all" && "Premium Packaging Consumables"}
-              {activeCategory === "atlanta" && <><span className="text-[#cd0606]">Atlanta</span> Semi Automatic Wrapping Machine</>}
+              {activeCategory === "atlanta" && <><span className="text-[#cd0606]">Atlanta</span> Wrapping Machines</>}
               {activeCategory === "atlanta-auto" && <><span className="text-[#cd0606]">Atlanta</span> Fully Automatic Wrapping Machine</>}
               {activeCategory === "itipack" && <><span className="text-[#cd0606]">Itipack</span> Products</>}
             </h2>
@@ -1209,20 +1209,41 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
               {[
-                {
-                  title: "One Accountable Partner",
-                  desc: "Single point of contact from consultation to execution.",
-                  accent: "#145bd7",
-                  icon: Users,
-                  visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
-                },
-                {
-                  title: "Goa-Based, Operationally Present",
-                  desc: "Local support with quick response and site visits.",
-                  accent: "#2e7d32",
-                  icon: MapPin,
-                  visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
-                },
+    {
+      img: imgTap33,
+      name: "WOVEN STRAP & BUCKLE",
+      brand: "atlanta",
+      desc: "Atlanta woven straps and buckles offer heavy-duty support for cargo bundling and industrial packaging.",
+      features: ["High load capacity", "Durable weave", "Easy tensioning"],
+    },
+    {
+      img: imgTap34,
+      name: "ALL TYPES OF LDPE",
+      brand: "atlanta",
+      desc: "Versatile LDPE packaging films and sheets for cushioning, wrapping, and moisture protection.",
+      features: ["Flexible film", "Moisture barrier", "Soft touch"],
+    },
+    {
+      img: imgTap2,
+      name: "SEMI-AUTO WRAPPER",
+      brand: "atlanta-semi",
+      desc: "Semi-automatic stretch wrapper for medium-volume operations with easy manual loading.",
+      features: ["Semi-automatic", "Easy operation", "Cost-effective"],
+    },
+    {
+      img: imgService2,
+      name: "ROTARY ARM WRAPPER",
+      brand: "atlanta-auto",
+      desc: "Rotary arm stretch wrapper for heavy and unstable loads with 360-degree wrapping capability.",
+      features: ["Rotary arm system", "Heavy load capacity", "Stable wrapping"],
+    },
+    {
+      img: imgTap26,
+      name: "TURNTABLE WRAPPER",
+      brand: "atlanta-auto",
+      desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
+      features: ["Turntable system", "Standard operations", "Reliable performance"],
+    },
                 {
                   title: "Requirement-Led Solutions",
                   desc: "Packaging solutions designed around your operations.",
@@ -1246,11 +1267,11 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
                   >
                     <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
-                      <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
+                      {Icon && <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />}
                     </div>
                     <div className="relative px-6 pb-8 pt-14">
                       <div className="absolute left-1/2 top-0 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white text-white shadow-[0px_10px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.accent }}>
-                        <Icon className="h-9 w-9" strokeWidth={1.8} />
+                        {Icon && <Icon className="h-9 w-9" strokeWidth={1.8} />}
                       </div>
                       <h3 className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] uppercase leading-tight mb-4" style={{ color: item.accent }}>
                         {item.title}
