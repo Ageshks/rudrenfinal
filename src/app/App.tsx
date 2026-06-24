@@ -1269,6 +1269,20 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
       features: ["Semi-automatic", "Easy operation", "Cost-effective"],
     },
     {
+      img: imgTap27,
+      name: "SEMI-AUTO TURNTABLE WRAPPER",
+      brand: "atlanta-semi",
+      desc: "Semi-automatic turntable wrapper for standard pallet wrapping with manual film application.",
+      features: ["Turntable base", "Manual operation", "Compact design"],
+    },
+    {
+      img: imgTap28,
+      name: "SEMI-AUTO ROTARY ARM WRAPPER",
+      brand: "atlanta-semi",
+      desc: "Semi-automatic rotary arm wrapper for heavy loads with rotating arm mechanism.",
+      features: ["Rotary arm", "Heavy load capacity", "Semi-auto control"],
+    },
+    {
       img: imgService2,
       name: "ROTARY ARM WRAPPER",
       brand: "atlanta-auto",
@@ -1281,6 +1295,20 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
       brand: "atlanta-auto",
       desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
       features: ["Turntable system", "Standard operations", "Reliable performance"],
+    },
+    {
+      img: imgTap29,
+      name: "AUTO TURNTABLE WRAPPER",
+      brand: "atlanta-auto",
+      desc: "Fully automatic turntable wrapper with PLC control and touch screen interface.",
+      features: ["Fully automatic", "PLC control", "Touch screen HMI"],
+    },
+    {
+      img: imgTap30,
+      name: "AUTO ROTARY ARM WRAPPER",
+      brand: "atlanta-auto",
+      desc: "High-speed automatic rotary arm wrapper for high-volume production lines.",
+      features: ["High-speed", "Automatic film cutting", "Production line ready"],
     },
                 {
                   title: "Requirement-Led Solutions",
