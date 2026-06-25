@@ -45,6 +45,25 @@ import imgTap34 from "@/imports/Desktop4/220b3ff6972e9c45a18e356bd057b773f785889
 import imgTap35 from "@/imports/Desktop4/a8e408a555374bb666f2706c92044b2d3b92973d.png";
 import imgTap36 from "@/imports/Desktop4/9e4108870a017c68f06063510fa6ca196b46c5f1.png";
 
+// Itipack product images
+import imgItipack1 from "@/imports/Desktop4/itipack/1.png";
+import imgItipack2 from "@/imports/Desktop4/itipack/2.png";
+import imgItipack3 from "@/imports/Desktop4/itipack/3.png";
+import imgItipack4 from "@/imports/Desktop4/itipack/4.webp";
+import imgItipack5 from "@/imports/Desktop4/itipack/5.webp";
+import imgItipack6 from "@/imports/Desktop4/itipack/6.webp";
+import imgItipack7 from "@/imports/Desktop4/itipack/7.webp";
+import imgItipack8 from "@/imports/Desktop4/itipack/8.webp";
+import imgItipack9 from "@/imports/Desktop4/itipack/9.webp";
+import imgItipack10 from "@/imports/Desktop4/itipack/10.webp";
+import imgItipack11 from "@/imports/Desktop4/itipack/11.webp";
+import imgItipack12 from "@/imports/Desktop4/itipack/12.webp";
+import imgItipack13 from "@/imports/Desktop4/itipack/13.webp";
+import imgItipack14 from "@/imports/Desktop4/itipack/14.webp";
+import imgItipack15 from "@/imports/Desktop4/itipack/15.jpg";
+import imgItipack16 from "@/imports/Desktop4/itipack/16.jpg";
+import imgItipack17 from "@/imports/Desktop4/itipack/17.jpg";
+
 // Atlanta product images
 import imgAtlantaSemi1 from "@/imports/Desktop4/atlanta semi 1.jpg";
 import imgAtlantaSemi2 from "@/imports/Desktop4/atlanta semi 2.jpg";
@@ -460,14 +479,14 @@ function ProductCard({ img, name, onClick }: { img: string; name: string; onClic
       className="group relative overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.12)]"
     >
       <div className="relative h-[220px] overflow-hidden">
-        <img src={img} alt={name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img src={img} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/20" />
         <div className="absolute inset-x-0 bottom-0 translate-y-full bg-black/70 px-4 py-3 text-white transition-transform duration-300 group-hover:translate-y-0">
           <span className="font-semibold">View Details</span>
         </div>
       </div>
-      <div className="p-5 border-t-2 border-[#cd0606] text-left">
-        <p className="font-['Inter',sans-serif] font-bold text-[17px] text-black">{name}</p>
+      <div className="p-5 border-t-2 border-[#cd0606] text-center">
+        <p className="font-['Inter',sans-serif] font-bold text-[14px] text-black leading-tight whitespace-nowrap">{name}</p>
       </div>
     </button>
   );
@@ -589,17 +608,17 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
           ))}
         </div>
 
-        <div className="relative z-10 w-full px-10 md:px-16 pt-[90px] pb-16">
+        <div className="relative z-10 w-full px-6 md:px-16 pt-[90px] pb-12 md:pb-16">
           <div className="max-w-[760px]">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6">
-              <span className="font-['Inter',sans-serif] font-bold text-[12px] sm:text-[13px] text-white uppercase tracking-wider">
+            <div className="inline-block px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-4 md:mb-6">
+              <span className="font-['Inter',sans-serif] font-bold text-[10px] sm:text-[12px] md:text-[13px] text-white uppercase tracking-wider">
                 {heroSlides[heroSlide].badge}
               </span>
             </div>
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[56px] md:text-[72px] leading-tight mb-6 whitespace-pre-line">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-tight mb-4 md:mb-6 whitespace-pre-line">
               {heroSlides[heroSlide].title.split('\n').map((line, i) => (
                 <span key={i}>
-                  {line.includes('AROUND') || line.includes('ONSITE') || line.includes('PREMIUM') ? (
+                  {(heroSlide === 0 && (i === 0 || i === 2)) || (heroSlide !== 0 && (line.includes('ONSITE') || line.includes('PREMIUM'))) ? (
                     <span className="text-[#cd0606]">{line}</span>
                   ) : (
                     line
@@ -608,24 +627,28 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                 </span>
               ))}
             </h1>
-            <p className="font-['Inter',sans-serif] text-white text-[18px] leading-relaxed max-w-[620px] mb-8">
+            <p className="font-['Inter',sans-serif] text-white text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed max-w-[620px] mb-6 md:mb-8">
               {heroSlides[heroSlide].desc}
             </p>
             <div className="flex flex-wrap gap-3">
-              <button
-                onClick={() => navigate("contact")}
-                className="flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[8px] px-5 h-[46px]"
-              >
-                <span className="font-['Inter',sans-serif] font-bold text-white text-[15px]">Get Consultation</span>
-                <img src={imgArrow} alt="" className="h-4 w-auto" />
-              </button>
-              <button
-                onClick={() => navigate("products")}
-                className="flex items-center gap-2 border border-white rounded-[8px] px-5 h-[46px] hover:bg-white/10 transition-colors"
-              >
-                <span className="font-['Inter',sans-serif] font-bold text-white text-[15px]">Explore Products</span>
-                <img src={imgArrow} alt="" className="h-4 w-auto" />
-              </button>
+              {heroSlide === 1 && (
+                <button
+                  onClick={() => navigate("contact")}
+                  className="flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[8px] px-5 h-[46px]"
+                >
+                  <span className="font-['Inter',sans-serif] font-bold text-white text-[15px]">Get Consultation</span>
+                  <img src={imgArrow} alt="" className="h-4 w-auto" />
+                </button>
+              )}
+              {heroSlide === 2 && (
+                <button
+                  onClick={() => navigate("products")}
+                  className="flex items-center gap-2 border border-white rounded-[8px] px-5 h-[46px] hover:bg-white/10 transition-colors"
+                >
+                  <span className="font-['Inter',sans-serif] font-bold text-white text-[15px]">Explore Products</span>
+                  <img src={imgArrow} alt="" className="h-4 w-auto" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -660,10 +683,10 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
           <div className="text-center mb-10">
             <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mb-4" />
-            <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black mb-4">HOW WE WORK</h2>
+            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] sm:text-[32px] md:text-[40px] text-black mb-4">HOW WE WORK</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 xl:gap-10">
             {[
               {
                 step: "01",
@@ -727,15 +750,15 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       </section>
 
       {/* Why Companies Choose Rudren */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="mb-10">
-            <h2 className="font-['Inter',sans-serif] font-bold text-[32px] md:text-[40px] text-black leading-tight text-center">
+          <div className="mb-8 md:mb-10">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] text-black leading-tight text-center">
               Why Companies Choose Rudren
             </h2>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mt-4" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 title: "One Accountable Partner",
@@ -796,15 +819,15 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       </section>
 
       {/* What We Offer */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="mb-12">
+          <div className="mb-8 md:mb-12">
             <div className="w-[66px] h-[4px] bg-[#cd0606] mb-4" />
-            <h2 className="font-['Inter',sans-serif] font-bold text-[56px] text-black leading-tight">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] sm:text-[32px] md:text-[40px] lg:text-[56px] text-black leading-tight">
               What We <span className="text-[#cd0606]">Offer</span>
             </h2>
           </div>
-          <p className="font-['Inter',sans-serif] text-[20px] text-black max-w-[550px] mb-12">
+          <p className="font-['Inter',sans-serif] text-[16px] sm:text-[18px] md:text-[20px] text-black max-w-[550px] mb-8 md:mb-12">
             Innovative solutions designed to improve efficiency, ensure safety and drive your business forward
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -826,21 +849,24 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                 </p>
               </div>
             </div>
-            {/* Service card 2 */}
-            <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden">
-              <div className="h-[240px] overflow-hidden">
-                <img src={imgService2} alt="Machinery & Tools Supply" data-parallax-speed="0.12" className="w-full h-full object-cover" />
+            {/* Service card 2 - Featured */}
+            <div className="bg-white rounded-[10px] shadow-[0px_8px_16px_rgba(205,6,6,0.2)] overflow-hidden ring-2 ring-[#cd0606]">
+              <div className="h-[240px] overflow-hidden relative">
+                <img src={imgAbout2} alt="Onsite Packaging" data-parallax-speed="0.12" className="w-full h-full object-cover" />
+                <div className="absolute top-4 right-4 bg-[#cd0606] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                  Featured
+                </div>
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-[55px] h-[55px] bg-[#cd0606] rounded-full flex items-center justify-center">
-                    <img src={imgServiceIcon} alt="" className="w-8 h-8 object-contain" />
+                    <Users className="w-8 h-8 text-white" strokeWidth={1.8} />
                   </div>
-                  <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">Machinery & Tools Supply</h3>
+                  <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">Onsite Packaging</h3>
                 </div>
                 <div className="w-[41px] h-[4px] bg-[#cd0606] mb-3" />
                 <p className="font-['Inter',sans-serif] text-[15px] text-black/80">
-                  PET & steel strapping tools, stretch wrapping machines, pneumatic nailers, staplers, and packaging consumables for industrial operations.
+                  Dedicated on-site packaging teams deployed at your facility to manage packaging operations with precision and efficiency.
                 </p>
               </div>
             </div>
@@ -856,45 +882,36 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       </section>
 
       {/* Industries We Serve (preview) */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] text-black">
               Industries <span className="text-[#cd0606]">We Serve</span>
             </h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
             {industries1.map((ind) => (
               <IndustryCard key={ind.label} img={ind.img} label={ind.label} />
             ))}
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {industries2.map((ind) => (
               <IndustryCard key={ind.label} img={ind.img} label={ind.label} />
             ))}
-          </div>
-          <div className="text-center">
-            <button
-              onClick={() => navigate("industries")}
-              className="inline-flex items-center gap-3 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[10px] px-8 h-[56px]"
-            >
-              <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">View All Industries</span>
-              <img src={imgArrow} alt="" className="h-5 w-auto" />
-            </button>
           </div>
         </div>
       </section>
 
       {/* Products teaser */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-4">
-            <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black">
+          <div className="text-center mb-6 md:mb-10">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] text-black">
               Our <span className="text-[#cd0606]">Products</span>
             </h2>
-            <p className="font-['Inter',sans-serif] font-bold text-[28px] text-[#cd0606] mt-2">Premium Packaging Consumables</p>
+            <p className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] text-[#cd0606] mt-2">Premium Packaging Consumables</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10 mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mt-6 md:mt-10 mb-6 md:mb-10">
             {products.map((product) => (
               <ProductCard
                 key={product.name}
@@ -1113,7 +1130,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   ];
 
   const filtered = activeCategory === "all"
-    ? allProducts
+    ? allProducts.filter((p) => p.brand !== "atlanta" && p.brand !== "atlanta-semi" && p.brand !== "atlanta-auto")
     : activeCategory === "atlanta"
     ? allProducts.filter((p) => p.brand === "atlanta" || p.brand === "atlanta-semi" || p.brand === "atlanta-auto")
     : activeCategory === "atlanta-auto"
@@ -1211,21 +1228,77 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
             </>
           ) : (
             <>
-              <div className="mb-10">
-                <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
-                  {activeCategory === "all" && "Premium Packaging Consumables"}
-                  {activeCategory === "itipack" && <><span className="text-[#cd0606]">Itipack</span> Products</>}
-                </h2>
-                <div className="w-[66px] h-[4px] bg-[#cd0606] mt-3" />
-                <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mt-3">
-                  We supply a comprehensive range of industrial packaging materials suitable for strapping, wrapping, sealing, and securing your goods.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {filtered.map((p) => (
-                  <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
-                ))}
-              </div>
+              {activeCategory === "itipack" ? (
+                <>
+                  {/* Wrapping Machines Section */}
+                  <div className="mb-12">
+                    <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
+                      <span className="text-[#cd0606]">Itipack</span> Wrapping Machines
+                    </h2>
+                    <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
+                    <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mb-6">
+                      High-performance stretch wrapping machines for efficient pallet and bundle wrapping.
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                      {[
+                        { img: imgItipack1, name: "Tube - Automatic Strapping", desc: "Heavy-duty stretch wrapping machine for standard pallet operations.", features: ["Robust construction", "Easy operation", "Reliable performance"] },
+                        { img: imgItipack2, name: "Steel - Automatic Strapping", desc: "Advanced stretch wrapper with adjustable tension control.", features: ["Adjustable tension", "Smooth operation", "Low maintenance"] },
+                        { img: imgItipack3, name: "Wood - Automatic Strapping", desc: "Complete wrapping system for high-volume operations.", features: ["High capacity", "Automated controls", "Energy efficient"] },
+                        { img: imgItipack4, name: "Sheets - Automatic Strapping", desc: "Versatile wrapping solution for various load sizes.", features: ["Versatile design", "Quick setup", "User-friendly interface"] },
+                        { img: imgItipack5, name: "Beverage - Automatic Strapping", desc: "Specialized pallet wrapping machine for secure load containment.", features: ["Pallet optimized", "Consistent wrapping", "Safety features"] },
+                        { img: imgItipack6, name: "Fiber - Automatic Strapping", desc: "Efficient bundle wrapping for smaller loads.", features: ["Compact design", "Flexible operation", "Cost-effective"] },
+                      ].map((product) => (
+                        <ProductCard key={product.name} img={product.img} name={product.name} onClick={() => setSelectedProduct(product)} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Steel Wrapping Tools Section */}
+                  <div>
+                    <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
+                      <span className="text-[#cd0606]">Itipack</span> Steel Wrapping Tools
+                    </h2>
+                    <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
+                    <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mb-6">
+                      Professional-grade steel strapping and wrapping tools for industrial applications.
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                      {[
+                        { img: imgItipack7, name: "ITI  - 30", desc: "Heavy-duty steel strapping tool for secure bundling.", features: ["Heavy-duty", "Ergonomic grip", "Durable build"] },
+                        { img: imgItipack8, name: "ITI - 40", desc: "Professional strapping tool for tensioning and sealing.", features: ["Precision tensioning", "Quick sealing", "Reliable performance"] },
+                        { img: imgItipack9, name: "ITI - 41", desc: "Versatile wrapping tool for various applications.", features: ["Multi-purpose", "Easy handling", "Robust design"] },
+                        { img: imgItipack10, name: "ITI - 42", desc: "Specialized wrapping tool for steel materials.", features: ["Steel compatible", "Smooth operation", "Long-lasting"] },
+                        { img: imgItipack11, name: "ITI - 44", desc: "Precision cutting tool for steel strapping.", features: ["Clean cuts", "Safety guard", "Easy maintenance"] },
+                        { img: imgItipack12, name: "ITI - 45", desc: "High-tension tool for secure strapping.", features: ["High tension", "Adjustable settings", "Professional grade"] },
+                        { img: imgItipack13, name: "ITI - 51", desc: "Efficient sealing tool for steel straps.", features: ["Secure seals", "Quick operation", "Reliable results"] },
+                        { img: imgItipack14, name: "ITI - 52", desc: "All-in-one tool for strapping operations.", features: ["Multi-function", "Time-saving", "Cost-effective"] },
+                        { img: imgItipack15, name: "ITI - 61", desc: "Pneumatic-powered tool for high-volume operations.", features: ["Pneumatic power", "High speed", "Reduced fatigue"] },
+                        { img: imgItipack16, name: "ITI - 62", desc: "Cordless battery-powered strapping tool.", features: ["Cordless", "Portable", "Rechargeable"] },
+                        { img: imgItipack17, name: "ITI - 84", desc: "Complete accessory kit for wrapping tools.", features: ["Complete set", "Organized storage", "Essential components"] },
+                      ].map((product) => (
+                        <ProductCard key={product.name} img={product.img} name={product.name} onClick={() => setSelectedProduct(product)} />
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mb-10">
+                    <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black">
+                      {activeCategory === "all" && "Premium Packaging Consumables"}
+                    </h2>
+                    <div className="w-[66px] h-[4px] bg-[#cd0606] mt-3" />
+                    <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mt-3">
+                      We supply a comprehensive range of industrial packaging materials suitable for strapping, wrapping, sealing, and securing your goods.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {filtered.map((p) => (
+                      <ProductCard key={p.name} img={p.img} name={p.name} onClick={() => setSelectedProduct(p)} />
+                    ))}
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>
@@ -1235,53 +1308,21 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
         <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} navigate={navigate} />
       )}
 
-      {/* Machinery section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="mb-10">
-            <SectionHeading pre="Packaging " highlight="Machinery" post=" & Tools" />
-            <p className="font-['Inter',sans-serif] text-[17px] text-black/70 mt-4 max-w-[650px]">
-              We supply and service a complete range of industrial packaging machinery including strapping machines, stretch wrapping equipment, pneumatic nailers, and more.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-[10px] overflow-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-              <img src={imgService1} alt="Packaging machinery" className="w-full h-[280px] object-cover" />
-              <div className="p-5 bg-white border-t-2 border-[#cd0606]">
-                <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">Strapping Machines</h3>
-                <p className="font-['Inter',sans-serif] text-[15px] text-black/70 mt-2">
-                  Semi-automatic and fully automatic PET & steel strapping machines for high-volume operations.
-                </p>
-              </div>
-            </div>
-            <div className="rounded-[10px] overflow-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-              <img src={imgService2} alt="Wrapping machines" className="w-full h-[280px] object-cover" />
-              <div className="p-5 bg-white border-t-2 border-[#cd0606]">
-                <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">Stretch Wrapping Machines</h3>
-                <p className="font-['Inter',sans-serif] text-[15px] text-black/70 mt-2">
-                  Turntable, rotary arm, and orbital stretch wrappers for pallet and bundle wrapping.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-16 bg-[#18196d]">
+      <section className="py-8 md:py-12 bg-[#18196d]">
         <div className="max-w-[1400px] mx-auto px-6 text-center">
-          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[36px] mb-4">
-            Need a Custom Packaging Solution?
+          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[28px] md:text-[32px] lg:text-[36px] mb-3 md:mb-4 leading-tight">
+            Let's Solve Your Packaging Challenges
           </h2>
-          <p className="font-['Inter',sans-serif] text-white/80 text-[18px] mb-8 max-w-[560px] mx-auto">
-            Talk to our experts and get a tailored recommendation for your operation.
+          <p className="font-['Inter',sans-serif] text-white/80 text-[14px] md:text-[15px] lg:text-[16px] mb-4 md:mb-6 max-w-[700px] mx-auto">
+            Talk with our experts about your packaging requirements. We'll help you find the perfect solution for your business needs.
           </p>
           <button
             onClick={() => navigate("contact")}
-            className="inline-flex items-center gap-3 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[8px] px-8 h-[56px]"
+            className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-all rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px] hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Get Consultation</span>
-            <img src={imgArrow} alt="" className="h-5 w-auto" />
+            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to RUdren</span>
+            <img src={imgArrow} alt="" className="h-3 w-auto md:h-4" />
           </button>
         </div>
       </section>
@@ -1587,16 +1628,20 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
         </div>
       </section>
 
-      <section className="py-14 bg-[#18196d] text-center">
-        <div className="max-w-[700px] mx-auto px-6">
-          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[32px] mb-4">Ready to discuss your plant&apos;s packaging?</h2>
-          <p className="font-['Inter',sans-serif] text-white/80 text-[17px] mb-8">Tell us your throughput, product type, and current challenges. We&apos;ll come back with a specific proposal.</p>
+      <section className="py-8 md:py-12 bg-[#18196d]">
+        <div className="max-w-[1400px] mx-auto px-6 text-center">
+          <h2 className="font-['Inter',sans-serif] font-bold text-white text-[28px] md:text-[32px] lg:text-[36px] mb-3 md:mb-4 leading-tight">
+            Need a Custom Packaging Solution?
+          </h2>
+          <p className="font-['Inter',sans-serif] text-white/80 text-[14px] md:text-[15px] lg:text-[16px] mb-4 md:mb-6 max-w-[700px] mx-auto">
+            Talk to our experts and get a tailored recommendation for your operation.
+          </p>
           <button
             onClick={() => navigate("contact")}
-            className="inline-flex items-center gap-3 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[8px] px-8 h-[56px]"
+            className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px]"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Request a Site Survey</span>
-            <img src={imgArrow} alt="" className="h-5 w-auto" />
+            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to RUdren</span>
+            <img src={imgArrow} alt="" className="h-3 w-auto md:h-4" />
           </button>
         </div>
       </section>
@@ -1684,7 +1729,7 @@ function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-[12px] overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.15)]">
             {/* Form */}
             <div className="bg-white p-10">
-              <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-8">Get in Touch</h2>
+              <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-8">Talk to Rudren</h2>
               {sent ? (
                 <div className="flex flex-col items-center justify-center h-64 text-center">
                   <div className="w-16 h-16 bg-[#cd0606] rounded-full flex items-center justify-center mb-4">
@@ -1742,19 +1787,25 @@ function ContactPage() {
                   </div>
                   <div>
                     <label className="block font-['Inter',sans-serif] text-[13px] text-[#97918b] mb-1">Service Required</label>
-                    <input
-                      type="text"
-                      placeholder="Service Required"
+                    <select
                       value={form.service}
                       onChange={(e) => setForm({ ...form, service: e.target.value })}
-                      className="w-full h-[50px] border border-[#d9d9d9] rounded-[5px] px-4 font-['Inter',sans-serif] text-[14px] focus:outline-none focus:border-[#cd0606] transition-colors"
-                    />
+                      className="w-full h-[50px] border border-[#d9d9d9] rounded-[5px] px-4 font-['Inter',sans-serif] text-[14px] focus:outline-none focus:border-[#cd0606] transition-colors bg-white"
+                    >
+                      <option value="">Select a service</option>
+                      <option value="Complete Packaging">Complete Packaging</option>
+                      <option value="Onsite Packaging">Onsite Packaging</option>
+                      <option value="Cargo Securing & Ship Lashing">Cargo Securing & Ship Lashing</option>
+                      <option value="Operational Contract">Operational Contract</option>
+                      <option value="Packaging Audits">Packaging Audits</option>
+                      <option value="Technical Services">Technical Services</option>
+                    </select>
                   </div>
                   <div>
                     <label className="block font-['Inter',sans-serif] text-[13px] text-[#97918b] mb-1">Message</label>
                     <textarea
                       rows={5}
-                      placeholder="Message"
+                      placeholder="Let's Find the Perfect Packaging Solution for Your Business"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full border border-[#d9d9d9] rounded-[5px] px-4 py-3 font-['Inter',sans-serif] text-[14px] focus:outline-none focus:border-[#cd0606] transition-colors resize-none"
