@@ -180,7 +180,10 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
                 </div>
               ) : (
                 <button
-                  onClick={() => navigate(page)}
+                  onClick={() => {
+                    navigate(page);
+                    setProductsDropdownOpen(false);
+                  }}
                   className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
                     current === page ? "text-[#cd0606]" : ""
                   }`}
