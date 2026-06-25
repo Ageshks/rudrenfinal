@@ -16,8 +16,8 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  // GitHub Pages repository name
-  base: '/rudrenfinal/',
+  // Custom domain (https://www.rudren.com)
+  base: '/',
 
   plugins: [
     figmaAssetResolver(),
@@ -31,6 +31,12 @@ export default defineConfig({
     },
   },
 
-  // File types to support raw imports
-  assetsInclude: ['**/*.svg', '**/*.csv', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp'],
+  assetsInclude: [
+    '**/*.svg',
+    '**/*.csv',
+    '**/*.png',
+    '**/*.jpg',
+    '**/*.jpeg',
+    '**/*.webp',
+  ],
 })
