@@ -55,6 +55,25 @@ import imgDownload37RemovebgPreview1 from "./2c89a6aa5ab0caa033725718ec1ab3f6835
 import imgDownload37RemovebgPreview2 from "./10b4759fa9a08551c8744271de4155e6ce13fea3.png";
 import imgDownload37RemovebgPreview3 from "./a0e3732eca3e5d33fbd79aeec2dbced27b03a22e.png";
 
+// Itipack product images
+import imgItipack1 from "./itipack/1.png";
+import imgItipack2 from "./itipack/2.png";
+import imgItipack3 from "./itipack/3.png";
+import imgItipack4 from "./itipack/4.webp";
+import imgItipack5 from "./itipack/5.webp";
+import imgItipack6 from "./itipack/6.webp";
+import imgItipack7 from "./itipack/7.webp";
+import imgItipack8 from "./itipack/8.webp";
+import imgItipack9 from "./itipack/9.webp";
+import imgItipack10 from "./itipack/10.webp";
+import imgItipack11 from "./itipack/11.webp";
+import imgItipack12 from "./itipack/12.webp";
+import imgItipack13 from "./itipack/13.webp";
+import imgItipack14 from "./itipack/14.webp";
+import imgItipack15 from "./itipack/15.jpg";
+import imgItipack16 from "./itipack/16.jpg";
+import imgItipack17 from "./itipack/17.jpg";
+
 export default function Desktop() {
   return (
     <div className="bg-white relative size-full" data-name="Desktop - 4">
