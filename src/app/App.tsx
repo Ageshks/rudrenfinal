@@ -48,23 +48,23 @@ import imgTap35 from "@/imports/Desktop4/a8e408a555374bb666f2706c92044b2d3b92973
 import imgTap36 from "@/imports/Desktop4/9e4108870a017c68f06063510fa6ca196b46c5f1.png";
 
 // Itipack product images
-import imgItipack1 from "@/imports/Desktop4/itipack/1.png";
-import imgItipack2 from "@/imports/Desktop4/itipack/2.png";
-import imgItipack3 from "@/imports/Desktop4/itipack/3.png";
-import imgItipack4 from "@/imports/Desktop4/itipack/4.webp";
-import imgItipack5 from "@/imports/Desktop4/itipack/5.webp";
-import imgItipack6 from "@/imports/Desktop4/itipack/6.webp";
-import imgItipack7 from "@/imports/Desktop4/itipack/7.webp";
-import imgItipack8 from "@/imports/Desktop4/itipack/8.webp";
-import imgItipack9 from "@/imports/Desktop4/itipack/9.webp";
-import imgItipack10 from "@/imports/Desktop4/itipack/10.webp";
-import imgItipack11 from "@/imports/Desktop4/itipack/11.webp";
-import imgItipack12 from "@/imports/Desktop4/itipack/12.webp";
-import imgItipack13 from "@/imports/Desktop4/itipack/13.webp";
-import imgItipack14 from "@/imports/Desktop4/itipack/14.webp";
-import imgItipack15 from "@/imports/Desktop4/itipack/15.jpg";
-import imgItipack16 from "@/imports/Desktop4/itipack/16.jpg";
-import imgItipack17 from "@/imports/Desktop4/itipack/17.jpg";
+import imgItipack1 from "@/imports/Desktop4/itipack/1.jpg";
+import imgItipack2 from "@/imports/Desktop4/itipack/2.jpg";
+import imgItipack3 from "@/imports/Desktop4/itipack/3.jpg";
+import imgItipack4 from "@/imports/Desktop4/itipack/4.jpg";
+import imgItipack5 from "@/imports/Desktop4/itipack/5.jpg";
+import imgItipack6 from "@/imports/Desktop4/itipack/6.jpg";
+import imgItipack7 from "@/imports/Desktop4/itipack/7.png";
+import imgItipack8 from "@/imports/Desktop4/itipack/8.png";
+import imgItipack9 from "@/imports/Desktop4/itipack/9.png";
+import imgItipack10 from "@/imports/Desktop4/itipack/10.png";
+import imgItipack11 from "@/imports/Desktop4/itipack/11.png";
+import imgItipack12 from "@/imports/Desktop4/itipack/12.png";
+import imgItipack13 from "@/imports/Desktop4/itipack/13.png";
+import imgItipack14 from "@/imports/Desktop4/itipack/14.png";
+import imgItipack15 from "@/imports/Desktop4/itipack/15.png";
+import imgItipack16 from "@/imports/Desktop4/itipack/16.png";
+import imgItipack17 from "@/imports/Desktop4/itipack/17.png";
 
 // Atlanta product images
 import imgAtlantaSemi1 from "@/imports/Desktop4/atlanta semi 1.jpg";
