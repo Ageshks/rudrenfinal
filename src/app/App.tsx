@@ -45,6 +45,21 @@ import imgTap34 from "@/imports/Desktop4/220b3ff6972e9c45a18e356bd057b773f785889
 import imgTap35 from "@/imports/Desktop4/a8e408a555374bb666f2706c92044b2d3b92973d.png";
 import imgTap36 from "@/imports/Desktop4/9e4108870a017c68f06063510fa6ca196b46c5f1.png";
 
+// Atlanta product images
+import imgAtlantaSemi1 from "@/imports/Desktop4/atlanta semi 1.jpg";
+import imgAtlantaSemi2 from "@/imports/Desktop4/atlanta semi 2.jpg";
+import imgAtlantaSemi3 from "@/imports/Desktop4/atlanta semi 3.jpg";
+import imgAtlantaSemi4 from "@/imports/Desktop4/atlanta semi 4.jpg";
+import imgAtlantaSemi5 from "@/imports/Desktop4/atlanta semi 5.jpg";
+import imgAtlantaSemi6 from "@/imports/Desktop4/atlanta semi 6.jpg";
+import imgAtlantaAuto1 from "@/imports/Desktop4/atlanta auto 1.jpg";
+import imgAtlantaAuto2 from "@/imports/Desktop4/atlanta auto 2.jpg";
+import imgAtlantaAuto3 from "@/imports/Desktop4/atlanta auto 3.jpg";
+import imgAtlantaAuto4 from "@/imports/Desktop4/atlanta auto 4.jpg";
+import imgAtlantaAuto5 from "@/imports/Desktop4/atlanta auto 5.jpg";
+import imgAtlantaAuto6 from "@/imports/Desktop4/atlanta auto 6.jpg";
+import imgAtlantaAuto7 from "@/imports/Desktop4/atlanta auto 7.jpg";
+
 // Industry images - row 1
 import imgInd1 from "@/imports/Desktop4/4b100d619ce1eb929bab789d67c1c07bf9a07a7e.png";
 import imgInd2 from "@/imports/Desktop4/5d212aaa06aeb6b33e5e6140a79aa8d3d5f2a9c0.png";
@@ -923,80 +938,52 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   const allProducts: ProductInfo[] = [
     {
       img: imgTap2,
-      name: "SEMI-AUTO WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic stretch wrapper for medium-volume operations with easy manual loading.",
-      features: ["Semi-automatic", "Easy operation", "Cost-effective"],
-    },
-    {
-      img: imgTap27,
-      name: "SEMI-AUTO TURNTABLE WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic turntable wrapper for standard pallet wrapping with manual film application.",
-      features: ["Turntable base", "Manual operation", "Compact design"],
-    },
-    {
-      img: imgTap28,
-      name: "SEMI-AUTO ROTARY ARM WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic rotary arm wrapper for heavy loads with rotating arm mechanism.",
-      features: ["Rotary arm", "Heavy load capacity", "Semi-auto control"],
-    },
-    {
-      img: imgTap31,
-      name: "SEMI-AUTO ORBITAL WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic orbital stretch wrapper for long and irregular shaped loads.",
-      features: ["Orbital system", "Versatile loading", "Manual film feed"],
-    },
-    {
-      img: imgTap32,
-      name: "SEMI-AUTO RING WRAPPER",
-      brand: "atlanta-semi",
-      desc: "Semi-automatic ring wrapper for rotating film application around stationary loads.",
-      features: ["Ring mechanism", "Stationary load", "Consistent tension"],
-    },
-    {
-      img: imgService2,
-      name: "ROTARY ARM WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Rotary arm stretch wrapper for heavy and unstable loads with 360-degree wrapping capability.",
-      features: ["Rotary arm system", "Heavy load capacity", "Stable wrapping"],
+      name: "ALL TYPES OF TAPES",
+      brand: "all",
+      desc: "High-quality packaging tape engineered to secure pallet loads and protect goods during transport.",
+      features: ["Strong adhesion", "Smooth unwind", "Residue-free removal"],
     },
     {
       img: imgTap26,
-      name: "TURNTABLE WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
-      features: ["Turntable system", "Standard operations", "Reliable performance"],
+      name: "STEEL STRAP",
+      brand: "all",
+      desc: "Durable steel strapping for heavy-duty bundling, pallet stabilization, and industrial load control.",
+      features: ["High tensile strength", "Rust-resistant finish", "Reliable sealing"],
+    },
+    {
+      img: imgTap27,
+      name: "PET STRAP",
+      brand: "all",
+      desc: "Flexible PET strapping that offers excellent strength and safer handling for a wide range of packaging applications.",
+      features: ["Lightweight strength", "Good elongation", "Weather resistant"],
+    },
+    {
+      img: imgTap28,
+      name: "COMPOSITE STRAP",
+      brand: "all",
+      desc: "Composite strapping combines strength and consistency for efficient automated and manual sealless packaging.",
+      features: ["High break load", "Consistent tension", "Easy to seal"],
     },
     {
       img: imgTap29,
-      name: "AUTO TURNTABLE WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Fully automatic turntable wrapper with PLC control and touch screen interface.",
-      features: ["Fully automatic", "PLC control", "Touch screen HMI"],
+      name: "NON-RESIDUAL TAPES",
+      brand: "all",
+      desc: "Clean-release tape for applications where residue-free removal is essential after packaging or bundling.",
+      features: ["No adhesive residue", "Strong hold", "Clean finish"],
     },
     {
       img: imgTap30,
-      name: "AUTO ROTARY ARM WRAPPER",
-      brand: "atlanta-auto",
-      desc: "High-speed automatic rotary arm wrapper for high-volume production lines.",
-      features: ["High-speed", "Automatic film cutting", "Production line ready"],
+      name: "ALL TYPES OF SEALS",
+      brand: "all",
+      desc: "A complete range of sealing solutions for strapping, bundling, and transport security.",
+      features: ["Secure locking", "High durability", "Wide compatibility"],
     },
     {
-      img: imgTap33,
-      name: "AUTO ORBITAL WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Fully automatic orbital wrapper with conveyor system for continuous operation.",
-      features: ["Fully automatic", "Conveyor system", "Continuous operation"],
-    },
-    {
-      img: imgTap34,
-      name: "AUTO RING WRAPPER",
-      brand: "atlanta-auto",
-      desc: "High-speed automatic ring wrapper for maximum throughput and efficiency.",
-      features: ["High-speed ring", "Automatic operation", "Maximum throughput"],
+      img: imgTap31,
+      name: "GALVANIZED BUCKLES",
+      brand: "all",
+      desc: "Corrosion-resistant buckles engineered for safe and reliable strapping connections.",
+      features: ["Galvanized coating", "Strong grip", "Easy installation"],
     },
     {
       img: imgTap32,
