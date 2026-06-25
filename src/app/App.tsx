@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Boxes,
   Building2,
@@ -13,6 +14,7 @@ import {
   TrendingUp,
   Users,
   Wrench,
+  MessageCircle,
 } from "lucide-react";
 
 // Images
@@ -197,7 +199,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
 
         <button
           onClick={() => navigate("contact")}
-          className="hidden lg:flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px]"
+          className={`hidden lg:flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
         >
           <span className="font-['Inter',sans-serif] font-bold text-[13px] text-white">Get Started</span>
           <img src={imgArrow} alt="" className="h-3.5 w-auto" />
@@ -1324,7 +1326,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
             onClick={() => navigate("contact")}
             className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-all rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px] hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to RUdren</span>
+            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to Rudren</span>
             <img src={imgArrow} alt="" className="h-3 w-auto md:h-4" />
           </button>
         </div>
@@ -1643,7 +1645,7 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
             onClick={() => navigate("contact")}
             className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px]"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to RUdren</span>
+            <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to Rudren</span>
             <img src={imgArrow} alt="" className="h-3 w-auto md:h-4" />
           </button>
         </div>
@@ -1706,10 +1708,41 @@ function IndustriesPage() {
 function ContactPage() {
   const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", service: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+
+    // EmailJS configuration - Replace these with your EmailJS credentials
+    const serviceID = "YOUR_SERVICE_ID";
+    const templateID = "YOUR_TEMPLATE_ID";
+    const publicKey = "YOUR_PUBLIC_KEY";
+
+    try {
+      await emailjs.send(
+        serviceID,
+        templateID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone,
+          company: form.company,
+          service: form.service,
+          message: form.message,
+          to_name: "Rudren Solutions",
+          to_email: "info@rudren.com",
+        },
+        publicKey
+      );
+      setSent(true);
+      setForm({ name: "", company: "", phone: "", email: "", service: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send enquiry. Please try again or contact us directly at info@rudren.com");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -1921,6 +1954,17 @@ export default function App() {
         {page === "contact" && <ContactPage />}
       </main>
       <Footer navigate={navigate} />
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/919607024997"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle className="h-8 w-8" strokeWidth={1.8} />
+      </a>
     </div>
   );
 }
