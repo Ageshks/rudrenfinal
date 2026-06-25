@@ -478,15 +478,15 @@ function ProductCard({ img, name, onClick }: { img: string; name: string; onClic
       onClick={onClick}
       className="group relative overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.12)]"
     >
-      <div className="relative h-[220px] overflow-hidden">
+      <div className="relative h-[180px] sm:h-[220px] overflow-hidden">
         <img src={img} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/20" />
         <div className="absolute inset-x-0 bottom-0 translate-y-full bg-black/70 px-4 py-3 text-white transition-transform duration-300 group-hover:translate-y-0">
           <span className="font-semibold">View Details</span>
         </div>
       </div>
-      <div className="p-5 border-t-2 border-[#cd0606] text-center">
-        <p className="font-['Inter',sans-serif] font-bold text-[14px] text-black leading-tight whitespace-nowrap">{name}</p>
+      <div className="p-3 sm:p-5 border-t-2 border-[#cd0606] text-center">
+        <p className="font-['Inter',sans-serif] font-bold text-[12px] sm:text-[14px] text-black leading-tight line-clamp-2">{name}</p>
       </div>
     </button>
   );
