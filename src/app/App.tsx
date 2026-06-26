@@ -22,12 +22,12 @@ import imgHeroBg from "@/imports/Desktop4/97c894af9823ff82129bfbbb48427d94a2ce3f
 import imgLogo from "@/imports/Desktop4/logo.png";
 import imgLogoFooter from "@/imports/Desktop4/f182632a468e9600d6b8aa35d2faf1758a10c1fc.png";
 import imgArrow from "@/imports/Desktop4/1dcf11f743fb3e361f22adc9ceb9aa0081b688c1.png";
-import imgService1 from "@/imports/Desktop4/88d960a48e0d9b74509537c5e4d3951c88418ace.png";
+import imgService1 from "@/imports/Desktop4/hero2.png";
 import imgService2 from "@/imports/Desktop4/e67c4f4570e04e2cb93d1f281464508a812c963f.png";
 import imgServiceIcon from "@/imports/Desktop4/94a2b25219698f5290352e3a76eb545a689ab047.png";
 import imgContactBg from "@/imports/Desktop4/263d454e41dee8500846eccac52cd410f16bc360.png";
 import imgAbout1 from "@/imports/Desktop4/2e7331c34a976c7ab0994b36cfd511fdd4b390d3.png";
-import imgAbout2 from "@/imports/Desktop4/f93556e8367633aee462667f8f07d0a1ec0deae9.png";
+import imgAbout2 from "@/imports/Desktop4/hero3.png";
 import imgHowWeWork1 from "@/imports/Desktop4/140a2a095936fa62f60027fa4cddc0091317025a.png";
 import imgHowWeWork2 from "@/imports/Desktop4/283dae3bc8f6e671e7796987e514a441a314b83c.png";
 import imgWhyChoose from "@/imports/Desktop4/0f6f140d69bde65948e2a520a4b9cd46f5367828.png";
@@ -100,7 +100,7 @@ import imgInd12 from "@/imports/Desktop4/946cc2697c181c67c89993a70c5bdb30c53d205
 // Contact icons
 import imgPhone from "@/imports/Desktop4/2c89a6aa5ab0caa033725718ec1ab3f6835795db.png";
 import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea3.png";
-import imgLocation from "@/imports/Desktop4/a0e3732eca3e5d33fbd79aeec2dbced27b03a22e.png";
+const imgLocation = "";
 
 type Page = "home" | "products" | "about" | "services" | "industries" | "contact";
 type ProductCategory = "all" | "atlanta" | "atlanta-semi" | "atlanta-auto" | "itipack";
@@ -127,83 +127,84 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
-      <div className="max-w-[1440px] mx-auto px-6 h-[90px] flex items-center justify-between">
-        <button onClick={() => navigate("home")} className="flex-shrink-0">
+      <div className="max-w-[1440px] mx-auto px-0 h-[80px] flex items-center justify-between">
+        <button onClick={() => navigate("home")} className="flex-shrink-0 -mt-2">
           <img src={imgLogo} alt="Rudren Solutions" className="h-[90px] sm:h-[100px] md:h-[120px] lg:h-[200px] w-auto" />
         </button>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-8">
-          {links.map(({ label, page }) => (
-            <div key={page} className="relative">
-              {page === "products" ? (
-                <div className="relative">
+        <div className="hidden lg:flex items-center pt-6">
+          <div className="flex items-center gap-8">
+            {links.map(({ label, page }) => (
+              <div key={page} className="relative">
+                {page === "products" ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                      className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                        current === page ? "text-[#cd0606]" : ""
+                      }`}
+                    >
+                      {label}
+                    </button>
+                    {productsDropdownOpen && (
+                      <div 
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden"
+                      >
+                        <button
+                          onClick={() => {
+                            navigate("products", "all");
+                            setProductsDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                        >
+                          All Products
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigate("products", "atlanta");
+                            setProductsDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                        >
+                          Atlanta
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigate("products", "itipack");
+                            setProductsDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                        >
+                          Itipack
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
                   <button
-                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                    onClick={() => {
+                      navigate(page);
+                      setProductsDropdownOpen(false);
+                    }}
                     className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
                       current === page ? "text-[#cd0606]" : ""
                     }`}
                   >
                     {label}
                   </button>
-                  {productsDropdownOpen && (
-                    <div 
-                      className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden"
-                    >
-                      <button
-                        onClick={() => {
-                          navigate("products", "all");
-                          setProductsDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                      >
-                        All Products
-                      </button>
-                      <button
-                        onClick={() => {
-                          navigate("products", "atlanta");
-                          setProductsDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                      >
-                        Atlanta
-                      </button>
-                      <button
-                        onClick={() => {
-                          navigate("products", "itipack");
-                          setProductsDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                      >
-                        Itipack
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <button
-                  onClick={() => {
-                    navigate(page);
-                    setProductsDropdownOpen(false);
-                  }}
-                  className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
-                    current === page ? "text-[#cd0606]" : ""
-                  }`}
-                >
-                  {label}
-                </button>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={() => navigate("contact")}
+            className={`ml-8 flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
+          >
+            <span className="font-['Inter',sans-serif] font-bold text-[13px] text-white">Get Started</span>
+            <img src={imgArrow} alt="" className="h-3.5 w-auto" />
+          </button>
         </div>
-
-        <button
-          onClick={() => navigate("contact")}
-          className={`hidden lg:flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
-        >
-          <span className="font-['Inter',sans-serif] font-bold text-[13px] text-white">Get Started</span>
-          <img src={imgArrow} alt="" className="h-3.5 w-auto" />
-        </button>
 
         {/* Mobile hamburger */}
         <button
@@ -249,12 +250,14 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
     <footer className="bg-[#18196d] text-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-5 mb-2">
+            <h3 className="text-2xl font-bold text-white">
+              Rudren Solutions LLP
+            </h3>
+          </div>
 
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">
-              Rudren Solutions LLP
-            </h3>
 
             <p className="text-white/70 leading-relaxed max-w-md text-sm">
               Delivering innovative packaging solutions, machinery supply,
@@ -432,8 +435,8 @@ function ProductModal({ product, onClose, navigate }: { product: ProductInfo; on
       <div className="absolute inset-0" onClick={onClose} />
       <div className="relative z-10 w-full max-w-[1000px] overflow-hidden rounded-[30px] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
         <button
-          onClick={onClose}
-          className="absolute right-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20"
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
+          className="absolute right-6 top-6 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20 cursor-pointer"
         >
           ×
         </button>
@@ -1319,12 +1322,12 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
           <h2 className="font-['Inter',sans-serif] font-bold text-white text-[28px] md:text-[32px] lg:text-[36px] mb-3 md:mb-4 leading-tight">
             Let's Solve Your Packaging Challenges
           </h2>
-          <p className="font-['Inter',sans-serif] text-white/80 text-[14px] md:text-[15px] lg:text-[16px] mb-4 md:mb-6 max-w-[700px] mx-auto">
+          <p className="font-['Inter',sans-serif] text-white/80 text-[13px] md:text-[14px] lg:text-[15px] mb-3 md:mb-4">
             Talk with our experts about your packaging requirements. We'll help you find the perfect solution for your business needs.
           </p>
           <button
             onClick={() => navigate("contact")}
-            className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-all rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px] hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-all rounded-[6px] px-4 md:px-6 h-[38px] md:h-[44px] hover:scale-105 shadow-lg hover:shadow-xl mt-2"
           >
             <span className="font-['Inter',sans-serif] font-bold text-white text-[13px] md:text-[14px]">Talk to Rudren</span>
             <img src={imgArrow} alt="" className="h-3 w-auto md:h-4" />
@@ -1714,10 +1717,15 @@ function ContactPage() {
     e.preventDefault();
     setLoading(true);
 
-    // EmailJS configuration - Replace these with your EmailJS credentials
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
+    // EmailJS configuration
+    // To set up:
+    // 1. Sign up at https://www.emailjs.com/
+    // 2. Add your email service (Gmail, Outlook, etc.)
+    // 3. Create an email template
+    // 4. Replace the values below with your actual credentials
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
 
     try {
       await emailjs.send(
