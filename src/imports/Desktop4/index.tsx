@@ -247,7 +247,7 @@ export default function Desktop() {
       </p>
       <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[52px] leading-[normal] left-[584px] not-italic text-[40px] text-black top-[5910px] w-[303px]">Contact Page</p>
       <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[52px] leading-[normal] left-[310px] not-italic text-[40px] text-black top-[3941px] w-[303px]">{`ABOUT `}</p>
-      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[52px] leading-[normal] left-[188px] not-italic text-[40px] text-black top-[4524px] w-[328px]">HOW WE WORK</p>
+      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[52px] leading-[normal] left-[188px] not-italic text-[40px] text-black top-[4524px] w-[328px]">How We Work</p>
       <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[52px] leading-[normal] left-[417px] not-italic text-[#cd0606] text-[36px] top-[2729px] w-[607px]">Premium Packaging Consumables</p>
       <div className="absolute h-[222px] left-[45px] rounded-[10px] top-[2817px] w-[310px]" data-name="tap 1">
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[10px]">

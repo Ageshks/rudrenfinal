@@ -692,7 +692,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
           <div className="text-center mb-10">
             <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mb-4" />
-            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] sm:text-[32px] md:text-[40px] text-black mb-4">HOW WE WORK</h2>
+            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] sm:text-[32px] md:text-[40px] text-black mb-4">How We Work</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 xl:gap-10">
@@ -871,7 +871,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                   <div className="w-[55px] h-[55px] bg-[#cd0606] rounded-full flex items-center justify-center">
                     <Users className="w-8 h-8 text-white" strokeWidth={1.8} />
                   </div>
-                  <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">Onsite Packaging</h3>
+                  <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black">On-site Packaging</h3>
                 </div>
                 <div className="w-[41px] h-[4px] bg-[#cd0606] mb-3" />
                 <p className="font-['Inter',sans-serif] text-[15px] text-black/80">
