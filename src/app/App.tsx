@@ -508,7 +508,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
   const heroSlides = [
     { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "PACKAGING BUILT\nAROUND YOUR\nOPERATION", desc: "From requirement assessment and material supply to dedicated on-site packaging teams — Rudren Solutions manages your entire packaging process, so your team can focus on what they do best." },
-    { img: imgService1, badge: "ONSITE PACKAGING", title: "DEDICATED\nONSITE PACKAGING\nSOLUTIONS", desc: "Our expert teams deploy directly to your facility, managing packaging operations with precision, efficiency, and complete accountability — ensuring seamless integration with your production line." },
+    { img: imgService1, badge: "ON-SITE PACKAGING", title: "DEDICATED\nON-SITE PACKAGING\nSOLUTIONS", desc: "Our expert teams deploy directly to your facility, managing packaging operations with precision, efficiency, and complete accountability — ensuring seamless integration with your production line." },
     { img: imgAbout2, badge: "OUR PRODUCTS", title: "PREMIUM\nPACKAGING\nCONSUMABLES", desc: "From high-performance tapes and strapping to stretch films and machinery — we supply a comprehensive range of industrial packaging materials trusted by manufacturers across Goa." },
   ];
 
@@ -627,7 +627,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             <h1 className="font-['Inter',sans-serif] font-bold text-white text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-tight mb-4 md:mb-6 whitespace-pre-line">
               {heroSlides[heroSlide].title.split('\n').map((line, i) => (
                 <span key={i}>
-                  {(heroSlide === 0 && (i === 0 || i === 2)) || (heroSlide !== 0 && (line.includes('ONSITE') || line.includes('PREMIUM'))) ? (
+                   {(heroSlide === 0 && (i === 0 || i === 2)) || (heroSlide !== 0 && (line.includes('ON-SITE') || line.includes('PREMIUM'))) ? (
                     <span className="text-[#cd0606]">{line}</span>
                   ) : (
                     line
@@ -1484,7 +1484,7 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
     },
     {
       img: imgAbout2,
-      title: "Onsite Packaging",
+      title: "On-site Packaging",
       desc: "Dedicated on-site packaging teams deployed at your facility to manage packaging operations with precision and efficiency.",
       icon: Users,
     },
