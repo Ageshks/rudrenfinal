@@ -252,7 +252,7 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-5 mb-2">
             <h3 className="text-2xl font-bold text-white">
-              Rudren Solutions LLP
+              Rudren 
             </h3>
           </div>
 
@@ -539,12 +539,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
   const [selectedProduct, setSelectedProduct] = useState<ProductInfo | null>(null);
   const products: ProductInfo[] = [
-    {
-      img: imgTap1,
-      name: "ALL TYPES OF TAPES",
-      desc: "High-performance packaging tape designed for strong adhesion, smooth application, and secure transport handling.",
-      features: ["Strong tear resistance", "Residue-free removal", "Multi-surface adhesion"],
-    },
+   
     {
       img: imgTap26,
       name: "STEEL STRAP",
@@ -562,6 +557,12 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       name: "COMPOSITE STRAP",
       desc: "Composite strapping engineered for strong tension and fast application on a wide variety of packaged goods.",
       features: ["High yield strength", "Consistent tension", "Easy to seal"],
+    },
+     {
+      img: imgTap1,
+      name: "ALL TYPES OF TAPES",
+      desc: "High-performance packaging tape designed for strong adhesion, smooth application, and secure transport handling.",
+      features: ["Strong tear resistance", "Residue-free removal", "Multi-surface adhesion"],
     },
   ];
 
@@ -961,13 +962,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   }, [initialCategory]);
 
   const allProducts: ProductInfo[] = [
-    {
-      img: imgTap2,
-      name: "ALL TYPES OF TAPES",
-      brand: "all",
-      desc: "High-quality packaging tape engineered to secure pallet loads and protect goods during transport.",
-      features: ["Strong adhesion", "Smooth unwind", "Residue-free removal"],
-    },
+    
     {
       img: imgTap26,
       name: "STEEL STRAP",
@@ -988,6 +983,13 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
       brand: "all",
       desc: "Composite strapping combines strength and consistency for efficient automated and manual sealless packaging.",
       features: ["High break load", "Consistent tension", "Easy to seal"],
+    },
+    {
+      img: imgTap2,
+      name: "ALL TYPES OF TAPES",
+      brand: "all",
+      desc: "High-quality packaging tape engineered to secure pallet loads and protect goods during transport.",
+      features: ["Strong adhesion", "Smooth unwind", "Residue-free removal"],
     },
     {
       img: imgTap29,
@@ -1281,8 +1283,8 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
                         { img: imgItipack13, name: "ITI - 51", desc: "Efficient sealing tool for steel straps.", features: ["Secure seals", "Quick operation", "Reliable results"] },
                         { img: imgItipack14, name: "ITI - 52", desc: "All-in-one tool for strapping operations.", features: ["Multi-function", "Time-saving", "Cost-effective"] },
                         { img: imgItipack15, name: "ITI - 61", desc: "Pneumatic-powered tool for high-volume operations.", features: ["Pneumatic power", "High speed", "Reduced fatigue"] },
-                        { img: imgItipack16, name: "ITI - 62", desc: "Cordless battery-powered strapping tool.", features: ["Cordless", "Portable", "Rechargeable"] },
-                        { img: imgItipack17, name: "ITI - 84", desc: "Complete accessory kit for wrapping tools.", features: ["Complete set", "Organized storage", "Essential components"] },
+                        { img: imgItipack16, name: "ITI - 62", desc: "Complete accessory kit for wrapping tools.", features: ["Complete set", "Organized storage", "Essential components"]},
+                        { img: imgItipack17, name: "ITI - 84", desc: "Cordless battery-powered strapping tool.", features: ["Cordless", "Portable", "Rechargeable"]  },
                       ].map((product) => (
                         <ProductCard key={product.name} img={product.img} name={product.name} onClick={() => setSelectedProduct(product)} />
                       ))}
@@ -1578,7 +1580,8 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="mb-12">
             <div className="w-[66px] h-[4px] bg-[#cd0606] mb-4" />
-            <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black">HOW WE WORK</h2>
+            <h2 className="font-['Inter',sans-serif] font-bold text-[40px] text-black">How We Work
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -1838,7 +1841,7 @@ function ContactPage() {
                     >
                       <option value="">Select a service</option>
                       <option value="Complete Packaging">Complete Packaging</option>
-                      <option value="Onsite Packaging">Onsite Packaging</option>
+                      <option value="Onsite Packaging">On-site Packaging</option>
                       <option value="Cargo Securing & Ship Lashing">Cargo Securing & Ship Lashing</option>
                       <option value="Operational Contract">Operational Contract</option>
                       <option value="Packaging Audits">Packaging Audits</option>
