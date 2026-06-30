@@ -19,7 +19,7 @@ import {
 
 // Images
 import imgHeroBg from "@/imports/Desktop4/97c894af9823ff82129bfbbb48427d94a2ce3f4c.png";
-import imgLogo from "@/imports/Desktop4/logo.png";
+import imgLogo from "@/imports/Desktop4/temp.png";
 import imgLogoFooter from "@/imports/Desktop4/f182632a468e9600d6b8aa35d2faf1758a10c1fc.png";
 import imgArrow from "@/imports/Desktop4/1dcf11f743fb3e361f22adc9ceb9aa0081b688c1.png";
 import imgService1 from "@/imports/Desktop4/hero2.png";
@@ -28,6 +28,7 @@ import imgServiceIcon from "@/imports/Desktop4/94a2b25219698f5290352e3a76eb545a6
 import imgContactBg from "@/imports/Desktop4/263d454e41dee8500846eccac52cd410f16bc360.png";
 import imgAbout1 from "@/imports/Desktop4/2e7331c34a976c7ab0994b36cfd511fdd4b390d3.png";
 import imgAbout2 from "@/imports/Desktop4/hero3.png";
+import imgAbout4 from "@/imports/Desktop4/f93556e8367633aee462667f8f07d0a1ec0deae9.png";
 import imgHowWeWork1 from "@/imports/Desktop4/140a2a095936fa62f60027fa4cddc0091317025a.png";
 import imgHowWeWork2 from "@/imports/Desktop4/283dae3bc8f6e671e7796987e514a441a314b83c.png";
 import imgWhyChoose from "@/imports/Desktop4/0f6f140d69bde65948e2a520a4b9cd46f5367828.png";
@@ -127,13 +128,13 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
-      <div className="max-w-[1440px] mx-auto px-0 h-[80px] flex items-center justify-between">
-        <button onClick={() => navigate("home")} className="flex-shrink-0 -mt-2">
-          <img src={imgLogo} alt="Rudren Solutions" className="h-[90px] sm:h-[100px] md:h-[120px] lg:h-[200px] w-auto" />
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <button onClick={() => navigate("home")} className="flex-shrink-0 bg-transparent">
+          <img src={imgLogo} alt="Rudren Solutions" className="h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] w-auto transform scale-125 hover:scale-130 transition-transform bg-transparent" />
         </button>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center pt-6">
+        <div className="hidden lg:flex items-center">
           <div className="flex items-center gap-8">
             {links.map(({ label, page }) => (
               <div key={page} className="relative">
@@ -141,7 +142,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
                   <div className="relative">
                     <button
                       onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                      className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                      className={`font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
                         current === page ? "text-[#cd0606]" : ""
                       }`}
                     >
@@ -187,7 +188,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
                       navigate(page);
                       setProductsDropdownOpen(false);
                     }}
-                    className={`font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
+                    className={`font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
                       current === page ? "text-[#cd0606]" : ""
                     }`}
                   >
@@ -201,7 +202,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
             onClick={() => navigate("contact")}
             className={`ml-8 flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
           >
-            <span className="font-['Inter',sans-serif] font-bold text-[13px] text-white">Get Started</span>
+            <span className="font-['Inter',sans-serif] font-bold text-[12px] text-white">Get Started</span>
             <img src={imgArrow} alt="" className="h-3.5 w-auto" />
           </button>
         </div>
@@ -224,9 +225,9 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
             <button
               key={page}
               onClick={() => { navigate(page); setMenuOpen(false); }}
-              className={`text-left font-['Inter',sans-serif] font-bold text-[18px] text-white hover:text-[#cd0606] transition-colors ${
-                current === page ? "text-[#cd0606]" : ""
-              }`}
+                  className={`text-left font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
+                    current === page ? "text-[#cd0606]" : ""
+                  }`}
             >
               {label}
             </button>
@@ -235,7 +236,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
             onClick={() => { navigate("contact"); setMenuOpen(false); }}
             className="flex items-center gap-2 bg-[#cd0606] rounded-[8px] px-5 py-3 w-fit"
           >
-            <span className="font-['Inter',sans-serif] font-bold text-[18px] text-white">Get Started</span>
+            <span className="font-['Inter',sans-serif] font-bold text-[12px] text-white">Get Started</span>
           </button>
         </div>
       )}
@@ -431,20 +432,20 @@ function IndustryCard({ img, label }: { img: string; label: string }) {
 
 function ProductModal({ product, onClose, navigate }: { product: ProductInfo; onClose: () => void; navigate: (p: Page) => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-10 bg-black/55 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-2 py-2 sm:px-4 sm:py-6 bg-black/55 backdrop-blur-sm">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-[1000px] overflow-hidden rounded-[30px] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
+      <div className="relative z-10 w-full max-w-[95vw] sm:max-w-[1000px] max-h-[95vh] overflow-y-auto rounded-[12px] sm:rounded-[30px] border border-white/20 bg-white/10 p-2 sm:p-6 shadow-2xl backdrop-blur-xl">
         <button
           onClick={(e) => { e.stopPropagation(); onClose(); }}
-          className="absolute right-6 top-6 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20 cursor-pointer"
+          className="absolute right-1 top-1 sm:right-6 sm:top-6 z-20 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-white bg-[#cd0606] text-white text-lg sm:text-xl font-bold shadow-lg hover:bg-[#a80404] transition-colors"
         >
           ×
         </button>
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="overflow-hidden rounded-[24px]">
-            <img src={product.img} alt={product.name} className="h-[350px] w-full object-cover" />
+        <div className="grid gap-3 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="overflow-hidden rounded-[8px] sm:rounded-[24px]">
+            <img src={product.img} alt={product.name} className="h-[150px] sm:h-[300px] md:h-[350px] w-full object-cover" />
           </div>
-          <div className="flex flex-col justify-between rounded-[24px] bg-white/80 p-8 shadow-[0px_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+          <div className="flex flex-col justify-between rounded-[8px] sm:rounded-[24px] bg-white/90 p-3 sm:p-8 shadow-[0px_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl">
             <div>
               <span className="text-sm font-semibold uppercase tracking-[0.35em] text-[#cd0606]">Product Details</span>
               <h3 className="mt-4 text-[32px] font-bold text-[#101010]">{product.name}</h3>
@@ -617,14 +618,14 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
           ))}
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-16 pt-[90px] pb-12 md:pb-16">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-16 pt-[90px] pb-12 md:pb-16">
           <div className="max-w-[760px]">
             <div className="inline-block px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-4 md:mb-6">
               <span className="font-['Inter',sans-serif] font-bold text-[10px] sm:text-[12px] md:text-[13px] text-white uppercase tracking-wider">
                 {heroSlides[heroSlide].badge}
               </span>
             </div>
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-tight mb-4 md:mb-6 whitespace-pre-line">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-tight mb-4 md:mb-6 whitespace-pre-line">
               {heroSlides[heroSlide].title.split('\n').map((line, i) => (
                 <span key={i}>
                    {(heroSlide === 0 && (i === 0 || i === 2)) || (heroSlide !== 0 && (line.includes('ON-SITE') || line.includes('PREMIUM'))) ? (
@@ -686,7 +687,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
             <div className="relative h-[520px] overflow-hidden rounded-[30px]">
               <div className="absolute -right-8 top-8 w-[68%] h-[90%] bg-[#cd0606]/10 rounded-[40px] -z-10" />
-              <img src={imgAbout2} alt="Warehouse operations" data-parallax-speed="0.12" className="w-full h-full object-cover rounded-[30px] shadow-[0px_20px_60px_rgba(0,0,0,0.12)]" />
+              <img src={imgAbout4} alt="Warehouse operations" data-parallax-speed="0.12" className="w-full h-full object-cover rounded-[30px] shadow-[0px_20px_60px_rgba(0,0,0,0.12)]" />
             </div>
           </div>
 
@@ -861,7 +862,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             {/* Service card 2 - Featured */}
             <div className="bg-white rounded-[10px] shadow-[0px_8px_16px_rgba(205,6,6,0.2)] overflow-hidden ring-2 ring-[#cd0606]">
               <div className="h-[240px] overflow-hidden relative">
-                <img src={imgAbout2} alt="Onsite Packaging" data-parallax-speed="0.12" className="w-full h-full object-cover" />
+                <img src={imgAbout4} alt="Onsite Packaging" data-parallax-speed="0.12" className="w-full h-full object-cover" />
                 <div className="absolute top-4 right-4 bg-[#cd0606] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                   Featured
                 </div>
@@ -1382,7 +1383,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
               </button>
             </div>
             <div className="relative h-[500px]">
-              <img src={imgAbout2} alt="Rudren Solutions operations" className="w-full h-full object-cover rounded-[12px]" />
+              <img src={imgAbout4} alt="Rudren Solutions operations" className="w-full h-full object-cover rounded-[12px]" />
               <div className="absolute -bottom-4 -left-4 w-48 h-48 overflow-hidden rounded-[10px] border-4 border-white shadow-xl">
                 <img src={imgAbout1} alt="Team at work" className="w-full h-full object-cover" />
               </div>
