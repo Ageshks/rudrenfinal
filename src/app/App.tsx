@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import {
   Boxes,
@@ -430,15 +429,8 @@ function SectionHeading({ pre, highlight, post }: { pre?: string; highlight: str
 
 function IndustryCard({ img, label }: { img: string; label: string }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ 
-        duration: 0.6, 
-        ease: "easeOut"
-      }}
-      className="relative w-[240px] h-[220px] rounded-[24px] overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.3)] hover:shadow-[0px_30px_80px_rgba(0,0,0,0.4)] bg-white"
+    <div
+      className="relative w-[240px] h-[220px] rounded-[24px] overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.3)] hover:shadow-[0px_30px_80px_rgba(0,0,0,0.4)] bg-white transition-all duration-500 hover:-translate-y-2"
     >
       {/* Image Section - full card height */}
       <div className="relative h-full w-full overflow-hidden">
@@ -451,7 +443,7 @@ function IndustryCard({ img, label }: { img: string; label: string }) {
           {label}
         </h3>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -549,26 +541,10 @@ function IndustryCarousel() {
 
   return (
     <div className="relative overflow-hidden py-8">
-      <motion.div
-        className="flex gap-5"
-        animate={{
-          x: [0, -allIndustries.length * 245], // 240px width + 5px gap
-        }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 40,
-            ease: "linear",
-          },
-        }}
-        whileHover={{ 
-          animationPlayState: "paused" 
-        }}
-        style={{ 
-          willChange: "transform",
-          backfaceVisibility: "hidden",
-          perspective: 1000
+      <div
+        className="flex gap-5 animate-scroll"
+        style={{
+          animation: "scroll 40s linear infinite",
         }}
       >
         {duplicatedIndustries.map((ind, idx) => (
@@ -576,7 +552,7 @@ function IndustryCarousel() {
             <IndustryCard img={ind.img} label={ind.label} />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -1549,12 +1525,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 mb-16">
             {/* Vision Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
+            <div
               className="relative bg-white rounded-[32px] p-10 md:p-12 shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-black/5 hover:shadow-[0px_20px_60px_rgba(205,6,6,0.15)] transition-all duration-500 overflow-hidden"
             >
               {/* Red Gradient Glow */}
@@ -1586,15 +1557,10 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
               <p className="font-['Inter',sans-serif] text-[15px] md:text-[16px] text-black/70 leading-relaxed">
                 To be the most trusted industrial packaging partner for every manufacturer, processor, and exporter operating in Goa.
               </p>
-            </motion.div>
+            </div>
 
             {/* Mission Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ y: -8, scale: 1.02 }}
+            <div
               className="relative bg-white rounded-[32px] p-10 md:p-12 shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-black/5 hover:shadow-[0px_20px_60px_rgba(15,23,42,0.15)] transition-all duration-500 overflow-hidden"
             >
               {/* Blue Gradient Glow */}
@@ -1625,15 +1591,11 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
               <p className="font-['Inter',sans-serif] text-[15px] md:text-[16px] text-black/70 leading-relaxed">
                 To deliver reliable, fit-for-purpose industrial packaging solutions through expert material supply, professional tools and machinery, and dedicated on-site packaging teams.
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* Bottom Highlight */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <div
             className="text-center"
           >
             <div className="inline-block bg-gradient-to-r from-[#0F172A]/5 via-[#cd0606]/5 to-[#0F172A]/5 rounded-[24px] px-10 py-6 md:px-16 md:py-8">
@@ -1642,7 +1604,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
                 <span className="text-[#cd0606]">Long-Term Partnership.</span>
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1678,12 +1640,8 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             ].map((value, index) => {
               const Icon = value.icon;
               return (
-                <motion.div
+                <div
                   key={value.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
                   className="group bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-b-2 border-[#cd0606] hover:-translate-y-2 transition-all duration-500 hover:shadow-[0px_12px_30px_rgba(0,0,0,0.2)]"
                 >
                   <div className="w-14 h-14 rounded-full bg-[#cd0606] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
@@ -1691,7 +1649,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
                   </div>
                   <h3 className="font-['Inter',sans-serif] font-bold text-[18px] text-black mb-3">{value.title}</h3>
                   <p className="font-['Inter',sans-serif] text-[14px] text-black/70 leading-relaxed">{value.desc}</p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -1740,12 +1698,8 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             ].map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <div
                   key={item.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
                   className="group bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-l-4 border-[#cd0606] hover:-translate-y-2 transition-all duration-500 hover:shadow-[0px_12px_30px_rgba(0,0,0,0.2)]"
                 >
                   <div className="flex items-start gap-4">
@@ -1757,7 +1711,7 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
                       <p className="font-['Inter',sans-serif] text-[14px] text-black/70 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

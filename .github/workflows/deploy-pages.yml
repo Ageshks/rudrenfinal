@@ -27,12 +27,6 @@ jobs:
 
       - run: npm install
 
-      - run: npm ls framer-motion
-
-      - run: npm ls motion || true
-
-      - run: ls -R node_modules/framer-motion/dist/es || true
-
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
@@ -45,6 +39,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
+
     needs: build
 
     steps:
