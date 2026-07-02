@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import {
   Boxes,
@@ -15,6 +16,7 @@ import {
   Users,
   Wrench,
   MessageCircle,
+  Settings,
 } from "lucide-react";
 
 // Images
@@ -32,6 +34,9 @@ import imgAbout4 from "@/imports/Desktop4/f93556e8367633aee462667f8f07d0a1ec0dea
 import imgHowWeWork1 from "@/imports/Desktop4/140a2a095936fa62f60027fa4cddc0091317025a.png";
 import imgHowWeWork2 from "@/imports/Desktop4/283dae3bc8f6e671e7796987e514a441a314b83c.png";
 import imgWhyChoose from "@/imports/Desktop4/0f6f140d69bde65948e2a520a4b9cd46f5367828.png";
+import imgService4 from "@/imports/Desktop4/88d960a48e0d9b74509537c5e4d3951c88418ace.png";
+import imgService5 from "@/imports/Desktop4/operational.png";
+
 
 // Product images
 import imgTap2 from "@/imports/Desktop4/be287914b7360e76e54cac06a9378852e3325f72.png";
@@ -129,85 +134,84 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Logo - top left */}
         <button onClick={() => navigate("home")} className="flex-shrink-0 bg-transparent">
           <img src={imgLogo} alt="Rudren Solutions" className="h-[60px] sm:h-[70px] md:h-[80px] lg:h-[100px] w-auto transform scale-125 hover:scale-130 transition-transform bg-transparent" />
         </button>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center">
-          <div className="flex items-center gap-8">
-            {links.map(({ label, page }) => (
-              <div key={page} className="relative">
-                {page === "products" ? (
-                  <div className="relative">
-                    <button
-                      onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                      className={`font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
-                        current === page ? "text-[#cd0606]" : ""
-                      }`}
-                    >
-                      {label}
-                    </button>
-                    {productsDropdownOpen && (
-                      <div 
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden"
-                      >
-                        <button
-                          onClick={() => {
-                            navigate("products", "all");
-                            setProductsDropdownOpen(false);
-                          }}
-                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                        >
-                          All Products
-                        </button>
-                        <button
-                          onClick={() => {
-                            navigate("products", "atlanta");
-                            setProductsDropdownOpen(false);
-                          }}
-                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                        >
-                          Atlanta
-                        </button>
-                        <button
-                          onClick={() => {
-                            navigate("products", "itipack");
-                            setProductsDropdownOpen(false);
-                          }}
-                          className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
-                        >
-                          Itipack
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : (
+        {/* Desktop nav - right side */}
+        <div className="hidden lg:flex items-center gap-8">
+          {links.map(({ label, page }) => (
+            <div key={page} className="relative">
+              {page === "products" ? (
+                <div className="relative">
                   <button
-                    onClick={() => {
-                      navigate(page);
-                      setProductsDropdownOpen(false);
-                    }}
+                    onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
                     className={`font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
                       current === page ? "text-[#cd0606]" : ""
                     }`}
                   >
                     {label}
                   </button>
-                )}
-              </div>
-            ))}
-          </div>
+                  {productsDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-0 mt-2 w-48 bg-white rounded-[8px] shadow-[0px_10px_30px_rgba(0,0,0,0.2)] overflow-hidden"
+                    >
+                      <button
+                        onClick={() => {
+                          navigate("products", "all");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        All Products
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate("products", "atlanta");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        Atlanta
+                      </button>
+                      <button
+                        onClick={() => {
+                          navigate("products", "itipack");
+                          setProductsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 font-['Inter',sans-serif] font-bold text-[15px] text-black hover:bg-[#cd0606] hover:text-white transition-colors"
+                      >
+                        Itipack
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={() => {
+                    navigate(page);
+                    setProductsDropdownOpen(false);
+                  }}
+                  className={`font-['Inter',sans-serif] font-bold text-[14px] text-white hover:text-[#cd0606] transition-colors ${
+                    current === page ? "text-[#cd0606]" : ""
+                  }`}
+                >
+                  {label}
+                </button>
+              )}
+            </div>
+          ))}
           <button
             onClick={() => navigate("contact")}
-            className={`ml-8 flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
+            className={`flex items-center gap-1.5 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[6px] px-4 h-[36px] ${current === "contact" ? "invisible" : ""}`}
           >
             <span className="font-['Inter',sans-serif] font-bold text-[12px] text-white">Get Started</span>
             <img src={imgArrow} alt="" className="h-3.5 w-auto" />
           </button>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger - right side */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden flex flex-col gap-[5px] p-2"
@@ -250,16 +254,14 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
   return (
     <footer className="bg-[#18196d] text-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-5 mb-2">
-            <h3 className="text-2xl font-bold text-white">
-              Rudren 
-            </h3>
-          </div>
+        <h3 className="text-2xl font-bold text-white mb-4 text-left">
+          Rudren 
+        </h3>
 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-15">
+          
           {/* Company Info */}
-          <div className="lg:col-span-2">
-
+          <div>
             <p className="text-white/70 leading-relaxed max-w-md text-sm">
               Delivering innovative packaging solutions, machinery supply,
               cargo packaging, and on-site packaging services for industries
@@ -270,22 +272,31 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+                aria-label="Facebook"
               >
-                FB
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
               </a>
 
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+                aria-label="Instagram"
               >
-                IN
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
               </a>
 
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#cd0606] transition-all flex items-center justify-center"
+                aria-label="LinkedIn"
               >
-                LI
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -419,14 +430,28 @@ function SectionHeading({ pre, highlight, post }: { pre?: string; highlight: str
 
 function IndustryCard({ img, label }: { img: string; label: string }) {
   return (
-    <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] border-b-2 border-[#cd0606] overflow-hidden">
-      <div className="h-[150px] overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ 
+        duration: 0.6, 
+        ease: "easeOut"
+      }}
+      className="relative w-[240px] h-[220px] rounded-[24px] overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.3)] hover:shadow-[0px_30px_80px_rgba(0,0,0,0.4)] bg-white"
+    >
+      {/* Image Section - full card height */}
+      <div className="relative h-full w-full overflow-hidden">
         <img src={img} alt={label} className="w-full h-full object-cover" />
       </div>
-      <div className="py-3 px-3 text-center">
-        <p className="font-['Inter',sans-serif] font-bold text-[14px] text-black">{label}</p>
+
+      {/* Bottom Overlay with Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-white/90 via-white/80 to-transparent">
+        <h3 className="font-['Inter',sans-serif] font-bold text-[14px] text-black text-center leading-tight">
+          {label}
+        </h3>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -498,6 +523,61 @@ function ProductCard({ img, name, onClick }: { img: string; name: string; onClic
         <p className="font-['Inter',sans-serif] font-bold text-[12px] sm:text-[14px] text-black leading-tight line-clamp-2">{name}</p>
       </div>
     </button>
+  );
+}
+
+// ─── Industry Carousel ───────────────────────────────────────────────────────
+
+function IndustryCarousel() {
+  const allIndustries = [
+    { img: imgInd1, label: "PHARMACEUTICAL" },
+    { img: imgInd2, label: "CHEMICAL" },
+    { img: imgInd3, label: "FISH & SEAFOOD PROCESSING" },
+    { img: imgInd4, label: "MINING & MINERALS" },
+    { img: imgInd5, label: "HEAVY ENGINEERING" },
+    { img: imgInd6, label: "STEEL & ALUMINIUM" },
+    { img: imgInd7, label: "FOOD PROCESSING" },
+    { img: imgInd8, label: "EXPORT AND LOGISTICS" },
+    { img: imgInd9, label: "GLASS & CERAMICS" },
+    { img: imgInd10, label: "ENERGY & POWER" },
+    { img: imgInd11, label: "SHIPPING" },
+    { img: imgInd12, label: "CARGO SECURING" },
+  ];
+
+  // Duplicate items 3 times for seamless infinite loop
+  const duplicatedIndustries = [...allIndustries, ...allIndustries, ...allIndustries];
+
+  return (
+    <div className="relative overflow-hidden py-8">
+      <motion.div
+        className="flex gap-5"
+        animate={{
+          x: [0, -allIndustries.length * 245], // 240px width + 5px gap
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 40,
+            ease: "linear",
+          },
+        }}
+        whileHover={{ 
+          animationPlayState: "paused" 
+        }}
+        style={{ 
+          willChange: "transform",
+          backfaceVisibility: "hidden",
+          perspective: 1000
+        }}
+      >
+        {duplicatedIndustries.map((ind, idx) => (
+          <div key={idx} className="flex-shrink-0">
+            <IndustryCard img={ind.img} label={ind.label} />
+          </div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
@@ -803,7 +883,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
               return (
                 <div
                   key={item.title}
-                  className="group relative min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
+                  className="group relative min-h-[250px] sm:min-h-[300px] lg:min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
                 >
                   <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
@@ -844,7 +924,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             {/* Service card 1 */}
             <div className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] overflow-hidden">
               <div className="h-[240px] overflow-hidden">
-                <img src={imgService1} alt="Packaging Solutions" data-parallax-speed="0.12" className="w-full h-full object-cover" />
+                <img src={imgService4} alt="Packaging Solutions" data-parallax-speed="0.12" className="w-full h-full object-cover" />
               </div>
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
@@ -892,24 +972,15 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
       </section>
 
       {/* Industries We Serve (preview) */}
-      <section className="py-12 md:py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="font-['Inter',sans-serif] font-bold text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] text-black">
               Industries <span className="text-[#cd0606]">We Serve</span>
             </h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
-            {industries1.map((ind) => (
-              <IndustryCard key={ind.label} img={ind.img} label={ind.label} />
-            ))}
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            {industries2.map((ind) => (
-              <IndustryCard key={ind.label} img={ind.img} label={ind.label} />
-            ))}
-          </div>
         </div>
+        <IndustryCarousel />
       </section>
 
       {/* Products teaser */}
@@ -1154,12 +1225,12 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-[90px]">
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
         <div className="relative h-[340px] overflow-hidden">
           <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px] leading-tight">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-tight">
               Our <span className="text-[#cd0606]">Products</span>
             </h1>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
@@ -1347,12 +1418,12 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-[90px]">
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
         <div className="relative h-[340px] overflow-hidden">
           <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px]">
               About <span className="text-[#cd0606]">Us</span>
             </h1>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
@@ -1366,12 +1437,12 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-20">
             <div>
               <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
-              <h2 className="font-['Inter',sans-serif] font-bold text-[52px] text-black leading-tight mb-6">
+              <h2 className="font-['Inter',sans-serif] font-bold text-[40px] md:text-[48px] text-black leading-tight mb-6">
                 {"Goa's Industrial"}<br />
                 {"packaging solutions"}<br />
                 Company
               </h2>
-              <p className="font-['Inter',sans-serif] text-[20px] text-black leading-relaxed">
+              <p className="font-['Inter',sans-serif] text-[16px] md:text-[18px] text-black leading-relaxed">
                 Rudren Solutions delivers complete industrial packaging solutions for manufacturers, processors, and exporters across Goa. We provide the right materials, tools, and on-site support to manage packaging operations end-to-end.
               </p>
               <button
@@ -1396,76 +1467,325 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
             <h2 className="font-['Inter',sans-serif] font-bold text-[36px] text-black mb-8">
               Why Companies Choose Rudren
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "One Accountable Partner",
-                  desc: "Single point of contact from consultation to execution.",
-                  accent: "#145bd7",
-                  icon: Users,
-                  visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
-                },
-                {
-                  title: "Goa-Based, Operationally Present",
-                  desc: "Local support with quick response and site visits.",
-                  accent: "#2e7d32",
-                  icon: MapPin,
-                  visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
-                },
-                {
-                  title: "Requirement-Led Solutions",
-                  desc: "Packaging solutions designed around your operations.",
-                  accent: "#ff7900",
-                  icon: Boxes,
-                  visual: "from-[#9b4b00] via-[#ff7900] to-[#ffe0bf]",
-                },
-                {
-                  title: "Industrial-Grade Capability",
-                  desc: "Quality materials, trained teams, and proven processes.",
-                  accent: "#082343",
-                  icon: Factory,
-                  visual: "from-[#082343] via-[#274b75] to-[#d8e4f0]",
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="group relative min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
-                  >
-                    <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
-                      {Icon && <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />}
-                    </div>
-                    <div className="relative px-6 pb-8 pt-14">
-                      <div className="absolute left-1/2 top-0 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white text-white shadow-[0px_10px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.accent }}>
-                        {Icon && <Icon className="h-9 w-9" strokeWidth={1.8} />}
-                      </div>
-                      <h3 className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] uppercase leading-tight mb-4" style={{ color: item.accent }}>
-                        {item.title}
-                      </h3>
-                      <p className="font-['Inter',sans-serif] text-[15px] text-black/75 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 h-[6px] transition-all duration-500 group-hover:h-[9px]" style={{ backgroundColor: item.accent }} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+            {[
+              {
+                title: "One Accountable Partner",
+                desc: "Single point of contact from consultation to execution.",
+                accent: "#145bd7",
+                icon: Users,
+                visual: "from-[#163a71] via-[#1d63ba] to-[#d7e9ff]",
+              },
+              {
+                title: "Goa-Based, Operationally Present",
+                desc: "Local support with quick response and site visits.",
+                accent: "#2e7d32",
+                icon: MapPin,
+                visual: "from-[#1f5f31] via-[#5b9b4b] to-[#dff2d8]",
+              },
+              {
+                title: "Requirement-Led Solutions",
+                desc: "Packaging solutions designed around your operations.",
+                accent: "#ff7900",
+                icon: Boxes,
+                visual: "from-[#9b4b00] via-[#ff7900] to-[#ffe0bf]",
+              },
+              {
+                title: "Industrial-Grade Capability",
+                desc: "Quality materials, trained teams, and proven processes.",
+                accent: "#082343",
+                icon: Factory,
+                visual: "from-[#082343] via-[#274b75] to-[#d8e4f0]",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="group relative min-h-[390px] overflow-hidden rounded-[10px] bg-white text-center shadow-[0px_10px_28px_rgba(8,35,67,0.16)] ring-1 ring-black/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0px_26px_60px_rgba(8,35,67,0.24)]"
+                >
+                  <div className={`relative h-[170px] overflow-hidden bg-gradient-to-br ${item.visual}`}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0))]" />
+                    <Icon className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-white/85 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
                   </div>
-                );
-              })}
+                  <div className="relative px-6 pb-8 pt-14">
+                    <div className="absolute left-1/2 top-0 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white text-white shadow-[0px_10px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110" style={{ backgroundColor: item.accent }}>
+                      <Icon className="h-9 w-9" strokeWidth={1.8} />
+                    </div>
+                    <h3 className="font-['Inter',sans-serif] font-bold text-[18px] sm:text-[20px] uppercase leading-tight mb-4" style={{ color: item.accent }}>
+                      {item.title}
+                    </h3>
+                    <p className="font-['Inter',sans-serif] text-[15px] text-black/75 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 h-[6px] transition-all duration-500 group-hover:h-[9px]" style={{ backgroundColor: item.accent }} />
+                </div>
+              );
+            })}
+          </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Mission */}
+      <section className="py-8 md:py-10 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-16 md:mb-20">
+            <div className="inline-block px-4 py-2 bg-[#0F172A]/5 rounded-full mb-6">
+              <span className="font-['Inter',sans-serif] font-bold text-[12px] md:text-[13px] text-[#0F172A] uppercase tracking-[0.2em]">
+                Our Purpose
+              </span>
             </div>
+            <h2 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[48px] lg:text-[56px] text-[#0F172A] leading-tight mb-6">
+              Driving Better Packaging Operations Across Goa
+            </h2>
+            <p className="font-['Inter',sans-serif] text-[16px] md:text-[18px] text-black/70 max-w-[800px] mx-auto leading-relaxed">
+              Every solution we provide is guided by a clear vision and a commitment to helping industrial businesses operate more efficiently, safely, and reliably.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {[
-              { title: "End-to-End Service", desc: "From material assessment to on-site packaging teams, we handle the entire process so you don't have to." },
-              { title: "Industry Expertise", desc: "Decades of experience across pharma, chemicals, food processing, heavy engineering, and export logistics." },
-              { title: "Goa's Trusted Partner", desc: "Local presence with deep understanding of Goa's industrial landscape and supply chain requirements." },
-            ].map((item) => (
-              <div key={item.title} className="bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-b-2 border-[#cd0606]">
-                <h3 className="font-['Inter',sans-serif] font-bold text-[20px] text-black mb-3">{item.title}</h3>
-                <p className="font-['Inter',sans-serif] text-[15px] text-black/70 leading-relaxed">{item.desc}</p>
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 mb-16">
+            {/* Vision Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative bg-white rounded-[32px] p-10 md:p-12 shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-black/5 hover:shadow-[0px_20px_60px_rgba(205,6,6,0.15)] transition-all duration-500 overflow-hidden"
+            >
+              {/* Red Gradient Glow */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-[#cd0606]/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Icon */}
+              <div className="relative mb-8">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-[#cd0606]/30 flex items-center justify-center bg-gradient-to-br from-[#cd0606]/10 to-transparent">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[#cd0606]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
               </div>
-            ))}
+
+              {/* Label */}
+              <div className="inline-block px-4 py-1.5 bg-[#cd0606]/10 rounded-full mb-4">
+                <span className="font-['Inter',sans-serif] font-bold text-[13px] md:text-[14px] text-[#cd0606] uppercase tracking-[0.15em]">
+                  Vision
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h3 className="font-['Inter',sans-serif] font-bold text-[24px] md:text-[28px] text-[#0F172A] mb-4 leading-tight">
+                Where We Aim To Be
+              </h3>
+
+              {/* Content */}
+              <p className="font-['Inter',sans-serif] text-[15px] md:text-[16px] text-black/70 leading-relaxed">
+                To be the most trusted industrial packaging partner for every manufacturer, processor, and exporter operating in Goa.
+              </p>
+            </motion.div>
+
+            {/* Mission Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="relative bg-white rounded-[32px] p-10 md:p-12 shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-black/5 hover:shadow-[0px_20px_60px_rgba(15,23,42,0.15)] transition-all duration-500 overflow-hidden"
+            >
+              {/* Blue Gradient Glow */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-[#0F172A]/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Icon */}
+              <div className="relative mb-8">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-[#0F172A]/30 flex items-center justify-center bg-gradient-to-br from-[#0F172A]/10 to-transparent">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-[#0F172A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Label */}
+              <div className="inline-block px-4 py-1.5 bg-[#0F172A]/10 rounded-full mb-4">
+                <span className="font-['Inter',sans-serif] font-bold text-[13px] md:text-[14px] text-[#0F172A] uppercase tracking-[0.15em]">
+                  Mission
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h3 className="font-['Inter',sans-serif] font-bold text-[24px] md:text-[28px] text-[#0F172A] mb-4 leading-tight">
+                How We Deliver Value
+              </h3>
+
+              {/* Content */}
+              <p className="font-['Inter',sans-serif] text-[15px] md:text-[16px] text-black/70 leading-relaxed">
+                To deliver reliable, fit-for-purpose industrial packaging solutions through expert material supply, professional tools and machinery, and dedicated on-site packaging teams.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Bottom Highlight */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <div className="inline-block bg-gradient-to-r from-[#0F172A]/5 via-[#cd0606]/5 to-[#0F172A]/5 rounded-[24px] px-10 py-6 md:px-16 md:py-8">
+              <p className="font-['Inter',sans-serif] font-bold text-[20px] md:text-[24px] lg:text-[28px] text-[#0F172A] leading-relaxed">
+                Reliable Packaging. Local Accountability.{' '}
+                <span className="text-[#cd0606]">Long-Term Partnership.</span>
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Core Values */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[48px] text-black mb-4">What We Stand For</h2>
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Trusted Partnerships",
+                desc: "Building long-term relationships through transparency, responsiveness, and consistently dependable performance.",
+                icon: Users,
+              },
+              {
+                title: "Packaging Expertise",
+                desc: "Deep industry knowledge applied to real storage, handling, and transit conditions for optimal protection.",
+                icon: Lightbulb,
+              },
+              {
+                title: "Fit-for-Purpose Solutions",
+                desc: "Every solution is customised around your specific product, process, and operational environment.",
+                icon: Settings,
+              },
+              {
+                title: "Quality Commitment",
+                desc: "Consistent standards from material selection through to delivery and on-site execution.",
+                icon: ShieldCheck,
+              },
+            ].map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <motion.div
+                  key={value.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-b-2 border-[#cd0606] hover:-translate-y-2 transition-all duration-500 hover:shadow-[0px_12px_30px_rgba(0,0,0,0.2)]"
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#cd0606] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+                    <Icon className="h-7 w-7 text-white" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="font-['Inter',sans-serif] font-bold text-[18px] text-black mb-3">{value.title}</h3>
+                  <p className="font-['Inter',sans-serif] text-[14px] text-black/70 leading-relaxed">{value.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Commitment */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[48px] text-black mb-4">Our Commitment To Every Client</h2>
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Complete Packaging Supply",
+                desc: "From materials to machinery, we provide everything you need for seamless packaging operations.",
+                icon: PackageOpen,
+              },
+              {
+                title: "Bespoke Solutions",
+                desc: "Tailored packaging strategies designed around your unique operational requirements and constraints.",
+                icon: Settings,
+              },
+              {
+                title: "Expertise",
+                desc: "Decades of combined experience across diverse industrial sectors ensuring optimal results every time.",
+                icon: Lightbulb,
+              },
+              {
+                title: "Client-First",
+                desc: "Your success is our priority. We listen, adapt, and deliver solutions that truly work for your business.",
+                icon: Users,
+              },
+              {
+                title: "Integrity",
+                desc: "Transparent pricing, honest communication, and ethical practices in every engagement.",
+                icon: ShieldCheck,
+              },
+              {
+                title: "Quality Assurance",
+                desc: "Rigorous quality checks at every stage to ensure consistent, reliable performance.",
+                icon: ClipboardCheck,
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-l-4 border-[#cd0606] hover:-translate-y-2 transition-all duration-500 hover:shadow-[0px_12px_30px_rgba(0,0,0,0.2)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#cd0606]/10 flex items-center justify-center group-hover:bg-[#cd0606] transition-colors duration-500">
+                      <Icon className="h-6 w-6 text-[#cd0606] group-hover:text-white transition-colors duration-500" strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <h3 className="font-['Inter',sans-serif] font-bold text-[16px] sm:text-[18px] text-black mb-2">{item.title}</h3>
+                      <p className="font-['Inter',sans-serif] text-[14px] text-black/70 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-[24px] p-8 md:p-16 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(205,6,6,0.15),transparent_50%)]" />
+            <div className="relative text-center">
+              <h2 className="font-['Inter',sans-serif] font-bold text-[32px] md:text-[40px] text-white mb-4">
+                Ready to work with a packaging partner who builds around your operation?
+              </h2>
+              <p className="font-['Inter',sans-serif] text-[16px] md:text-[18px] text-slate-300 max-w-[700px] mx-auto mb-8">
+                Tell us about your facility, your products, and your packaging challenges. We'll come back with a proposal tailored specifically to your requirements.
+              </p>
+              <button
+                onClick={() => navigate("contact")}
+                className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[12px] px-8 h-[56px] shadow-[0px_8px_20px_rgba(205,6,6,0.3)] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)]"
+              >
+                <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Talk to Rudren</span>
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -1478,13 +1798,13 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
 function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
   const services = [
     {
-      img: imgService1,
+      img: imgService4,
       title: "Complete Packaging",
       desc: "Comprehensive packaging solutions that combine practical design with protective efficiency, helping your products stay secure and presentable.",
       icon: PackageOpen,
     },
     {
-      img: imgAbout2,
+      img: imgAbout4,
       title: "On-site Packaging",
       desc: "Dedicated on-site packaging teams deployed at your facility to manage packaging operations with precision and efficiency.",
       icon: Users,
@@ -1496,7 +1816,7 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
       icon: ShieldCheck,
     },
     {
-      img: imgHeroBg,
+      img: imgService5,
       title: "Operational Contract",
       desc: "Structured operational packaging contracts designed for clarity, efficiency, and smooth long-term collaboration.",
       icon: ClipboardCheck,
@@ -1518,12 +1838,12 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-[90px]">
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
         <div className="relative h-[340px] overflow-hidden">
           <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px]">
               Our <span className="text-[#cd0606]">Services</span>
             </h1>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
@@ -1537,11 +1857,11 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
             <p className="font-['Inter',sans-serif] font-bold text-[15px] uppercase tracking-[0.28em] text-[#cd0606] mb-3">
               What We Offer
             </p>
-            <h2 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[46px] text-black leading-tight">
+            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] md:text-[36px] text-black leading-tight">
               Discover our Tailored Solutions
             </h2>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mx-auto mt-5" />
-            <p className="font-['Inter',sans-serif] text-[18px] text-black/70 mt-5 max-w-[760px] mx-auto leading-relaxed">
+            <p className="font-['Inter',sans-serif] text-[15px] md:text-[16px] text-black/70 mt-5 max-w-[760px] mx-auto leading-relaxed">
               Complete industrial packaging services for securing cargo, improving plant operations, auditing packaging performance, and supporting technical execution.
             </p>
           </div>
@@ -1563,7 +1883,7 @@ function ServicesPage({ navigate }: { navigate: (p: Page) => void }) {
                   </div>
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div>
-                      <h3 className="font-['Inter',sans-serif] font-bold text-[22px] text-black leading-tight">{s.title}</h3>
+                      <h3 className="font-['Inter',sans-serif] font-bold text-[18px] md:text-[20px] text-black leading-tight">{s.title}</h3>
                       <div className="w-[44px] h-[4px] bg-[#cd0606] mt-3" />
                     </div>
                   </div>
@@ -1681,12 +2001,12 @@ function IndustriesPage() {
 
   return (
     <>
-      <section className="relative pt-[90px]">
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
         <div className="relative h-[340px] overflow-hidden">
           <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px]">
               Industries <span className="text-[#cd0606]">We Serve</span>
             </h1>
             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
@@ -1759,15 +2079,15 @@ function ContactPage() {
 
   return (
     <>
-      <section className="relative pt-[90px]">
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
         <div className="relative h-[340px] overflow-hidden">
           <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[52px] md:text-[64px]">
-              Contact <span className="text-[#cd0606]">Page</span>
-            </h1>
-            <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px]">
+                Contact <span className="text-[#cd0606]">Us</span>
+              </h1>
+             <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
           </div>
         </div>
       </section>
@@ -1972,7 +2292,7 @@ export default function App() {
         href="https://wa.me/919607024997"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110"
+        className="fixed bottom-4 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle className="h-8 w-8" strokeWidth={1.8} />
