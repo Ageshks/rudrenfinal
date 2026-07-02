@@ -31,6 +31,16 @@ export default defineConfig({
     },
   },
 
+  optimizeDeps: {
+    include: ['motion', 'framer-motion'],
+  },
+
+  build: {
+    rollupOptions: {
+      external: [],
+    },
+  },
+
   assetsInclude: [
     '**/*.svg',
     '**/*.csv',
