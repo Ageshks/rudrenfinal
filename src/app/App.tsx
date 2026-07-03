@@ -1721,23 +1721,24 @@ function AboutPage({ navigate }: { navigate: (p: Page) => void }) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-[24px] p-8 md:p-16 overflow-hidden">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 px-5 py-10 sm:rounded-[24px] sm:px-8 sm:py-12 md:px-12 lg:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(205,6,6,0.15),transparent_50%)]" />
             <div className="relative text-center">
-              <h2 className="font-['Inter',sans-serif] font-bold text-[32px] md:text-[40px] text-white mb-4">
+              <h2 className="mx-auto mb-4 whitespace-nowrap font-['Inter',sans-serif] text-[clamp(8px,2.3vw,33px)] font-bold leading-tight text-white">
                 Ready to work with a packaging partner who builds around your operation?
               </h2>
-              <p className="font-['Inter',sans-serif] text-[16px] md:text-[18px] text-slate-300 max-w-[700px] mx-auto mb-8">
+              <p className="mx-auto mb-7 max-w-[1200px] font-['Inter',sans-serif] text-[15px] leading-relaxed text-slate-300 sm:mb-8 sm:text-base md:text-lg">
                 Tell us about your facility, your products, and your packaging challenges. We'll come back with a proposal tailored specifically to your requirements.
               </p>
               <button
+                type="button"
                 onClick={() => navigate("contact")}
-                className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[12px] px-8 h-[56px] shadow-[0px_8px_20px_rgba(205,6,6,0.3)] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)]"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#cd0606] px-6 py-3 shadow-[0px_8px_20px_rgba(205,6,6,0.3)] transition-all hover:bg-[#a80404] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 sm:h-14 sm:w-auto sm:px-8 sm:py-0"
               >
-                <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Talk to Rudren</span>
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="font-['Inter',sans-serif] text-base font-bold text-white sm:text-lg">Talk to Rudren</span>
+                <svg aria-hidden="true" className="h-5 w-5 shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
@@ -2082,23 +2083,32 @@ function ToolsPage({ navigate }: { navigate: (p: Page) => void }) {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 text-center">
-            <div className="inline-block bg-gradient-to-r from-[#0F172A]/5 via-[#cd0606]/5 to-[#0F172A]/5 rounded-[24px] px-10 py-8 md:px-16 md:py-10">
-              <h3 className="font-['Inter',sans-serif] font-bold text-[24px] md:text-[28px] text-[#0F172A] mb-4">
-                Need Help Choosing the Right Tool?
-              </h3>
-              <p className="font-['Inter',sans-serif] text-[16px] text-black/70 mb-6 max-w-[600px]">
-                Our experts can help you select the perfect strapping and packaging tools for your specific industrial requirements.
-              </p>
-              <button
-                onClick={() => navigate("contact")}
-                className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[10px] px-8 h-[56px] shadow-[0px_8px_20px_rgba(205,6,6,0.3)] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)]"
-              >
-                <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Contact Us</span>
-                <img src={imgArrow} alt="" className="h-5 w-auto" />
-              </button>
-            </div>
-          </div>
+          <div className="mt-10 text-center sm:mt-12 lg:mt-16">
+  <div className="inline-block w-full rounded-2xl bg-gradient-to-r from-[#0F172A]/5 via-[#cd0606]/5 to-[#0F172A]/5 px-4 py-8 sm:rounded-[24px] sm:px-8 md:px-12 md:py-10 lg:px-16">
+
+    <div className="mx-auto max-w-[1200px]">
+      <h3 className="mb-4 whitespace-nowrap font-['Inter',sans-serif] text-[clamp(11px,4vw,48px)] font-bold leading-tight text-[#0F172A]">
+        Let's Solve Your Packaging Challenges
+      </h3>
+
+      <p className="mx-auto mb-6 max-w-[600px] font-['Inter',sans-serif] text-[15px] leading-relaxed text-black/70 sm:text-base md:text-lg">
+        Talk with our experts about your packaging requirements. We'll help you find the perfect solution for your business needs.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      onClick={() => navigate("contact")}
+      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#cd0606] px-6 py-3 shadow-[0px_8px_20px_rgba(205,6,6,0.3)] transition-all hover:bg-[#a80404] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#cd0606] focus-visible:ring-offset-2 sm:h-14 sm:w-auto sm:px-8 sm:py-0"
+    >
+      <span className="font-['Inter',sans-serif] text-base font-bold text-white sm:text-lg">
+        Contact Us
+      </span>
+      <img src={imgArrow} alt="" className="h-5 w-auto shrink-0" />
+    </button>
+
+  </div>
+</div>
         </div>
       </section>
     </>
