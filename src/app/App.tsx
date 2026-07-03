@@ -146,7 +146,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
         </button>
 
         {/* Desktop nav - right side */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="relative top-4 hidden lg:flex items-center gap-8">
           {links.map(({ label, page }) => (
             <div key={page} className="relative">
               {page === "products" ? (
