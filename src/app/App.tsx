@@ -536,17 +536,12 @@ function IndustryCarousel() {
     { img: imgInd12, label: "CARGO SECURING" },
   ];
 
-  // Duplicate items 3 times for seamless infinite loop
-  const duplicatedIndustries = [...allIndustries, ...allIndustries, ...allIndustries];
+  // Duplicate items 2 times for seamless infinite loop
+  const duplicatedIndustries = [...allIndustries, ...allIndustries];
 
   return (
     <div className="relative overflow-hidden py-8">
-      <div
-        className="flex gap-5 animate-scroll"
-        style={{
-          animation: "scroll 40s linear infinite",
-        }}
-      >
+      <div className="flex gap-5 animate-scroll">
         {duplicatedIndustries.map((ind, idx) => (
           <div key={idx} className="flex-shrink-0">
             <IndustryCard img={ind.img} label={ind.label} />
