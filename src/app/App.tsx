@@ -648,13 +648,17 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
         {/* Slider Controls */}
         <button
+          type="button"
+          aria-label="Previous hero slide"
           onClick={() => setHeroSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
-          className="absolute left-6 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+          className="absolute left-6 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 transition-colors hover:bg-white/30 lg:inline-flex"
         >
           <span className="text-white text-2xl">‹</span>
         </button>
 
         <button
+          type="button"
+          aria-label="Next hero slide"
           onClick={() => setHeroSlide((prev) => (prev + 1) % heroSlides.length)}
           className="absolute right-6 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
         >
