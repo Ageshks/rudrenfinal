@@ -36,6 +36,12 @@ import imgWhyChoose from "@/imports/Desktop4/0f6f140d69bde65948e2a520a4b9cd46f53
 import imgService4 from "@/imports/Desktop4/88d960a48e0d9b74509537c5e4d3951c88418ace.png";
 import imgService5 from "@/imports/Desktop4/operational.png";
 
+// tools and tackles images
+import stellstrappingtool from "@/imports/Desktop4/steelstrapping tool.jpg"
+import tools1 from "@/imports/Desktop4/composite strapping tool.webp"
+import tools2 from "@/imports/Desktop4/industrial strapper.jpg"
+import tools3 from "@/imports/Desktop4/nail gun.webp"
+import tools4 from "@/imports/Desktop4/strap dispenser.jpg";
 
 // Product images
 import imgTap2 from "@/imports/Desktop4/be287914b7360e76e54cac06a9378852e3325f72.png";
@@ -107,7 +113,7 @@ import imgPhone from "@/imports/Desktop4/2c89a6aa5ab0caa033725718ec1ab3f6835795d
 import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea3.png";
 const imgLocation = "";
 
-type Page = "home" | "products" | "about" | "services" | "industries" | "contact";
+type Page = "home" | "products" | "about" | "services" | "industries" | "tools" | "contact";
 type ProductCategory = "all" | "atlanta" | "atlanta-semi" | "atlanta-auto" | "itipack";
 type ProductInfo = {
   img: string;
@@ -127,6 +133,7 @@ function Navbar({ current, navigate }: { current: Page; navigate: (p: Page, cate
     { label: "About", page: "about" },
     { label: "Services", page: "services" },
     { label: "Products", page: "products" },
+    { label: "Tools & Tackles", page: "tools" },
     { label: "Contact", page: "contact" },
   ];
 
@@ -1220,7 +1227,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex-shrink-0 px-8 py-4 font-['Inter',sans-serif] font-bold text-[16px] border-b-[3px] transition-colors ${
+                className={`flex-shrink-0 px-6 py-4 font-['Inter',sans-serif] font-bold text-[14px] sm:text-[16px] border-b-[3px] transition-colors ${
                   activeCategory === cat.id
                     ? "border-[#cd0606] text-[#cd0606]"
                     : "border-transparent text-black/60 hover:text-black"
@@ -1979,6 +1986,125 @@ function IndustriesPage() {
   );
 }
 
+// ─── TOOLS & TACKLES PAGE ─────────────────────────────────────────────────────
+
+function ToolsPage({ navigate }: { navigate: (p: Page) => void }) {
+  const tools = [
+    {
+      img: stellstrappingtool,
+      name: "Steel Strapping Tools",
+      desc: "An excellent solution for securing shipments and safeguarding storage of cartons, cardboard boxes, and pallets.",
+      features: ["High tensile strength", "Secure shipment protection", "Versatile application"],
+    },
+    {
+      img: tools1,
+      name: "Composite Strapping Tool",
+      desc: "Made of high quality low carbon steel alloy in advanced processing manufacture for superior performance.",
+      features: ["Premium steel alloy", "Advanced manufacturing", "Superior durability"],
+    },
+    {
+      img: tools2,
+      name: "Industrial Stapler",
+      desc: "Precision in every staple, delivers reliability, durability, and unmatched performance for efficiency.",
+      features: ["Precision stapling", "High durability", "Efficient operation"],
+    },
+    {
+      img: tools3,
+      name: "Nail Gun",
+      desc: "Precision and powerful, ensures efficiency, accuracy, and reliability for construction and carpentry.",
+      features: ["Precision driving", "Powerful performance", "Construction ready"],
+    },
+    {
+      img: tools4,
+      name: "Strap Dispenser",
+      desc: "Strapping dispensers are required for efficient strapping operations when using tools or automatic machines.",
+      features: ["Efficient dispensing", "Tool compatible", "Smooth operation"],
+    },
+  ];
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative mt-[60px] sm:mt-[70px] md:mt-[80px] lg:mt-[100px]">
+        <div className="relative h-[340px] overflow-hidden">
+          <img src={imgHeroBg} alt="" data-parallax-speed="0.16" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <h1 className="font-['Inter',sans-serif] font-bold text-white text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px]">
+              Tools <span className="text-[#cd0606]">&</span> <span className="text-[#cd0606]">Tackles</span>
+            </h1>
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mt-4" />
+            <p className="font-['Inter',sans-serif] text-white text-[18px] mt-4 max-w-[600px]">
+              Professional-grade strapping and packaging tools for industrial applications
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Grid */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="mb-12">
+            <div className="w-[66px] h-[4px] bg-[#cd0606] mb-4" />
+            <h2 className="font-['Inter',sans-serif] font-bold text-[28px] sm:text-[32px] md:text-[40px] text-black mb-4">
+              Our <span className="text-[#cd0606]">Tools</span> Range
+            </h2>
+            <p className="font-['Inter',sans-serif] text-[16px] sm:text-[18px] text-black/70 max-w-[700px] mb-8">
+              High-quality strapping and packaging tools designed for durability, efficiency, and ease of use in industrial environments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            {tools.map((tool) => (
+              <div
+                key={tool.name}
+                className="group bg-white rounded-[10px] shadow-[0px_4px_4px_rgba(0,0,0,0.15)] p-6 border-b-2 border-[#cd0606] hover:-translate-y-2 transition-all duration-500 hover:shadow-[0px_12px_30px_rgba(0,0,0,0.2)]"
+              >
+                <div className="relative h-[180px] overflow-hidden rounded-[8px] mb-4 bg-gray-50">
+                  <img
+                    src={tool.img}
+                    alt={tool.name}
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="font-['Inter',sans-serif] font-bold text-[18px] text-black mb-2">{tool.name}</h3>
+                <p className="font-['Inter',sans-serif] text-[14px] text-black/70 leading-relaxed mb-4">{tool.desc}</p>
+                <div className="space-y-2">
+                  {tool.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-2">
+                      <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-[#cd0606] flex-shrink-0" />
+                      <p className="text-[13px] text-black/60 leading-tight">{feature}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="mt-16 text-center">
+            <div className="inline-block bg-gradient-to-r from-[#0F172A]/5 via-[#cd0606]/5 to-[#0F172A]/5 rounded-[24px] px-10 py-8 md:px-16 md:py-10">
+              <h3 className="font-['Inter',sans-serif] font-bold text-[24px] md:text-[28px] text-[#0F172A] mb-4">
+                Need Help Choosing the Right Tool?
+              </h3>
+              <p className="font-['Inter',sans-serif] text-[16px] text-black/70 mb-6 max-w-[600px]">
+                Our experts can help you select the perfect strapping and packaging tools for your specific industrial requirements.
+              </p>
+              <button
+                onClick={() => navigate("contact")}
+                className="inline-flex items-center gap-2 bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[10px] px-8 h-[56px] shadow-[0px_8px_20px_rgba(205,6,6,0.3)] hover:shadow-[0px_12px_30px_rgba(205,6,6,0.4)]"
+              >
+                <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">Contact Us</span>
+                <img src={imgArrow} alt="" className="h-5 w-auto" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 // ─── CONTACT PAGE ─────────────────────────────────────────────────────────────
 
 function ContactPage() {
@@ -2232,6 +2358,7 @@ export default function App() {
         {page === "about" && <AboutPage navigate={navigate} />}
         {page === "services" && <ServicesPage navigate={navigate} />}
         {page === "industries" && <IndustriesPage />}
+        {page === "tools" && <ToolsPage navigate={navigate} />}
         {page === "contact" && <ContactPage />}
       </main>
       <Footer navigate={navigate} />
