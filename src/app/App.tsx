@@ -36,6 +36,7 @@ import imgWhyChoose from "@/imports/Desktop4/0f6f140d69bde65948e2a520a4b9cd46f53
 import imgService4 from "@/imports/Desktop4/88d960a48e0d9b74509537c5e4d3951c88418ace.png";
 import imgService5 from "@/imports/Desktop4/operational.png";
 
+
 // tools and tackles images
 import stellstrappingtool from "@/imports/Desktop4/steelstrapping tool.jpg"
 import tools1 from "@/imports/Desktop4/composite strapping tool.webp"
@@ -91,6 +92,13 @@ import imgAtlantaAuto4 from "@/imports/Desktop4/atlanta auto 4.jpg";
 import imgAtlantaAuto5 from "@/imports/Desktop4/atlanta auto 5.jpg";
 import imgAtlantaAuto6 from "@/imports/Desktop4/atlanta auto 6.jpg";
 import imgAtlantaAuto7 from "@/imports/Desktop4/atlanta auto 7.jpg";
+import eva from "@/imports/Desktop4/EVA.png";
+import omegadouble from "@/imports/Desktop4/Omega-Double.png";
+import omega from "@/imports/Desktop4/omega.png";
+import SYNTHESI from "@/imports/Desktop4/SYNTHESI.png";
+import MYTHO from "@/imports/Desktop4/MYTHO.png";
+
+
 
 // Industry images - row 1
 import imgInd1 from "@/imports/Desktop4/4b100d619ce1eb929bab789d67c1c07bf9a07a7e.png";
@@ -466,8 +474,8 @@ function ProductModal({ product, onClose, navigate }: { product: ProductInfo; on
           ×
         </button>
         <div className="grid gap-3 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="overflow-hidden rounded-[8px] sm:rounded-[24px]">
-            <img src={product.img} alt={product.name} className="h-[150px] sm:h-[300px] md:h-[350px] w-full object-cover" />
+          <div className="overflow-hidden rounded-[8px] sm:rounded-[24px] bg-white">
+            <img src={product.img} alt={product.name} className="h-[250px] sm:h-[400px] md:h-[500px] w-full object-contain" />
           </div>
           <div className="flex flex-col justify-between rounded-[8px] sm:rounded-[24px] bg-white/90 p-3 sm:p-8 shadow-[0px_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl">
             <div>
@@ -511,8 +519,8 @@ function ProductCard({ img, name, onClick }: { img: string; name: string; onClic
       onClick={onClick}
       className="group relative overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.12)]"
     >
-      <div className="relative h-[180px] sm:h-[220px] overflow-hidden">
-        <img src={img} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      <div className="relative h-[280px] sm:h-[320px] md:h-[350px] overflow-hidden">
+        <img src={img} alt={name} loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
         <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/20" />
         <div className="absolute inset-x-0 bottom-0 translate-y-full bg-black/70 px-4 py-3 text-white transition-transform duration-300 group-hover:translate-y-0">
           <span className="font-semibold">View Details</span>
@@ -1109,19 +1117,20 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
       features: ["Ring mechanism", "Stationary load", "Consistent tension"],
     },
     {
-      img: imgAtlantaAuto1,
-      name: "ROTARY ARM WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Rotary arm stretch wrapper for heavy and unstable loads with 360-degree wrapping capability.",
-      features: ["Rotary arm system", "Heavy load capacity", "Stable wrapping"],
+      img: SYNTHESI,
+      name: "SYNTHESI WITH ARM",
+      brand: "atlanta-semi",
+      desc: "Semi-automatic ring wrapper for rotating film application around stationary loads.",
+      features: ["The installation does not require the presence of a technician and can be done directly by the customer", "The turntable for wrapping any type of pallet", "Can be placed in rooms without full height"],
     },
     {
-      img: imgAtlantaAuto2,
-      name: "TURNTABLE WRAPPER",
-      brand: "atlanta-auto",
-      desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
-      features: ["Turntable system", "Standard operations", "Reliable performance"],
+      img: eva,
+      name: "EVA",
+      brand: "atlanta-semi",
+      desc: "Semi-automatic ring wrapper for rotating film application around stationary loads.",
+      features: ["Maximum handling simplicity", "Cost-effectiveness by using thin or pre-stretched film", "Consistent tension"],
     },
+     
     {
       img: imgAtlantaAuto3,
       name: "AUTO TURNTABLE WRAPPER",
@@ -1156,6 +1165,41 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
       brand: "atlanta-auto",
       desc: "Advanced rotary turret wrapper with multiple wrapping stations for maximum versatility.",
       features: ["Rotary turret", "Multiple stations", "Maximum versatility"],
+    },
+    {
+      img: MYTHO,
+      name: "MYTHO A WITH MAST",
+      brand: "atlanta-auto",
+      desc: "Fully-automatic ring wrapper for rotating film application around stationary loads.",
+      features: ["Easy transport and installation", "Compact machine", "Compact, space-saving machine suitable for small workplaces"],
+    },
+     {
+      img: omegadouble,
+      name: "OMEGA DOUBLE",
+      brand: "atlanta-auto",
+      desc: "Fully-automatic ring wrapper for rotating film application around stationary loads.",
+      features: ["Hi-speed ring wrapping machine", "Compact machine", "The patented ring rotation system without sliding contacts allows constant film pre-stretch"],
+    },
+    {
+      img: omega,
+      name: "OMEGA",
+      brand: "atlanta-auto",
+      desc: "Fully-automatic ring wrapper for rotating film application around stationary loads.",
+      features: ["Hi speed ring wrapping machine", "Compact machine", "Small footprint in transport"],
+    },
+    {
+      img: imgAtlantaAuto1,
+      name: "ROTARY ARM WRAPPER",
+      brand: "atlanta-auto",
+      desc: "Rotary arm stretch wrapper for heavy and unstable loads with 360-degree wrapping capability.",
+      features: ["Rotary arm system", "Heavy load capacity", "Stable wrapping"],
+    },
+    {
+      img: imgAtlantaAuto2,
+      name: "TURNTABLE WRAPPER",
+      brand: "atlanta-auto",
+      desc: "Turntable stretch wrapper for standard pallet wrapping with reliable performance.",
+      features: ["Turntable system", "Standard operations", "Reliable performance"],
     },
     {
       img: imgTap33,
