@@ -96,7 +96,7 @@ import eva from "@/imports/Desktop4/EVA.png";
 import omegadouble from "@/imports/Desktop4/Omega-Double.png";
 import omega from "@/imports/Desktop4/omega.png";
 import SYNTHESI from "@/imports/Desktop4/SYNTHESI.png";
-import MYTHO from "@/imports/Desktop4/MYTHO.png";
+import MYTHO from "@/imports/Desktop4/mytho.png";
 
 
 
