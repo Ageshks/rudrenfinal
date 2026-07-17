@@ -2171,44 +2171,54 @@ function ContactPage() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
 
-    // EmailJS configuration
-    // To set up:
-    // 1. Sign up at https://www.emailjs.com/
-    // 2. Add your email service (Gmail, Outlook, etc.)
-    // 3. Create an email template
-    // 4. Replace the values below with your actual credentials
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "0c7f73ba-e313-48b5-a9a6-deaa61e6932b",
 
-    try {
-      await emailjs.send(
-        serviceID,
-        templateID,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          phone: form.phone,
-          company: form.company,
-          service: form.service,
-          message: form.message,
-          to_name: "Rudren Solutions",
-          to_email: "info@rudren.com",
-        },
-        publicKey
-      );
+        subject: `New Enquiry - ${form.service}`,
+
+        name: form.name,
+        company: form.company,
+        phone: form.phone,
+        email: form.email,
+        service: form.service,
+        message: form.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
       setSent(true);
-      setForm({ name: "", company: "", phone: "", email: "", service: "", message: "" });
-    } catch (error) {
-      console.error("Error sending email:", error);
-      alert("Failed to send enquiry. Please try again or contact us directly at info@rudren.com");
-    } finally {
-      setLoading(false);
+
+      setForm({
+        name: "",
+        company: "",
+        phone: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+    } else {
+      console.error(result);
+      alert("Failed to send enquiry");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <>
@@ -2313,12 +2323,12 @@ function ContactPage() {
                     />
                   </div>
                   <button
-                    type="submit"
-                    className="w-full h-[50px] bg-[#cd0606] hover:bg-[#a80404] transition-colors rounded-[5px] flex items-center justify-center gap-3"
-                  >
-                    <span className="font-['Inter',sans-serif] font-bold text-white text-[18px]">SEND ENQUIRY</span>
-                    <img src={imgArrow} alt="" className="h-5 w-auto" />
-                  </button>
+  type="submit"
+  disabled={loading}
+  className="w-full h-[50px] bg-[#cd0606] hover:bg-[#a80404] disabled:bg-gray-400 rounded-[5px]"
+>
+  {loading ? "Sending..." : "SEND ENQUIRY"}
+</button>
                 </form>
               )}
             </div>
