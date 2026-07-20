@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import emailjs from "@emailjs/browser";
 import {
   Boxes,
@@ -133,7 +134,6 @@ import imgInd12 from "@/imports/Desktop4/946cc2697c181c67c89993a70c5bdb30c53d205
 // Contact icons
 import imgPhone from "@/imports/Desktop4/2c89a6aa5ab0caa033725718ec1ab3f6835795db.png";
 import imgEmail from "@/imports/Desktop4/10b4759fa9a08551c8744271de4155e6ce13fea3.png";
-const imgLocation = "";
 
 type Page = "home" | "products" | "about" | "services" | "industries" | "tools" | "contact";
 type ProductCategory = "all" | "atlanta" | "atlanta-semi" | "atlanta-auto" | "itipack";
@@ -144,6 +144,58 @@ type ProductInfo = {
   features: string[];
   brand?: string;
 };
+
+const SITE_URL = "https://www.rudren.com";
+
+const pageSeo: Record<Page, { path: string; title: string; description: string }> = {
+  home: { path: "/", title: "Rudren Solutions LLP | Industrial Packaging Solutions in Goa", description: "Rudren Solutions LLP provides industrial packaging, packaging machinery, consumables, cargo securing and on-site packaging services across Goa." },
+  about: { path: "/about/", title: "About Rudren Solutions LLP | Packaging Company in Goa", description: "Learn about Rudren Solutions LLP, a Goa-based industrial packaging company supporting businesses with dependable packaging solutions." },
+  services: { path: "/services/", title: "Industrial Packaging Services in Goa | Rudren Solutions", description: "Explore industrial packaging, on-site packaging, cargo securing, packaging audits and technical support from Rudren Solutions in Goa." },
+  products: { path: "/products/", title: "Packaging Machinery & Consumables in Goa | Rudren", description: "Browse packaging machinery, strapping, tapes, stretch films and industrial packaging consumables supplied by Rudren Solutions in Goa." },
+  industries: { path: "/industries/", title: "Industries We Serve | Industrial Packaging Goa | Rudren", description: "Rudren provides industrial packaging solutions for manufacturing, pharmaceuticals, food processing, shipping, logistics and more across Goa." },
+  tools: { path: "/tools-tackles/", title: "Packaging Tools & Tackles in Goa | Rudren Solutions", description: "Find dependable steel strapping tools, composite strapping tools, industrial strappers and packaging tools in Goa." },
+  contact: { path: "/contact/", title: "Contact Rudren Solutions LLP | Packaging Supplier in Goa", description: "Contact Rudren Solutions LLP for industrial packaging, machinery, consumables, cargo securing and on-site packaging in Goa." },
+};
+
+const pageFromPath = (pathname: string): Page => {
+  const normalized = pathname.replace(/\/+$/, "") || "/";
+  return ({ "/": "home", "/about": "about", "/services": "services", "/products": "products", "/industries": "industries", "/tools-tackles": "tools", "/contact": "contact" } as Record<string, Page>)[normalized] ?? "home";
+};
+
+function Seo({ page }: { page: Page }) {
+  const seo = pageSeo[page];
+  const canonical = `${SITE_URL}${seo.path}`;
+  const breadcrumbs = [{ name: "Home", item: SITE_URL }, ...(page === "home" ? [] : [{ name: seo.title.split(" | ")[0], item: canonical }])];
+  const organization = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": ["Organization", "LocalBusiness"], "@id": `${SITE_URL}/#organization`, name: "Rudren Solutions LLP", url: SITE_URL, logo: `${SITE_URL}/favicon.svg`, image: `${SITE_URL}/social-card.svg`, description: "Industrial packaging solutions, packaging machinery, consumables, cargo securing and on-site packaging services in Goa, India.", telephone: "+91-96070-24997", email: "info@rudren.com", address: { "@type": "PostalAddress", addressLocality: "Goa", addressRegion: "Goa", addressCountry: "IN" }, areaServed: ["Goa", "Verna", "Ponda", "Margao", "Panaji", "Mapusa", "Vasco da Gama", "Kundaim", "Madkai", "Curchorem"], openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "18:00" } },
+      { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "Rudren Solutions LLP", publisher: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-IN" },
+      { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: seo.title, description: seo.description, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
+      { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: breadcrumbs.map((crumb, index) => ({ "@type": "ListItem", position: index + 1, name: crumb.name, item: crumb.item })) },
+      ...(page === "services" ? [{ "@type": "Service", serviceType: "Industrial packaging services", provider: { "@id": `${SITE_URL}/#organization` }, areaServed: "Goa", description: seo.description }] : []),
+      ...(page === "products" ? [{ "@type": "Product", name: "Industrial Packaging Machinery and Consumables", brand: { "@type": "Brand", name: "Rudren Solutions" }, description: seo.description, category: "Industrial Packaging" }] : []),
+      ...(page === "contact" ? [{ "@type": "ContactPage", name: seo.title, url: canonical, mainEntity: { "@id": `${SITE_URL}/#organization` } }] : []),
+      ...(page === "home" ? [{ "@type": "FAQPage", mainEntity: [
+        { "@type": "Question", name: "What packaging solutions does Rudren Solutions provide?", acceptedAnswer: { "@type": "Answer", text: "Rudren Solutions provides industrial packaging consumables, packaging machinery, on-site packaging, cargo securing, packaging audits and technical support." } },
+        { "@type": "Question", name: "Which areas in Goa does Rudren serve?", acceptedAnswer: { "@type": "Answer", text: "Rudren serves businesses across Goa, including Verna, Ponda, Margao, Panaji, Mapusa, Vasco, Kundaim, Madkai and Curchorem." } }
+      ] }] : [])
+    ]
+  };
+  return <Helmet prioritizeSeoTags>
+    <title>{seo.title}</title><meta name="description" content={seo.description} />
+    <meta name="keywords" content="Rudren, Rudren Solutions, Rudren Solutions LLP, Industrial Packaging Goa, Packaging Company Goa, Packaging Supplier Goa, Packaging Machinery Goa, Packaging Consumables Goa, Cargo Securing Goa, On-site Packaging Goa" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" /><link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" /><meta property="og:locale" content="en_IN" /><meta property="og:site_name" content="Rudren Solutions LLP" /><meta property="og:title" content={seo.title} /><meta property="og:description" content={seo.description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={`${SITE_URL}/social-card.svg`} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={seo.title} /><meta name="twitter:description" content={seo.description} /><meta name="twitter:image" content={`${SITE_URL}/social-card.svg`} />
+    <script type="application/ld+json">{JSON.stringify(organization)}</script>
+  </Helmet>;
+}
+
+function BreadcrumbTrail({ page }: { page: Page }) {
+  if (page === "home") return null;
+  return <nav aria-label="Breadcrumb" className="sr-only"><ol><li><a href="/">Home</a></li><li aria-current="page">{pageSeo[page].title.split(" | ")[0]}</li></ol></nav>;
+}
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
 
@@ -285,6 +337,13 @@ function Footer({ navigate }: { navigate: (p: Page) => void }) {
         <h3 className="text-2xl font-bold text-white mb-4 text-left">
           Rudren 
         </h3>
+        <nav aria-label="Footer navigation" className="mb-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/80">
+          {(["home", "about", "services", "products", "industries", "tools", "contact"] as Page[]).map((item) => (
+            <a key={item} href={pageSeo[item].path} className="hover:text-white underline-offset-4 hover:underline">
+              {item === "home" ? "Home" : pageSeo[item].title.split(" | ")[0]}
+            </a>
+          ))}
+        </nav>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-15">
           
@@ -588,7 +647,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
   const [heroSlide, setHeroSlide] = useState(0);
 
   const heroSlides = [
-    { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "PACKAGING BUILT\nAROUND YOUR\nOPERATION", desc: "From requirement assessment and material supply to dedicated on-site packaging teams — Rudren Solutions manages your entire packaging process, so your team can focus on what they do best." },
+    { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "RUDREN SOLUTIONS\nINDUSTRIAL PACKAGING\nIN GOA", desc: "From requirement assessment and material supply to dedicated on-site packaging teams, Rudren Solutions LLP manages industrial packaging for businesses across Goa." },
     { img: imgService1, badge: "ON-SITE PACKAGING", title: "DEDICATED\nON-SITE PACKAGING\nSOLUTIONS", desc: "Our expert teams deploy directly to your facility, managing packaging operations with precision, efficiency, and complete accountability — ensuring seamless integration with your production line." },
     { img: imgAbout2, badge: "OUR PRODUCTS", title: "PREMIUM\nPACKAGING\nCONSUMABLES", desc: "From high-performance tapes and strapping to stretch films and machinery — we supply a comprehensive range of industrial packaging materials trusted by manufacturers across Goa." },
   ];
@@ -723,6 +782,9 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             </h1>
             <p className="font-['Inter',sans-serif] text-white text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed max-w-[620px] mb-6 md:mb-8">
               {heroSlides[heroSlide].desc}
+            </p>
+            <p className="font-['Inter',sans-serif] text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[620px] mb-6">
+              Supporting packaging operations in Verna, Ponda, Margao, Panaji, Mapusa, Vasco, Kundaim, Madkai and Curchorem.
             </p>
             <div className="flex flex-wrap gap-3">
               {heroSlide === 1 && (
@@ -2385,7 +2447,7 @@ function ContactPage() {
                     <p className="font-['Inter',sans-serif] text-white/70 text-[14px] uppercase tracking-widest mb-1">PHONE</p>
                     <div className="flex items-center gap-3">
                       <img src={imgPhone} alt="" className="w-8 h-8 object-contain" />
-                      <p className="font-['Inter',sans-serif] text-white text-[18px]">+91 96070 24997</p>
+                      <a href="tel:+919607024997" className="font-['Inter',sans-serif] text-white text-[18px] underline hover:text-white/80">+91 96070 24997</a>
                     </div>
                   </div>
                   <div>
@@ -2400,7 +2462,7 @@ function ContactPage() {
                   <div>
                     <p className="font-['Inter',sans-serif] text-white/70 text-[14px] uppercase tracking-widest mb-1">LOCATION</p>
                     <div className="flex items-center gap-3">
-                      <img src={imgLocation} alt="" className="w-8 h-8 object-contain" />
+                      <MapPin aria-hidden="true" className="w-8 h-8 text-white" />
                       <p className="font-['Inter',sans-serif] text-white text-[18px]">Goa, India</p>
                     </div>
                   </div>
@@ -2422,7 +2484,7 @@ function ContactPage() {
 // ─── ROOT APP ─────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [page, setPage] = useState<Page>("home");
+  const [page, setPage] = useState<Page>(() => pageFromPath(window.location.pathname));
   const [productCategory, setProductCategory] = useState<ProductCategory>("all");
 
   useEffect(() => {
@@ -2451,7 +2513,24 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handlePopState = () => setPage(pageFromPath(window.location.pathname));
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    // Existing design assets are editorial images; make their accessible text and
+    // loading behaviour consistent without changing the visual design.
+    document.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
+      if (image.alt && !image.title) image.title = image.alt;
+      if (!image.closest("section:first-of-type") && !image.loading) image.loading = "lazy";
+    });
+  }, [page]);
+
   const navigate = (p: Page, category?: ProductCategory) => {
+    const destination = pageSeo[p].path;
+    if (window.location.pathname !== destination) window.history.pushState({}, "", destination);
     setPage(p);
     if (category && (category === "all" || category === "atlanta" || category === "atlanta-semi" || category === "atlanta-auto" || category === "itipack")) {
       setProductCategory(category);
@@ -2461,8 +2540,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-['Inter',sans-serif]">
+      <Seo page={page} />
       <Navbar current={page} navigate={navigate} />
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
+        <BreadcrumbTrail page={page} />
         {page === "home" && <HomePage navigate={navigate} />}
         {page === "products" && <ProductsPage navigate={navigate} initialCategory={productCategory} />}
         {page === "about" && <AboutPage navigate={navigate} />}
