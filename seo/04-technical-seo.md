@@ -159,7 +159,7 @@ function SEO({ title, description, canonical }: { title: string; description: st
 ## Open Graph Tags
 
 ```html
-<meta property="og:title" content="Industrial Packaging Company Goa | On-Site Packaging Services | Rudren Solutions" />
+<meta property="og:title" content="Rudren Solutions LLP | Industrial Packaging Solutions in Goa" />
 <meta property="og:description" content="Goa's trusted industrial packaging company — supply, machinery, and on-site teams for manufacturers and exporters." />
 <meta property="og:url" content="https://www.rudren.com/" />
 <meta property="og:type" content="website" />
@@ -178,7 +178,7 @@ function SEO({ title, description, canonical }: { title: string; description: st
 
 ```html
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Industrial Packaging Company Goa | On-Site Packaging Services | Rudren Solutions" />
+<meta name="twitter:title" content="Rudren Solutions LLP | Industrial Packaging Solutions in Goa" />
 <meta name="twitter:description" content="Goa's trusted industrial packaging company — supply, machinery, and on-site teams for manufacturers and exporters." />
 <meta name="twitter:image" content="https://www.rudren.com/og-image.jpg" />
 <meta name="twitter:site" content="@rudrensolutions" />

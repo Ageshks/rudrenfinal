@@ -2,9 +2,9 @@
 
 ## SEO Title
 ```
-Industrial Packaging Company Goa | On-Site Packaging Services | Rudren Solutions
+Rudren Solutions LLP | Industrial Packaging Solutions in Goa
 ```
-**Length: 77 characters** ✓ (within 60–80 character range)
+**Length: 62 characters** ✓ (under 70 — ideal for title tags)
 
 ## Meta Description
 ```

@@ -23,7 +23,7 @@
 
 | Page | SEO Title | Length |
 |------|-----------|--------|
-| Home | Industrial Packaging Company Goa \| On-Site Packaging Services \| Rudren Solutions | 77 chars |
+| Home | Rudren Solutions LLP \| Industrial Packaging Solutions in Goa | 62 chars |
 | About | About Rudren Solutions — Industrial Packaging Company in Goa | 63 chars |
 | Services | Industrial Packaging Services Goa — On-Site, Export & Cargo Securing | 78 chars |
 | On-Site Packaging | On-Site Packaging Teams Goa — Industrial Packaging at Your Facility | 72 chars |

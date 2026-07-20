@@ -8,7 +8,7 @@
 |---------|-------------|
 | **Slug** | `/` |
 | **Canonical** | `https://www.rudren.com/` |
-| **Title** | Industrial Packaging Company Goa \| On-Site Packaging Services \| Rudren Solutions |
+| **Title** | Rudren Solutions LLP \| Industrial Packaging Solutions in Goa |
 | **Meta Desc.** | Goa's trusted industrial packaging company — supply, machinery, and on-site teams for manufacturers and exporters. Get a free consultation. |
 | **Primary KW** | Industrial packaging Goa |
 | **Secondary KW** | Packaging company Goa, packaging supplier Goa, packaging services Goa |
