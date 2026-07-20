@@ -77,6 +77,20 @@ import imgItipack14 from "@/imports/Desktop4/itipack/14.png";
 import imgItipack15 from "@/imports/Desktop4/itipack/15.png";
 import imgItipack16 from "@/imports/Desktop4/itipack/16.png";
 import imgItipack17 from "@/imports/Desktop4/itipack/17.png";
+import iti11 from "@/imports/Desktop4/iti/iti11.png";
+import iti12 from "@/imports/Desktop4/iti/iti12.png";
+import iti14 from "@/imports/Desktop4/iti/iti14.png";
+import iti18 from "@/imports/Desktop4/iti/iti18.png";
+import iti20 from "@/imports/Desktop4/iti/iti20.png";
+import iti21 from "@/imports/Desktop4/iti/iti21.png";
+import iti22 from "@/imports/Desktop4/iti/iti22.png";
+import iti23 from "@/imports/Desktop4/iti/iti23.png";
+import iti24 from "@/imports/Desktop4/iti/iti24.png";
+import iti25 from "@/imports/Desktop4/iti/iti25.png";
+import iti27 from "@/imports/Desktop4/iti/iti27.png";
+
+
+
 
 // Atlanta product images
 import imgAtlantaSemi1 from "@/imports/Desktop4/atlanta semi 1.jpg";
@@ -1362,7 +1376,7 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
                   </div>
 
                   {/* Steel Wrapping Tools Section */}
-                  <div>
+                  <div className="mb-12">
                     <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
                       <span className="text-[#cd0606]">Itipack</span> Steel Wrapping Tools
                     </h2>
@@ -1383,6 +1397,34 @@ function ProductsPage({ navigate, initialCategory }: { navigate: (p: Page, categ
                         { img: imgItipack15, name: "ITI - 61", desc: "Pneumatic-powered tool for high-volume operations.", features: ["Pneumatic power", "High speed", "Reduced fatigue"] },
                         { img: imgItipack16, name: "ITI - 62", desc: "Complete accessory kit for wrapping tools.", features: ["Complete set", "Organized storage", "Essential components"]},
                         { img: imgItipack17, name: "ITI - 84", desc: "Cordless battery-powered strapping tool.", features: ["Cordless", "Portable", "Rechargeable"]  },
+                      ].map((product) => (
+                        <ProductCard key={product.name} img={product.img} name={product.name} onClick={() => setSelectedProduct(product)} />
+                      ))}
+                    </div>
+                  </div>
+                      {/* {plastic strapping tools section} */}
+                  <div>
+                    <h2 className="font-['Inter',sans-serif] font-bold text-[32px] text-black mb-2">
+                      <span className="text-[#cd0606]">Itipack</span> Plastic Wrapping Tools
+                    </h2>
+                    <div className="w-[66px] h-[4px] bg-[#cd0606] mb-6" />
+                    <p className="font-['Inter',sans-serif] text-[16px] text-black/60 mb-6">
+                      Professional-grade plastic strapping and wrapping tools for industrial applications.
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                      {[
+                        { img: iti11, name: "ITI  - 11", desc: "Pneumatic strapping tool for PP and PET strap", features: ["Studied for 16mm and 19mm PP strap and 13mm / 16mm / 19mm PET strap",] },
+                        { img: iti12, name: "ITI - 12", desc: "Pneumatic strapping tool studied for 16mm and 19mm PET strap.", features: ["Studied for 16mm and 19mm PET strap.", "providing a maximum tensioning force of 5000N or 6000N",] },
+                        { img: iti14, name: "ITI - 14", desc: "Pneumatic plastic strapping tool for heavy duty applications", features: ["Studied for 25mm and 32mm PET strap.", "tensioning force of up to 6000N",] },
+                        { img: iti18, name: "ITI - 18", desc: "Pure welding device.", features: ["Studied for 16mm / 19mm / 25mm / 32mm PP and PET strap.", "compact and versatile", "Lightweight and powerful"] },
+                        { img: iti20, name: "ITI - 20", desc: "Battery strapping tool for plastic strap", features: ["Well-known battery strapping tool for plastic strap", "l suitable for 13mm and 16mm PP and PET strap,", "2Ah Lithium-Polymer battery"] },
+                        { img: iti21, name: "ITI - 21", desc: "Battery tool series for plastic strap", features: ["Suitable for 16mm and 19 mm PP and PET strap", "heavy duty application like bricks", "3Ah Lithium Polymer Battery"] },
+                        { img: iti22, name: "ITI - 22", desc: "Entry level strapping tool ", features: ["Multiple light applications with 13/16 mm PP and PET straps", "friction weld seal technology", "Cost-effective"] },
+                        { img: iti23, name: "ITI - 23", desc: "High tension manual strapping tool", features: ["Suitable for 16 and 19 mm PET strap.", " heavy duty application", "3Ah Lithium Polymer Battery"] },
+                        { img: iti24, name: "ITI - 24", desc: "Three operating modes battery strapping tool", features: ["Studied for 13 / 16 mm PP and PET strap.", "Lightweight", "long life Lithium Polymer battery"]},
+                        { img: iti25, name: "ITI - 25", desc: "Easy-to-be-used battery strapping tool", features: ["Studied for 16 / 19 mm PP and PET strap.", "Brushless motors to grant low maintenance", "long life Lithium Polymer battery"]  },
+                        { img: iti27, name: "ITI - 27", desc: "Battery strapping tool equipped with Brushless motors", features: ["Studied for 19/25/32 MM PET strap.", "Portable", "Brushless motors to grant low maintenance"]  },
+
                       ].map((product) => (
                         <ProductCard key={product.name} img={product.img} name={product.name} onClick={() => setSelectedProduct(product)} />
                       ))}
