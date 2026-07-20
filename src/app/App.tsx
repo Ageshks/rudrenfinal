@@ -164,13 +164,13 @@ const pageFromPath = (pathname: string): Page => {
 
 function Seo({ page }: { page: Page }) {
   const seo = pageSeo[page];
-  const canonical = `${SITE_URL}${seo.path}`;
+  const canonical = SITE_URL + seo.path;
   const breadcrumbs = [{ name: "Home", item: SITE_URL }, ...(page === "home" ? [] : [{ name: seo.title.split(" | ")[0], item: canonical }])];
   const organization = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": ["Organization", "LocalBusiness"], "@id": `${SITE_URL}/#organization`, name: "Rudren Solutions LLP", url: SITE_URL, logo: `${SITE_URL}/favicon.svg`, image: `${SITE_URL}/social-card.svg`, description: "Industrial packaging solutions, packaging machinery, consumables, cargo securing and on-site packaging services in Goa, India.", telephone: "+91-96070-24997", email: "info@rudren.com", address: { "@type": "PostalAddress", addressLocality: "Goa", addressRegion: "Goa", addressCountry: "IN" }, areaServed: ["Goa", "Verna", "Ponda", "Margao", "Panaji", "Mapusa", "Vasco da Gama", "Kundaim", "Madkai", "Curchorem"], openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "18:00" } },
-      { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "Rudren Solutions LLP", publisher: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-IN" },
+      { "@type": ["Organization", "LocalBusiness"], "@id": SITE_URL + "/#organization", name: "Rudren Solutions LLP", url: SITE_URL, logo: SITE_URL + "/favicon.svg", image: SITE_URL + "/social-card.svg", description: "Industrial packaging solutions, packaging machinery, consumables, cargo securing and on-site packaging services in Goa, India.", telephone: "+91-96070-24997", email: "info@rudren.com", address: { "@type": "PostalAddress", addressLocality: "Goa", addressRegion: "Goa", addressCountry: "IN" }, areaServed: ["Goa", "Verna", "Ponda", "Margao", "Panaji", "Mapusa", "Vasco da Gama", "Kundaim", "Madkai", "Curchorem"], openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "18:00" } },
+      { "@type": "WebSite", "@id": SITE_URL + "/#website", url: SITE_URL, name: "Rudren Solutions LLP", publisher: { "@id": SITE_URL + "/#organization" }, inLanguage: "en-IN" },
       { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: seo.title, description: seo.description, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
       { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: breadcrumbs.map((crumb, index) => ({ "@type": "ListItem", position: index + 1, name: crumb.name, item: crumb.item })) },
       ...(page === "services" ? [{ "@type": "Service", serviceType: "Industrial packaging services", provider: { "@id": `${SITE_URL}/#organization` }, areaServed: "Goa", description: seo.description }] : []),
