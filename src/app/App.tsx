@@ -784,8 +784,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
               {heroSlides[heroSlide].desc}
             </p>
             <p className="font-['Inter',sans-serif] text-white/90 text-[13px] sm:text-[14px] leading-relaxed max-w-[620px] mb-6">
-              Supporting packaging operations in Pilerne, Tivim, Cuncolim and Margao.
-            </p>
+Supporting packaging operations in Verna, Kundaim, Pilerne, Tivim, Cuncolim and Margao.            </p>
             <div className="flex flex-wrap gap-3">
               {heroSlide === 1 && (
                 <button
