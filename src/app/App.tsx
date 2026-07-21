@@ -182,14 +182,58 @@ function Seo({ page }: { page: Page }) {
       ] }] : [])
     ]
   };
-  return <Helmet prioritizeSeoTags>
-    <title>{seo.title}</title><meta name="description" content={seo.description} />
-    <meta name="keywords" content="Rudren, Rudren Solutions, Rudren Solutions LLP, Industrial Packaging Goa, Packaging Company Goa, Packaging Supplier Goa, Packaging Machinery Goa, Packaging Consumables Goa, Cargo Securing Goa, On-site Packaging Goa" />
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" /><link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" /><meta property="og:locale" content="en_IN" /><meta property="og:site_name" content="Rudren Solutions LLP" /><meta property="og:title" content={seo.title} /><meta property="og:description" content={seo.description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={`${SITE_URL}/social-card.svg`} />
-    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={seo.title} /><meta name="twitter:description" content={seo.description} /><meta name="twitter:image" content={`${SITE_URL}/social-card.svg`} />
-    <script type="application/ld+json">{JSON.stringify(organization)}</script>
-  </Helmet>;
+  return (
+  <Helmet prioritizeSeoTags>
+    {/* Basic SEO */}
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta
+      name="keywords"
+      content="Industrial Packaging, Export Packaging, Vacuum Packaging, Wooden Crates, Wooden Pallets, Container Lashing, Cargo Securing, Packaging Solutions, Rudren Solutions LLP, Goa, India"
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hrefLang="en-IN" href="https://www.rudren.com/" />
+<link rel="alternate" hrefLang="x-default" href="https://www.rudren.com/" />
+
+    {/* Author */}
+    <meta name="author" content="Rudren Solutions LLP" />
+
+    {/* Theme */}
+    <meta name="theme-color" content="#2563EB" />
+
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Rudren Solutions LLP" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE_URL}/social-card.jpg`} />
+    <meta
+      property="og:image:alt"
+      content="Rudren Solutions LLP - Industrial Packaging Solutions"
+    />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={`${SITE_URL}/social-card.jpg`} />
+
+    {/* Mobile */}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/* JSON-LD */}
+    <script type="application/ld+json">
+      {JSON.stringify(organization)}
+    </script>
+  </Helmet>
+);
 }
 
 function BreadcrumbTrail({ page }: { page: Page }) {
