@@ -2486,7 +2486,7 @@ function ContactPage() {
 function SiteLoader() {
   return (
     <div className="site-loader" role="status" aria-live="polite" aria-label="Loading Rudren Solutions website">
-      <img className="site-loader__logo" src={imgLogo} alt="Rudren Solutions LLP" />
+      <img className="site-loader__logo" src={imgLogo} alt="" />
       <span className="sr-only">Loading website</span>
     </div>
   );
