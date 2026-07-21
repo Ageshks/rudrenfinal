@@ -169,7 +169,7 @@ function Seo({ page }: { page: Page }) {
   const organization = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": ["Organization", "LocalBusiness"], "@id": SITE_URL + "/#organization", name: "Rudren Solutions LLP", url: SITE_URL, logo: SITE_URL + "/favicon.svg", image: SITE_URL + "/social-card.svg", description: "Industrial packaging solutions, packaging machinery, consumables, cargo securing and on-site packaging services in Goa, India.", telephone: "+91-96070-24997", email: "info@rudren.com", address: { "@type": "PostalAddress", addressLocality: "Goa", addressRegion: "Goa", addressCountry: "IN" }, areaServed: ["Goa", "Verna", "Ponda", "Margao", "Panaji", "Mapusa", "Vasco da Gama", "Kundaim", "Madkai", "Curchorem"], openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "18:00" } },
+      { "@type": ["Organization", "LocalBusiness"], "@id": SITE_URL + "/#organization", name: "Rudren Solutions LLP", url: SITE_URL, logo: SITE_URL + "/favicon.png", image: SITE_URL + "/social-card.svg", description: "Industrial packaging solutions, packaging machinery, consumables, cargo securing and on-site packaging services in Goa, India.", telephone: "+91-96070-24997", email: "info@rudren.com", address: { "@type": "PostalAddress", addressLocality: "Goa", addressRegion: "Goa", addressCountry: "IN" }, areaServed: ["Goa", "Verna", "Ponda", "Margao", "Panaji", "Mapusa", "Vasco da Gama", "Kundaim", "Madkai", "Curchorem"], openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "09:00", closes: "18:00" } },
       { "@type": "WebSite", "@id": SITE_URL + "/#website", url: SITE_URL, name: "Rudren Solutions LLP", publisher: { "@id": SITE_URL + "/#organization" }, inLanguage: "en-IN" },
       { "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: seo.title, description: seo.description, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, breadcrumb: { "@id": `${canonical}#breadcrumb` } },
       { "@type": "BreadcrumbList", "@id": `${canonical}#breadcrumb`, itemListElement: breadcrumbs.map((crumb, index) => ({ "@type": "ListItem", position: index + 1, name: crumb.name, item: crumb.item })) },
@@ -2483,9 +2483,32 @@ function ContactPage() {
 
 // ─── ROOT APP ─────────────────────────────────────────────────────────────────
 
+function SiteLoader() {
+  return (
+    <div className="site-loader" role="status" aria-live="polite" aria-label="Loading Rudren Solutions website">
+      <img className="site-loader__logo" src={imgLogo} alt="Rudren Solutions LLP" />
+      <span className="sr-only">Loading website</span>
+    </div>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState<Page>(() => pageFromPath(window.location.pathname));
   const [productCategory, setProductCategory] = useState<ProductCategory>("all");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const finishLoading = () => window.setTimeout(() => setIsLoading(false), 250);
+    const fallback = window.setTimeout(() => setIsLoading(false), 4000);
+
+    if (document.readyState === "complete") finishLoading();
+    else window.addEventListener("load", finishLoading, { once: true });
+
+    return () => {
+      window.removeEventListener("load", finishLoading);
+      window.clearTimeout(fallback);
+    };
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -2540,6 +2563,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-['Inter',sans-serif]">
+      {isLoading && <SiteLoader />}
       <Seo page={page} />
       <Navbar current={page} navigate={navigate} />
       <main className="flex-1" id="main-content">

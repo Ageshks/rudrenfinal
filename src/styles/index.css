@@ -6,3 +6,56 @@
   outline: 3px solid #cd0606;
   outline-offset: 3px;
 }
+
+.site-loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  background: #050505;
+  color: #ffffff;
+}
+
+.site-loader::before,
+.site-loader::after {
+  position: absolute;
+  z-index: -1;
+  width: min(55rem, 105vw);
+  height: min(55rem, 105vw);
+  content: "";
+  border-radius: 50%;
+  background: rgb(205 6 6 / 34%);
+  filter: blur(85px);
+  animation: site-loader-glow 3.2s ease-in-out infinite alternate;
+}
+
+.site-loader::before {
+  top: -18rem;
+  left: -18rem;
+}
+.site-loader::after {
+  right: -18rem;
+  bottom: -18rem;
+  background: rgb(235 48 48 / 22%);
+  animation-delay: -1.6s;
+}
+
+.site-loader__logo {
+  width: min(30rem, 86vw);
+  height: 13rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgb(235 48 48 / 38%));
+}
+
+@keyframes site-loader-glow {
+  to { opacity: 0.7; transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-loader::before,
+  .site-loader::after { animation: none; }
+}
