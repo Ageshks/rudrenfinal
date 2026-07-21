@@ -647,7 +647,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
   const [heroSlide, setHeroSlide] = useState(0);
 
   const heroSlides = [
-    { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "RUDREN SOLUTIONS\nINDUSTRIAL PACKAGING\nIN GOA", desc: "From requirement assessment and material supply to dedicated on-site packaging teams, Rudren Solutions LLP manages industrial packaging for businesses across Goa." },
+    { img: imgHeroBg, badge: "INDUSTRIAL PACKAGING", title: "RUDREN SOLUTIONS\nINDUSTRIAL PACKAGING\nIN GOA", desc: "From requirement assessment and material supply to dedicated on-site packaging teams, Rudren Solutions manages industrial packaging for businesses across Goa." },
     { img: imgService1, badge: "ON-SITE PACKAGING", title: "DEDICATED\nON-SITE PACKAGING\nSOLUTIONS", desc: "Our expert teams deploy directly to your facility, managing packaging operations with precision, efficiency, and complete accountability — ensuring seamless integration with your production line." },
     { img: imgAbout2, badge: "OUR PRODUCTS", title: "PREMIUM\nPACKAGING\nCONSUMABLES", desc: "From high-performance tapes and strapping to stretch films and machinery — we supply a comprehensive range of industrial packaging materials trusted by manufacturers across Goa." },
   ];
